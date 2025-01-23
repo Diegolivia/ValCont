@@ -16,6 +16,7 @@ Los intervalos de confianza asimétricos usa el enfoque de Wilson (1927), como e
 Los resultados deberían ser complementados por un estimador de variabilidad o acuerdo entre los jueces.
 
 Nota:La función aun no ha sido preparado para resolver missing values, así que el usuario debe remover o imputar algun valor missing.
+Note: This function is not prepared to handle missing values, it is necessary for the user to handle it on their own.
 
 @references
 Davis, L.L. (1992). Instrument review: Getting the most from your panel of experts. Applied Nursing Research, 5, 194–197
