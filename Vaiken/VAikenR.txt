@@ -1,0 +1,58 @@
+#' @title Coeficiente V de Aiken
+#' @description Estima el coeficiente V, conocido como V de Aiken
+#' 
+#' @param data dataframe, con las columnas asignadas a cada rater, y las filas asignadas a cada ítem evaluado.
+#' @param min valor mínimo posible del rating
+#' @param max valor máximo posible del rating
+#' @param level nivel de confianza para los intervalos de confianza (ex., .90, .95, .99)
+#'
+@return dataframe con coeficientes V para todos los items analizados, intervalos de confianza y número de jueces para cada coeficiente calculado
+
+#' @details Estima el coeficiente V (Aiken, 1980), con la fórmula de Penfield & Giacobbi (2004). También calcula intervalos de confianza asimétricos (Wilson, 1927; Penfield & Giacobbi, 2004). Los resultados deberían ser complementados por un estimador de variabilidad o acuerdo entre los jueces. La función usa la fórmula modificada presentada por Penfield & Giacobbi (2004).
+
+
+@references
+Aiken, L. R. (1980). Content validity and reliability of single items or questionnaires. Educational and. Psychological Measurement, 40, 955-959. doi: 10.1177/001316448004000419
+
+Aiken, L. R. (1985). Three coefficients for analyzing the reliability and validity of ratings. Educational and Psychological Measurement, 45, 131-142. doi: 10.1177/0013164485451012
+
+Penfield, R. D. & Giacobbi, P. R., Jr. (2004) Applying a score confidence interval to Aiken’s item content-relevance index. Measurement in Physical Education and Exercise Science, 8(4), 213-225. doi: 10.1207/s15327841mpee0804_3
+
+Wilson, E. B. (1927). Probable inference, the law of succession, and statistical inference. Journal of the American Statistical Association, 22, 209-212. doi: 10.2307/2276774
+
+@seealso
+\code{\linkPropCIs::scoreci}} for score method confidence interval
+
+
+@examples
+
+### 1. Load data
+
+#Reemplazar el path con el path del archivo
+ej1 <- read.csv("a:\\bb\\cc\\dd\\ee\\ej1.txt",
+                header=FALSE,
+                sep = "")
+
+2. Run
+Vaiken1(data = ej1, min = 1, max = 6, level = .90)
+
+### Example 2 
+
+# 1. Load data
+Ej4 <- data.frame(
+  j1 = c(4, 1, 1, 1, 4),
+  j2 = c(4, 1, 2, 2, 3),
+  j3 = c(4, 1, 3, 3, 5),
+  j4 = c(4, 1, 4, 5, 5),
+  j5 = c(4, 1, 5, 5, 5),
+  j6 = c(4, 1, 3, 5, 5))
+
+# 2. Run
+Vaiken1(data = ej4, min = 1, max = 4, level = .90)
+
+
+#' @author
+#' Diego Livia-Ortiz (\email{diegolivia@hotmail.com})
+#' Cesar Merino-Soto (\email{sikayax@yahoo.com.ar})
+
+#' @export

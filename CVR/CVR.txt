@@ -1,0 +1,47 @@
+@title CVR
+@description Estima el coeficiente CVR (content validity ratio)
+@param data dataframe, con las columnas asignadas a cada juez, y las filas asignada a cada ítem evaluado.
+
+@return
+dataframe con coeficientes CVR para todos los items analizados
+
+@details
+La función CVR calcula el content validity ratio (CVR), propuesto por Lashe (1975). Se asume que los ítems fueron calificados en tres categorías: No importante (1), útil pero no esencial (2), esencial (3). CVR dicotomiza cada calificación, y arroja la proporción de jueces que consideraron al ítem como esencial. 
+De acuerdo a este modelo, el punto de corte usual para identificar ítems esenciales en el CVR, debería estar ubicado en el rating más alto posible; es decir, en una escala de 1 a 3, el punto de corte es 3.
+El usuario debe tomar en cuenta que el índice calculado por la función CVR es conceptual y computacionalmente diferente al CVI referido en varios autores (Lindell, & Brandt, 1999; Tristán, 2008). Pero CVR es un enfoque similar al CVI, propuesto por Martuza (1977), pero asociado frecuentemente a otros investigadores (Polit, & Beck, 2006), por ejemplo, a Lynn (1986), Davis (1992), Waltz & Bausell (1981), entre otros.
+
+Nota:La función aun no ha sido preparado para resolver missing values, así que el usuario debe remover o imputar algun valor missing.
+
+@references
+
+Davis, L.L. (1992). Instrument review: Getting the most from your panel of experts. Applied Nursing Research, 5, 194–197
+
+Lawshe, C. H. (1975). A quantitative approach to content validity. Personnel psychology, 28, 563–575.
+
+Lindell, M. K., & Brandt, C. J. (1999). Assessing interrater agreement on the job relevance of a test: A comparison of CVI, T, rWG(J)}, and r*WG(J)} indexes. Journal of  Applied Psychology, 84(4), 640–647. https://doi.org/10.1037/0021-9010.84.4.640
+
+Lynn, M.R. (1986). Determination and quantification of content validity. Nursing Research, 35, 382–385.
+
+Martuza, V.R. (1977). Applying norm-referenced and criterion-referenced measurement in education. Boston: Allyn & Bacon 
+
+Polit, D. F., & Beck, C. T. (2006). The content validity index: are you sure you know what's being reported? Critique and recommendations. Research in nursing & health, 29(5), 489–497. https://doi.org/10.1002/nur.20147
+
+Tristán, López, A. (2008). Modificación al modelo de Lawshe para el dictamen cuantitativo de la validez de contenido de un instrumento objetivo. Avances en Medición, 6, 37–48.
+
+Waltz, C.F., & Bausell, R.B. (1981). Nursing research: Design, statistics, and computer analysis. Philadelphia: F. A. Davis.
+
+Wilson, F. R., Pan, W., & Schumsky, D. A. (2012). Recalculation of the critical values for Lawshe’s content validity ratio. Measurement and Evaluation in Counseling and Development, 45, 197–210. doi:10.1177/0748175612440286
+
+@examples
+
+## Load data
+data(Ej3)
+
+## Run CVR
+CVR(Ej1, ...)
+
+#' @author
+#' Cesar Merino-Soto (\email: {sikayax@yahoo.cam.ar})
+
+#' @export
+

@@ -1,0 +1,32 @@
+'method': 
+"Wilson" = "W":  basado en Wilson, F. R., Pan, W., & Schumsky, D. A. (2012). Recalculation of the critical values for Lawshe’s content validity ratio. Measurement and Evaluation in Counseling and Development, 45, 197–210. doi:10.1177/0748175612440286
+
+"Lawshe" = "L": basado en las tablas que generadas en Lawshe, C. H. (1975). A quantitative approach to content validity. Personnel psychology, 28, 563–575.
+
+"Ayres" = "A": basado en el método de Exact Binomial Probabilities, de  Ayre, C., and Scally, A. J. (2014). Critical values for Lawshe's content validity ratio. Meas. Eval. Couns. Dev. 47, 79–86. doi: 10.1177/0748175613513808
+
+"Baghestani" = "B": Basado en la estadistica bayesiana de Baghestani, A. R., Ahmadi, A., and Meshkat, M. (2019). Bayesian critical values for Lawshe's content validity ratio. Meas. Eval. Couns. Dev. 52, 69–73. doi: 10.1080/07481756.2017.1308227
+
+
+Si el numero está tabulado, entonces arroja el mismo valor de la tabla, independiente del método de interpolacion.
+En caso contrario, interpolacion según el método declaradog
+
+en Interpolacion lineal
+Soporte de Extrapolación: Extrapolamos para valores de num_juecesnum_jueces fuera del rango tabulado (n<2 o n>40).
+
+
+
+INterpolaciones:
+Precisión Limitada:
+Resalta que la extrapolación es solo una estimación y no un valor validado empíricamente. Esto puede servir para análisis exploratorios o aproximaciones, pero los usuarios deben tener precaución al interpretar los resultados
+
+Extrapolación en Valores Estadísticos:
+La extrapolación lineal es una técnica comúnmente aceptada para extender patrones observados dentro de un rango de datos hacia valores fuera de él, siempre y cuando los datos tabulados sigan una tendencia predecible.
+
+
+Valores anómalos en extrapolacion polinómica
+Fue eliminado de las opciones
+Por ejemplo:
+CVRcut_Ayres(num_jueces = 49, interpolacion = "polyn", legend = F)
+#Método Cutoff Notas
+#1  Ayres      1     2

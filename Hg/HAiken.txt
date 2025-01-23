@@ -1,0 +1,61 @@
+@title HAiken coefficient
+@description Estima el coeficiente de homogeneidad de respuesta en cada item (Aiken, 1980, 1985).
+
+@param data dataframe, con las columnas asignadas a cada juez, y las filas asignadas a cada ítem evaluado.
+@param ncat número de categorías u opciones de respuesta utilizadas en el rating
+@param conf.level nivel de confianza para los intervalos de confianza (eg., .90, .95, .99)
+
+@return 
+dataframe con coeficientes H para todos los items analizados, y sus intervalos de confianza.
+
+@details
+Estima el coeficiente H (Aiken, 1980, 1985) para estimar la homogeneidad de respuesta de los jueces/calificadores a los items. 
+Los intervalos de confianza asimétricos usa el método de Wilson (1927) y adaptado por Penfield and Giacobbi (2004) para el coeficiente Aiken's V. El coeficiente H, o coeficientes equivalentes, deberían complementar los resultados de los coeficientes de validez de contenido. Otros métodos para estimar el acuerdo u homogeneidad de respuesta de los jueces también pueden ser útiles. Para mantener consistencia con los métodos habitualmente asociados a la validez de contenido, se propone 'HAiken' como opción.
+
+Nota:La función aun no ha sido preparado para resolver missing values, así que el usuario debe remover o imputar algun valor missing.
+
+@references
+Aiken, L. R. (1980). Content validity and reliability of single items or questionnaires. Educational and. Psychological Measurement, 40, 955-959. doi: 10.1177/001316448004000419
+
+Aiken, L. R. (1985). Three coefficients for analyzing the reliability and validity of ratings. Educational and Psychological Measurement, 45, 131-142. doi: 10.1177/0013164485451012
+
+Penfield, R. D., & Miller, J. M. (2004). Improving Content Validation Studies Using an Asymmetric Confidence Interval for the Mean of Expert Ratings. Applied Measurement in Education, 17(4), 359–370. https://doi.org/10.1207/s15324818ame1704_2
+
+Wilson, E. B. (1927). Probable inference, the law of succession, and statistical inference. Journal of the American Statistical Association, 22, 209-212. doi: 10.2307/2276774
+
+@seealso
+\code{\link{PropCIs::scoreci}} for score method confidence interval
+
+
+@examples
+### Example 1
+
+#Load data
+Ej2 <- data.frame(
+  j1 = c(4, 1, 1, 1, 4),
+  j2 = c(4, 1, 2, 2, 3),
+  j3 = c(4, 1, 3, 3, 5),
+  j4 = c(4, 1, 4, 5, 5),
+  j5 = c(4, 1, 5, 5, 5),
+  j6 = c(4, 1, 3, 5, 5)
+)
+
+# Run HAiken
+HAiken(Ej2, 
+       ncat = 5, 
+       alpha = .90)
+
+### Example 2
+# En un data.frame donde las filas son los items y las columnas los raters, H puede ser calculado para los raters (columns), simplemente trasponiendo los datos e ingresarlo como data frame.
+
+Haiken(as.data.frame(t(Ej2)), 
+       ncat = 5, 
+       alpha = .90)
+
+
+#' @author
+#' Cesar Merino-Soto (\email: {sikayax@yahoo.cam.ar})
+
+@keywords
+
+#' @export

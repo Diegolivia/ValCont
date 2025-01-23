@@ -1,0 +1,90 @@
+@title CID (confidence interval for diferences)
+@description Estima intervalos de confianza para la diferencia de coeficientes de validez de contenido, basado en Method of Variance Estimates Recovery (MOVER)
+@param group1 Output dataframe de results de alguna de las funciones de 'ValCont' para obtener coeficientes de validez de contenido.
+@param group2 Output dataframe de results de alguna de las funciones de 'ValCont' para obtener coeficientes de validez de contenido
+@param coef.col Nombre de la columna en el dataframe que almacena el coeficiente calculado
+@param lwr.col Nombre de la columna en el dataframe que almacena el límite inferior del intervalo de confianza
+@param upr.col Nombre de la columna en el dataframe que almacena el límite superior del intervalo de confianza
+
+@return 
+dataframe con cuatro columnas: etiqueta de los items, diferencia entre los coeficientes, el límite superior y superior del intevalo de confianza de la diferencia.
+
+@details
+'CID' usa Method of Variance Estimates Recovery (MOVER; Zou, & Donner, 2008)
+Debido que los datos producidos por el juicio de los jueces tienden a ser distribuidos asimétricamente (si el ítem es valorado, en una escala del 1 al 5, como predominantemente válido entonces sus valores serán > 3), MOVER es apropiado para distribuciones no normales. 
+MOVER depende de la calidad o precisión de los intervalos de confianza calculados para los coeficientes en cada grupo.
+La aplicación de MOVER para coeficiente de validez de contenido fue inicialmente publicada por Merino-Soto (2018) para la la diferencia entre coeficientes V (Aiken, 1980, 1985)
+Nota:La función aun no ha sido preparado para resolver missing values, así que el usuario debe remover o imputar algun valor missing.
+
+@references
+Aiken, L. R. (1980). Content validity and reliability of single items or questionnaires. Educational and. Psychological Measurement, 40, 955-959. doi: 10.1177/001316448004000419
+
+Aiken, L. R. (1985). Three coefficients for analyzing the reliability and validity of ratings. Educational and Psychological Measurement, 45, 131-142. doi: 10.1177/0013164485451012
+
+Merino-Soto, C. (2018) Confidence interval for difference between coefficients of content validity (Aiken's V): a SPSS syntax. Anales de  Psicología, 34(3), 587-590. https://dx.doi.org/10.6018/analesps.34.3.283481.
+
+Zou, G.Y. and Donner, A. (2008) Construction of confidence limits about effect measures: a general approach. Stat. Med. 27, 1693–1702
+
+
+@seealso
+\code{\link{ratesci::mover}}
+
+@examples
+
+### Example 1
+# Group 1 output
+Vgroup1 <- data.frame(
+  V = c(0.85, 0.78, 0.90),
+  lwr.ci = c(0.80, 0.75, 0.88),
+  upr.ci = c(0.90, 0.82, 0.92)
+)
+rownames(group1) <- c("Item1", "Item2", "Item3")
+
+# Group 2 output
+Vgroup2 <- data.frame(
+  V = c(0.80, 0.75),
+  lwr.ci = c(0.76, 0.70),
+  upr.ci = c(0.84, 0.78)
+)
+rownames(group2) <- c("Item1", "Item2")
+
+## Run 
+CID(Vgroup1, Vgroup2, coef_col = "V", lwr_col = "lwr.ci", upr_col = "upr.ci", conf.level = 0.95)
+
+### Example 2
+# Random data: 11 items (filas), 4 jueces (columnas)
+#Low ratings
+random_data2 <- data.frame(
+  juez1 = sample(1:2, 11, replace = TRUE),
+  juez2 = sample(2:3, 11, replace = TRUE),
+  juez3 = sample(1:2, 11, replace = TRUE),
+  juez4 = sample(1:3, 11, replace = TRUE))
+
+## Random data: 10 items (filas), 6 jueces (columnas)
+#High ratings
+random_data3 <- data.frame(
+  obs1 = sample(5:7, 10, replace = TRUE),
+  obs2 = sample(4:7, 10, replace = TRUE),
+  obs3 = sample(4:7, 10, replace = TRUE),
+  obs4 = sample(5:7, 10, replace = TRUE),
+  obs5 = sample(5:7, 10, replace = TRUE),
+  obs6 = sample(6:7, 10, replace = TRUE))
+
+# Saving results from Aiken's V analysis, for each group
+output.V1 <- Vaiken(data = random_data2, min = 1, max = 7, conf.level = .90)
+output.V2 <- Vaiken(data = random_data3, min = 1, max = 7, conf.level = .90)
+
+# Run CID
+CID(group1 = output.V2, 
+    group2 = output.V1,
+    coef.col = "V", 
+    lwr.col = "lwr.ci", 
+    upr.col = "upr.ci", 
+    conf.level = .90)
+
+
+#' @author
+#' Cesar Merino-Soto (\email: {sikayax@yahoo.cam.ar})
+
+
+#' @export

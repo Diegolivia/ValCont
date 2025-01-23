@@ -1,0 +1,43 @@
+#' @title Substantive validity: single item
+#' @description Esta función calcula los coeficientes psa y svc para un item, basado en Anderson y Garbin (1991)
+#' además de intervalos de confianza asimétricos.
+#'
+#' @param item Vector numérico con las respuestas a un ítem. Cada respuesta representa un constructo elegido, generalmente formando una variable multinomial.
+#' @param conf.level nivel de confianza para los intervalos de confianza asimétricos (ex., .90, .95, .99)
+#' 
+#' @return 
+Lista de dos dataframes con los resultados de psa y csv para cada categoría (i.e., constructo evaluado), junto con intervalos de confianza asimétricos.
+
+@details
+La función analiza la validez sustantiva usando el enfoque de Anderson y Gerbin (1991). Se estiman dos coeficientes: proportion of substantive agreement ('psa'), y substantive validity coefficient ('svc'). Ambos coeficientes son calculados para cada constructo, para de este modo comparar el constructo de interés (target construct) con el resto de los constructos (non-target constructs).
+Cada 'psa' y 'svc' es complementado con intervalos de confianza asimétricos (Penfield & Giacobbi, 2004; Wilson, 1927)
+El input vector para 'item' puede provenir de un 'data.frame', en que las filas son los participantes (jueces experienciales o jueces expertos), y las columnas son los items. Cada valor numérico en una columna/item representa el constructo elegido. Por ejemplo, si el estudio evalua la validez sustantiva comparando el constructo target con otros 3 constructos, entonces los valores distintos pueden ser: 1, 2, 3, 4. Sin embargo, puede ser alguna secuencia numérica con valores distintos (e.g., 2, 4, 10, 6).
+
+Nota:La función aun no ha sido preparado para resolver missing values, así que el usuario debe remover o imputar algun valor missing.
+
+@references
+Anderson, J. C., & Gerbing, D. W. (1991). Predicting the performance of measures in a confirmatory factor analysis with a pretest assessment of their substantive validities. Journal of Applied Psychology, 76(5), 732–740. https://doi.org/10.1037/0021-9010.76.5.732
+
+Penfield, R. D. & Giacobbi, P. R., Jr. (2004) Applying a score confidence interval to Aiken’s item content-relevance index. Measurement in Physical Education and Exercise Science, 8(4), 213-225. doi: 10.1207/s15327841mpee0804_3
+
+Wilson, E. B. (1927). Probable inference, the law of succession, and statistical inference. Journal of the American Statistical Association, 22, 209-212. doi: 10.2307/2276774
+
+@seealso
+\code{\link{PropCIs::scoreci}} for score method confidence interval
+
+
+#' @examples
+### Ejemplo 1
+
+## Load data
+data(ej5)
+
+## Run 
+vsub_single(item = ej5$gais1, conf.level = .90)
+
+@author
+Cesar Merino-Soto (\email: {sikayax@yahoo.cam.ar})
+
+@keywords
+
+#' @export

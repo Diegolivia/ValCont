@@ -1,0 +1,47 @@
+@title Mean_rating
+@description Estima la calificación promedio, con intervalos de confianza asimétricos
+@param data dataframe, con las columnas asignadas a cada juez, y las filas asignadas a cada ítem evaluado.
+@param ncat Numero de valores o categorias posibles usados en el rating
+@param start Valor minimo posible (0 o 1)
+@param conf.level nivel de confianza para los intervalos de confianza (ex., .90, .95, .99)
+
+@return
+dataframe con xxx para todos los items analizados, intervalos de confianza y número de jueces para cada coeficiente calculado
+
+@details
+Estima la calificación promedio de los jueces a cada item, basado en la propuesta de Penfield & Miller (2004), e intervalos de confianza asimétricos (Wilson, 1927; Penfield & Miller, 2004). Debido al habitual número pequeño de participantes los estudios de validez de contenido, los intervalos de confianza asimétricos pueden una enfoque óptimo para evaluar inferencialmente la validez de los ítems. Los resultados deberían ser complementados con un estimador de variabilidad o acuerdo entre los jueces.
+
+Nota:La función aun no ha sido preparado para resolver missing values, así que el usuario debe remover o imputar algun valor missing.
+
+@references
+Aiken, L. R. (1980). Content validity and reliability of single items or questionnaires. Educational and. Psychological Measurement, 40, 955-959. doi: 10.1177/001316448004000419
+
+Aiken, L. R. (1985). Three coefficients for analyzing the reliability and validity of ratings. Educational and Psychological Measurement, 45, 131-142. doi: 10.1177/0013164485451012
+
+Wilson, E. B. (1927). Probable inference, the law of succession, and statistical inference. Journal of the American Statistical Association, 22, 209-212. doi: 10.2307/2276774
+
+Penfield, R. D. & Giacobbi, P. R., Jr. (2004) Applying a score confidence interval to Aiken’s item content-relevance index. Measurement in Physical Education and Exercise Science, 8(4), 213-225. doi: 10.1207/s15327841mpee0804_3
+
+Penfield, R. D., & Miller, J. M. (2004). Improving Content Validation Studies Using an Asymmetric Confidence Interval for the Mean of Expert Ratings. Applied Measurement in Education, 17(4), 359–370. https://doi.org/10.1207/s15324818ame1704_2
+
+@seealso
+\code{\link{ValCont::HAiken}} for a homogenety coefficient
+
+@examples
+
+### Example 1
+# Load data
+ej1 <- read.csv("a:\\bb\\cc\\dd\\ee\\ej1.txt",
+                header=FALSE,
+                sep = "")
+
+# Run Mean_r
+mean_rating(data = ej1, ncat = 6, start = 1, conf.level = .90)
+
+
+#' @author
+#' Diego Livia-Ortiz (\email: {diegolivia@hotmail.com})
+
+@keywords
+
+#' @export
