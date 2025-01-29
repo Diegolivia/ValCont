@@ -1,30 +1,35 @@
+
+
 ########################
-## Ejemplo: 5 items columnas), 30 jueces (filas)
-# Data para Vsubs funciones
+## Example: 5 items (in columns), 30 judges (in rows)
+# (Data para Vsubs function)
 
 data.gais <- read.csv("F:\\carpetasMODIFICADAS\\INVESTIGACION\\Aiken_2do-round\\Livia\\VContenido.R\\ejemplos\\ej5.txt",
                 header=T,
                 sep = "")
 
 
-## Ejemplo: 15 items (filas), 15 jueces (columnas)
+## Ejemplo 1: 15 items (in rows), 15 jueces (in columna)
 # Without header columns
 ej1 <- read.csv("F:\\carpetasMODIFICADAS\\INVESTIGACION\\Aiken_2do-round\\Livia\\VContenido.R\\ejemplos\\ej1.txt",
                 header=FALSE,
                 sep = "")
 
-## Ejemplo: 5 items (filas), 6 jueces (columnas)
+## Ejemplo 2: 5 items (filas), 6 jueces (columnas)
 # Witht header columns
 ej2 <- read.csv("F:\\carpetasMODIFICADAS\\INVESTIGACION\\Aiken_2do-round\\Livia\\VContenido.R\\ejemplos\\ej2.txt",
                 header=T,
                 sep = "")
 
 
-## Random data: 12 items (filas), 6 jueces (columnas)
-random_data1 <- data.frame(replicate(n = 6,sample(1:5,12,rep=TRUE)))
+## Example 3: Random data, 12 items (in rows), 6 jueces (in columns)
+ej3 <- data.frame(replicate(n = 6,sample(1:5,12,rep=TRUE)))
 
 
-## Random data: 11 items (filas), 4 jueces (columnas)
+## Example 4: 12 items (in rows), 6 jueces (in columns)
+ej4 <- load(ej4)
+
+## Random data: 11 items (in rows), 4 jueces (in columns)
 #Low ratings
 random_data2 <- data.frame(
   juez1 = sample(1:2, 11, replace = TRUE),

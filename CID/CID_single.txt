@@ -1,42 +1,34 @@
-@title CVI
-@description Estima el CVI, sin ajuste por acuerdo aleatorio.
-@param data dataframe, con las columnas asignadas a cada juez, y las filas asignada a cada ítem evaluado.
-@param cut Punto de corte específico desde el cual el ítem es considerado válido (o relevante, claro, etc.)
-@param conf.level nivel de confianza para los intervalos de confianza asimétricos (ex., .90, .95, .99)
+@title CID_single
+@description Estima intervalos de confianza para la diferencia de coeficientes de validez de contenido específicos, basado en Method of Variance Estimates Recovery (MOVER)
+@param coef1 numerical value obtained for coefficient 1
+@param coef2 numerical value obtained for coefficient 2
+@param lci1 Lower limit for coefficient 1
+@param uci1 Upper limit for coefficient 1
+@param lci2 Lower limit for coefficient 2
+@param uci2 Upper limit for coefficient 2
+
 
 @return 
 dataframe con coeficientes CVI para todos los items analizados, e intervalos de confianza.
 
 @details
-
-Nota:La función aun no ha sido preparado para resolver missing values, así que el usuario debe remover o imputar algun valor missing.
+Merino-Soto (2018) used the MOVER approach as a generic method (Zou & Donner, 2008), to compare Aiken V coefficients. This function compares the results of two specific content validity coefficients with their respective confidence intervals. For example, the user can compare the coefficient calculated on his data (however, this coefficient must also have its confidence intervals calculated), with another coefficient obtained from a previous study.
+The compared content validity coefficients obtained should be of the same type, and the estimated confidence intervals for these coefficients should also come from the same level; for example, at .95 or .90.
+Singer (2010) observed that at extremely low values (e.g., proportions near .0), the coverage of this method is not as good. In the context of comparing content validity coefficients, treated as proportions, it is rare to find such low coefficients (and their confidence intervals). Unless the items are extremely poor in content.
 
 @references
+Merino-Soto, C. (2018). Confidence interval for difference between coefficients of content validity (Aiken's V): a SPSS syntax. Anales de Psicología, 34(3), 587-590. https://dx.doi.org/10.6018/analesps.34.3.283481.
+
+Singer, J. (2010). Construction of confidence limits about effect measures: A general approach, by G. Y. Zou and A. Donner, Statistics in Medicine 2008; 27:1693-1702. Statistics in Medicine, 29(16), 1757–1759. https://doi.org/10.1002/sim.3887
+
+Zou, G.Y. and Donner, A. (2008). Construction of confidence limits about effect measures: a general approach. Stat. Med. 27, 1693–1702. https://doi.org/10.1002/sim.3095
 
 @seealso
 \code{\link{PropCIs::scoreci}} for score method confidence interval
 
 @examples
 
-### Example 1
-## Group 1 output
-Vgroup1 <- data.frame(
-  V = c(0.85, 0.78, 0.90),
-  lwr.ci = c(0.80, 0.75, 0.88),
-  upr.ci = c(0.90, 0.82, 0.92)
-)
-rownames(group1) <- c("Item1", "Item2", "Item3")
-
-# Group 2 output
-Vgroup2 <- data.frame(
-  V = c(0.80, 0.75),
-  lwr.ci = c(0.76, 0.70),
-  upr.ci = c(0.84, 0.78)
-)
-rownames(group2) <- c("Item1", "Item2")
-
-## Run 
-CID(Vgroup1, Vgroup2, coef_col = "V", lwr_col = "lwr.ci", upr_col = "upr.ci", conf.level = 0.95)
+### Example
 
 CID_single(
   coef1 = 0.85, coef2 = 0.78,
