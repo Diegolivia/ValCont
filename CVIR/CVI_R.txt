@@ -1,8 +1,8 @@
 @title CVI_R
-@description Estima el coeficiente CVI con ajuste por acuerdo aleatorio (método de Polit y Beck (2007).
-@param data dataframe, con las columnas asignadas a cada juez, y las filas asignada a cada ítem evaluado.
+@description Calculate the CVI coefficient with random agreement adjustment (Polit & Beck, 2007).
+@param data dataframe, with the columns assigned to each judge, and the rows assigned to each evaluated item.
 @param cut Punto de corte específico desde donde el ítem es considerado válido (o relevante, claro, etc.)
-@param conf.level nivel de confianza para los intervalos de confianza asimétriocos (eg., .90, .95, .99)
+@param conf.level Specific cut-off point from which the item is considered valid (or relevant, clear, etc.).
 
 @return 
 dataframe con coeficientes CVI_PB para todos los items analizados, e intervalos de confianza.
