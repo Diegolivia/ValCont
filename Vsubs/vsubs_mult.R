@@ -1,5 +1,18 @@
 vsub_mult <- function(data, columns, conf.level = 0.95) {
-  # Subfunción interna para calcular PSA y CSV
+  # Subfunción para calcular intervalos de confianza con el método de Wilson
+  scoreci <- function(x, n, conf.level) {
+    zalpha <- abs(qnorm((1 - conf.level) / 2))
+    phat <- x / n
+    bound <- (zalpha * sqrt((phat * (1 - phat) + (zalpha^2) / (4 * n)) / n)) /
+      (1 + (zalpha^2) / n)
+    midpnt <- (phat + (zalpha^2) / (2 * n)) / (1 + (zalpha^2) / n)
+    
+    up.ci <- round(midpnt + bound, digits = 3)
+    lwr.ci <- round(midpnt - bound, digits = 3)
+    
+    return(data.frame(lwr.ci = lwr.ci, up.ci = up.ci))
+  }
+    # Subfunción interna para calcular PSA y CSV
   vsub_sing_internal <- function(item, conf.level) {
     # Crear tabla de frecuencias
     freq_table <- as.data.frame(table(item))

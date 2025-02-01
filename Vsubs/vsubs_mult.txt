@@ -1,6 +1,7 @@
-@title Substantive validity: single item
-@description This function calculates substantive coefficients ('psa' and 'svc' coefficients; Anderson & Garbin, 1991), more asymmetric confidence intervals.
-@param item Numerical vector with the responses to an item. Each response represents a chosen construct, usually forming a multinomial variable.
+@title Substantive validity: multiple item
+@description For a dataframe of items, this function calculates substantive coefficients ('psa' and 'svc' coefficients; Anderson & Garbin, 1991), more asymmetric confidence intervals.
+@param data dataframe with the responses to several items. Each response represents a chosen construct, usually forming a multinomial variable.
+@param columns vector of indexes or column names to be analyzed.
 @param conf.level confidence level for asymmetric confidence intervals (ex., .90, .95, .99)
 
 @return 
@@ -24,16 +25,21 @@ Wilson, E. B. (1927). Probable inference, the law of succession, and statistical
 
 @seealso
 \code{\link{PropCIs::scoreci}} for score method confidence interval
-
+\code{\link{ValCont::vsubs_single}} for substantive validity for single items
 
 #' @examples
-### Ejemplo 1
+### Example 1
 
 ## Load data
-data(ej5)
+data.gais <- read.csv("...path...\\gais.data.txt",
+                      header=T,
+                      sep = "")
 
 ## Run 
-vsub_single(item = ej5$gais1, conf.level = .90)
+vsub_mult(data = data.gais, columns = c("gais2", "gais3"), conf.level = .90)
+
+vsub_mult(data = data.gais, columns = c(1,2,3), conf.level = .90)
+
 
 @author
 Cesar Merino-Soto (\email: {sikayax@yahoo.cam.ar})
@@ -41,3 +47,4 @@ Cesar Merino-Soto (\email: {sikayax@yahoo.cam.ar})
 @keywords
 
 #' @export
+
