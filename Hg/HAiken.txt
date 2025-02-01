@@ -13,7 +13,8 @@ Compute the H coefficient (Aiken, 1980, 1985) to estimate the homogeneity of res
 To maintain consistency with the methods usually associated with content validity, 'HAiken' is proposed as an option.
 'HAiken' also compute asymmetric confidence intervals use the method of Wilson (1927). and adapted by Penfield and Giacobbi (2004) for Aiken's V coefficient. 
 The H coefficient, or equivalent coefficients, should complement the results of the content validity coefficients. 
-Other methods for estimating judges' agreement or homogeneity of response may also be useful. Note: The function has not yet been prepared to resolve missing values, so the user must remove or impute any missing values.
+Other methods for estimating judges' agreement or homogeneity of response may also be useful. 
+Note: The function has not yet been prepared to resolve missing values, so the user must remove or impute any missing values.
 
 @references
 Aiken, L. R. (1980). Content validity and reliability of single items or questionnaires. Educational and. Psychological Measurement, 40, 955-959. doi: 10.1177/001316448004000419
