@@ -14,7 +14,7 @@ The 'CVI_R' cutoff point, for identifying valid items, is generally based on the
 The asymmetric confidence intervals use Wilson's (1927) approach, as applied to Aiken's V coefficient (Penfield, & Giacobbi, 2004).
 The results should be complemented by an estimator of inter-judge variability or agreement.
 
-Nota:La función aun no ha sido preparado para resolver missing values, así que el usuario debe remover o imputar algun valor missing.
+Note: The function has not yet been prepared to resolve missing values, so the user must remove or impute any missing values.
 
 
 @references
