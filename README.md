@@ -31,7 +31,9 @@ Given that these coefficients can be conceptualized and/or are handled as propor
 
 Some functions were added to estimate other relevant aspects of the content validity analysis:
 
--   Difference between content validity coefficients: Confidence intervals for difference (Merino-Soto, 2018) and standardized difference (Merino-Soto, 2023)
+-   Difference between two independent content validity coefficients: Confidence intervals for difference (Merino-Soto, 2018) and standardized difference (Merino-Soto, 2023)
+
+-   Ratio of two independent content validity coefficients and confidence Intervals (MOVER-R approach; Zou, Donner, & Qiu, 2025)
 
 -   Homogeneity of ratings (H coefficient; Aiken, 1980, 1985)
 
