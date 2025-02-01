@@ -56,7 +56,7 @@ Vgroup2 <- data.frame(
 rownames(group2) <- c("Item1", "Item2")
 
 ## Run 
-CID(Vgroup1, Vgroup2, coef_col = "V", lwr_col = "lwr.ci", upr_col = "upr.ci", conf.level = 0.95)
+CID(Vgroup1, Vgroup2, coef_col = "V", lwr_col = "lwr.ci", upr_col = "upr.ci")
 
 ### Example 2
 # Random data (Low ratings): 11 items (rows), 4 raters (columns)
@@ -85,8 +85,7 @@ CID(group1 = output.V2,
     group2 = output.V1,
     coef.col = "V", 
     lwr.col = "lwr.ci", 
-    upr.col = "upr.ci", 
-    conf.level = .90)
+    upr.col = "upr.ci")
 
 
 #' @author
