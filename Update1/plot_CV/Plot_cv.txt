@@ -1,0 +1,58 @@
+@title Plot content validity coefficients
+@description Construction of simple interval plots (based on ggplot) for the coefficients obtained, with their confidence intervals generated.
+@param data dataframe with the results of the calculation functions of some ValCont content validity coefficients.
+@param item.col name of the column in the dataframe containing the names for each item.
+@param point.coeficient name of the column in the dataframe containing the coefficients calculated for each item.
+@param lwr.ci name of the column in the dataframe containing the values of the lower limit of the confidence interval calculated for each item.
+@param up.ci name of the column in the dataframe containing the values of the upper limit of the confidence interval calculated for each item.
+@param selected.items character vector, of the names of the items selected for graphing. If NULL, If NULL, then all items in the dataframe will be plotted.
+@param x.label String, title for the x-axis of the graph. Default "Items".
+@param y.label String, title for the y-axis of the graph. Default "Coefficient"
+@param title String, main title for the graph. Default "Coefficient Plot".
+                              
+@return
+For the selected items, interval plot graphs for the content validity coefficients, with their confidence intervals.
+
+@details
+The visualization of results can be more interpretable than a table of numerical values (Tufte, 2001, 2022). This function produces interval plots for the content validity coefficients and their resulting confidence intervals. 
+However, for content validity analysis, tabulated numerical results and accompanying graphs may be a good choice (Hink, Wogalter, & Eustace, 1996).
+These values are obtained from one of the 'ValCont' functions. However, it is apparent that the function can also use any information distributed in dataframe, with a point value, lower and upper limit.
+
+Note: The function has not yet been prepared to resolve missing values, so the user must remove or impute any missing values.
+
+@references
+
+Hink, J. K., Wogalter, M. S., & Eustace, J. K. (1996). Display of Quantitative Information: Are Grables better than Plain Graphs or Tables? Proceedings of the Human Factors and Ergonomics Society Annual Meeting, 40(23), 1155-1159. https://doi.org/10.1177/154193129604002302
+
+Tufte, E. R.(2001). The visual display of quantitative information. Cheshire, Conn. :Graphics Press.
+
+Tufte, E. R.(2022). Seeing with Fresh Eyes: Meaning, Space, Data, Truth. Cheshire, CT: Graphics Press LLC.
+
+@examples
+
+### Example 1 ---------------------------
+
+## Data random
+random_data2 <- data.frame(
+  juez1 = sample(1:2, 11, replace = TRUE),
+  juez2 = sample(2:3, 11, replace = TRUE),
+  juez3 = sample(1:2, 11, replace = TRUE),
+  juez4 = sample(1:3, 11, replace = TRUE))
+  
+output.V1 <- Vaiken(data = random_data2, min = 1, max = 7, conf.level = .90)
+
+plot_coefficients(data = output.V1, 
+                  item.col = "Item",
+                  point.coeficient = "V",
+                  lwr.ci = "lwr.ci", 
+                  up.ci = "upr.ci",
+                  selected.items = , 
+                  x.label = ,
+                  y.label = , 
+                  title = )
+                  
+#' @author
+#' Cesar Merino-Soto (\email: {sikayax@yahoo.cam.ar})
+
+#' @export
+

@@ -13,14 +13,14 @@ plot_coefficients <- function(data, item.col, point.coeficient, lwr.ci, up.ci,
     data <- data[data[[item.col]] %in% selected.items, ]
     
     if (nrow(data) == 0) {
-      stop("Ningún ítem seleccionado está en los datos. Revisa los nombres.")
+      stop("Ningun ítem seleccionado está en los datos. Revisa los nombres.")
     }
   }
   
   # Convertir Item a factor ORDENADO para evitar problemas de truncamiento
   data[[item.col]] <- factor(data[[item.col]], levels = unique(data[[item.col]]), ordered = TRUE)
   
-  # Crear el gráfico con ggplot2
+  # Crear el grafico con ggplot2
   library(ggplot2)
   p <- ggplot(data, aes_string(x = item.col, y = point.coeficient)) +
     geom_point(size = 3) +

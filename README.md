@@ -35,7 +35,9 @@ Some functions were added to estimate other relevant aspects of the content vali
 
 -   Ratio of two independent content validity coefficients and confidence Intervals (MOVER-R approach; Zou, Donner, & Qiu, 2025)
 
--   Homogeneity of ratings (H coefficient; Aiken, 1980, 1985)
+-   Homogeneity of ratings (H coefficient; Aiken, 1980, 1985).
+
+Basic functions to make graphs of results are also implemented.
 
 **References:**
 
@@ -52,7 +54,7 @@ Some functions were added to estimate other relevant aspects of the content vali
 -   Penfield, R. D., & Miller, J. M. (2004). Improving Content Validation Studies Using an Asymmetric Confidence Interval for the Mean of Expert Ratings. Applied Measurement in Education, 17(4), 359–370. <https://doi.org/10.1207/s15324818ame1704_2>
 -   Polit, D.F., Beck, C.T. and Owen, S.V. (2007), Is the CVI an acceptable indicator of content validity? Appraisal and recommendations. Res. Nurs. Health, 30: 459-467. <https://doi.org/10.1002/nur.20199>
 -   Wilson, E. B. (1927). Probable inference, the law of succession, and statistical inference. Journal of the American Statistical Association, 22, 209-212. <https://doi.org/10.2307/2276774>
--   Zou, G., Donner, A. and Qiu, S. (2025). MOVER-R for Confidence Intervals of Ratios. In Wiley StatsRef: Statistics Reference Online (eds  N. Balakrishnan, T. Colton, B. Everitt, W. Piegorsch, F. Ruggeri and J.L. Teugels). <https://doi.org/10.1002/9781118445112.stat08085>
+-   Zou, G., Donner, A. and Qiu, S. (2025). MOVER-R for Confidence Intervals of Ratios. In Wiley StatsRef: Statistics Reference Online (eds N. Balakrishnan, T. Colton, B. Everitt, W. Piegorsch, F. Ruggeri and J.L. Teugels). <https://doi.org/10.1002/9781118445112.stat08085>
 
 **Depends:** R (\>= 3.3.2)\
 **Imports:** xxx\
