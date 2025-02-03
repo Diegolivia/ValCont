@@ -37,7 +37,7 @@ Some functions were added to estimate other relevant aspects of the content vali
 
 -   Homogeneity of ratings (H coefficient; Aiken, 1980, 1985).
 
-Basic functions to make graphs of results are also implemented.
+-   Basic functions to make graphs of results are also implemented.
 
 **References:**
 
