@@ -1,11 +1,11 @@
 @title Plot content validity coefficients
 @description Construction of simple interval plots (based on ggplot) for the coefficients obtained, with their confidence intervals generated.
 @param data dataframe with the results of the calculation functions of some ValCont content validity coefficients.
-@param item.col name of the column in the dataframe containing the names for each item.
-@param point.coeficient name of the column in the dataframe containing the coefficients calculated for each item.
-@param lwr.ci name of the column in the dataframe containing the values of the lower limit of the confidence interval calculated for each item.
-@param up.ci name of the column in the dataframe containing the values of the upper limit of the confidence interval calculated for each item.
-@param selected.items character vector, of the names of the items selected for graphing. If NULL, If NULL, then all items in the dataframe will be plotted.
+@param item.col String, name of the column in the dataframe containing the names for each item.
+@param point.coeficient String, name of the column in the dataframe containing the coefficients calculated for each item.
+@param lwr.ci String, name of the column in the dataframe containing the values of the lower limit of the confidence interval calculated for each item.
+@param up.ci String, name of the column in the dataframe containing the values of the upper limit of the confidence interval calculated for each item.
+@param selected.items Character vector, of the names of the items selected for graphing. If NULL, If NULL, then all items in the dataframe will be plotted.
 @param x.label String, title for the x-axis of the graph. Default "Items".
 @param y.label String, title for the y-axis of the graph. Default "Coefficient"
 @param title String, main title for the graph. Default "Coefficient Plot".
@@ -38,9 +38,11 @@ random_data2 <- data.frame(
   juez2 = sample(2:3, 11, replace = TRUE),
   juez3 = sample(1:2, 11, replace = TRUE),
   juez4 = sample(1:3, 11, replace = TRUE))
-  
+
+## Save output  
 output.V1 <- Vaiken(data = random_data2, min = 1, max = 7, conf.level = .90)
 
+## plot output
 plot_coefficients(data = output.V1, 
                   item.col = "Item",
                   point.coeficient = "V",
