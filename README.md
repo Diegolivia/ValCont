@@ -11,11 +11,8 @@ R package for content validity analysis
 - Email: [sikayax\@yahoo.com.ar](mailto:sikayax@yahoo.com.ar){.email}\
 - ORCID: 0000-0001-8049-7069\
 - Jose Livia-Segovia\
-- Email: joselivia@gmail.com
-- ORCID: 0000-0003-2226-3349
-- Diego Livia-Ortiz (aut, ctb, cre, rev)\
-- Email:diegolivia@hotmail.com
-- ORCID:0000-0002-2107-3140
+- Email: [joselivia\@gmail.com](mailto:joselivia@gmail.com){.email} - ORCID: 0000-0003-2226-3349 - Diego Livia-Ortiz (aut, ctb, cre, rev)\
+- Email:[diegolivia\@hotmail.com](mailto:diegolivia@hotmail.com){.email} - ORCID:0000-0002-2107-3140
 
 **Description:**\
 'ValCont' is a dedicated content validity package in R. ValCont' implement the computation of several coefficients used in content validity studies, with data usually obtained from selected participants such as expert judges or experiential judges. The coefficients calculated by ValCont are:
