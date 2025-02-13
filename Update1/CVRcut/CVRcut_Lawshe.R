@@ -52,4 +52,4 @@ CVRcut_Lawshe <- function(num_jueces, interpolacion = "none", legend = TRUE) {
   } else {
     return(result)
   }
-}
+}}
