@@ -1,6 +1,6 @@
 CVRcut <- function(N_min, N_max, method, alpha = 0.05, tails = "one", prior = "Jeffreys", interpolacion = "none") {
   # Validar método
-  if (!method %in% c("Lawshe", "Wilson", "Ayres", "Baghestani")) {
+  if (!method %in% c("Lawshe", "Wilson", "Ayres", "Bag")) {
     stop("Método no válido. Use 'Lawshe', 'Wilson', 'Ayres' o 'Baghestani'.")
   }
   
@@ -15,13 +15,13 @@ CVRcut <- function(N_min, N_max, method, alpha = 0.05, tails = "one", prior = "J
   # Iterar sobre el rango de N
   for (N in N_min:N_max) {
     if (method == "Lawshe") {
-      res <- CVRcut_Lawshe(N, interpolacion = interpolacion, legend = FALSE)
+      res <- CVRcut.Lawshe(N, interpolacion = interpolacion, legend = FALSE)
     } else if (method == "Wilson") {
-      res <- CVRcut_Wilson(N, alpha = alpha, tails = tails)
+      res <- CVRcut.Wilson(N, alpha = alpha, tails = tails)
     } else if (method == "Ayres") {
-      res <- CVRcut_Ayres(N)
+      res <- CVRcut.Ayres(N)
     } else if (method == "Baghestani") {
-      res <- CVRcut_Baghestani(N, prior = prior, alpha = alpha)
+      res <- CVRcut.Bag(N, prior = prior, alpha = alpha)
     }
     res$N <- N  # Agregar columna con el número de jueces
     resultados <- rbind(resultados, res)  # Combinar resultados

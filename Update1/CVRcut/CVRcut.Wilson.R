@@ -19,11 +19,11 @@ CVRcut_Wilson <- function(num_jueces, alpha = 0.05, tails = "one") {
   
   # Resultado
   result <- data.frame(
-    Método = "Wilson",
+    Method = "Wilson",
     Alpha = alpha,
     Tails = tails,
-    Cutoff = cutoff,
-    MinJueces = min_jueces
+    CritVal = cutoff,
+    MinJudges = min_jueces
   )
   
   return(result)

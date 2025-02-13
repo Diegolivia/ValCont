@@ -34,22 +34,22 @@ CVRcut_Lawshe <- function(num_jueces, interpolacion = "none", legend = TRUE) {
   # Resultado
   result <- data.frame(
     Method = "Lawshe",
-    Cutoff = cutoff,
-    MinJueces = min_jueces,
-    Notas = notas
+    CritVal = cutoff,
+    MinJudges = min_jueces,
+    Notes = notas
   )
   
   # Leyenda opcional
   leyenda <- data.frame(
-    Código = c(1, 2, 3),
-    Descripción = c("No tabulado, devuelve NA", 
-                    "No tabulado, interpolado o extrapolado", 
-                    "Tabulado")
+    Code = c(1, 2, 3),
+    Description = c("Not tabulated, returns NA", 
+                    "Not tabulated, interpolated or extrapolated", 
+                    "Tabulated")
   )
   
   if (legend) {
-    return(list(Resultado = result, Leyenda = leyenda))
+    return(list(Output = result, Legend = leyenda))
   } else {
     return(result)
   }
-}}
+}

@@ -26,10 +26,10 @@ CVRcut_Ayres <- function(num_jueces, alpha = 0.05) {
   
   # Resultado
   result <- data.frame(
-    Método = "Ayres",
+    Method = "Ayres",
     Alpha = alpha,
-    Cutoff = cutoff,
-    MinJueces = min_jueces
+    CritVal = cutoff,
+    MinJudges = min_jueces
   )
   
   return(result)

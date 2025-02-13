@@ -9,7 +9,7 @@
 
 
 Si el numero está tabulado, entonces arroja el mismo valor de la tabla, independiente del método de interpolacion.
-En caso contrario, interpolacion según el método declaradog
+En caso contrario, interpolacion se usará.
 
 en Interpolacion lineal
 Soporte de Extrapolación: Extrapolamos para valores de num_juecesnum_jueces fuera del rango tabulado (n<2 o n>40).
@@ -18,10 +18,12 @@ Soporte de Extrapolación: Extrapolamos para valores de num_juecesnum_jueces fue
 
 INterpolaciones:
 Precisión Limitada:
-Resalta que la extrapolación es solo una estimación y no un valor validado empíricamente. Esto puede servir para análisis exploratorios o aproximaciones, pero los usuarios deben tener precaución al interpretar los resultados
+Resalta que la extrapolación es solo una estimación y no un valor validado empíricamente. Esto puede servir para
+análisis exploratorios o aproximaciones, pero los usuarios deben tener precaución al interpretar los resultados
 
 Extrapolación en Valores Estadísticos:
-La extrapolación lineal es una técnica comúnmente aceptada para extender patrones observados dentro de un rango de datos hacia valores fuera de él, siempre y cuando los datos tabulados sigan una tendencia predecible.
+La extrapolación lineal es una técnica comúnmente aceptada para extender patrones observados dentro de un rango de
+datos hacia valores fuera de él, siempre y cuando los datos tabulados sigan una tendencia predecible.
 
 
 Valores anómalos en extrapolacion polinómica

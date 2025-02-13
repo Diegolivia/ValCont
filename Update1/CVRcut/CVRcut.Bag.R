@@ -1,4 +1,4 @@
-CVRcut_Baghestani <- function(num_jueces, prior = "Jeffreys", alpha = 0.05) {
+CVRcut.Bag <- function(num_jueces, prior = "Jeffreys", alpha = 0.05) {
   # Validar número de jueces
   if (num_jueces < 2) {
     stop("El número de jueces debe ser al menos 2 para un cálculo válido.")
@@ -38,11 +38,11 @@ CVRcut_Baghestani <- function(num_jueces, prior = "Jeffreys", alpha = 0.05) {
   
   # Resultado
   result <- data.frame(
-    Método = "Baghestani",
+    Method = "Baghestani",
     Prior = prior,
     Alpha = alpha,
-    Cutoff = cutoff,
-    MinJueces = min_jueces
+    CritVal = cutoff,
+    MinJudges = min_jueces
   )
   
   return(result)
