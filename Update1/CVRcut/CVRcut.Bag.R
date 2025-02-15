@@ -1,7 +1,14 @@
-CVRcut.Bag <- function(num_jueces, prior = "Jeffreys", alpha = 0.05) {
+CVRcut.Bag <- function(num_jueces, prior = "Jeffreys", alpha = 0.05, tails = "one") {
   # Validar número de jueces
   if (num_jueces < 2) {
     stop("El número de jueces debe ser al menos 2 para un cálculo válido.")
+  }
+  
+  # Ajustar alpha si es una prueba de dos colas
+  if (tails == "two") {
+    alpha <- alpha / 2
+  } else if (tails != "one") {
+    stop("El argumento 'tails' debe ser 'one' o 'two'.")
   }
   
   # Parámetros de los priors
@@ -41,6 +48,7 @@ CVRcut.Bag <- function(num_jueces, prior = "Jeffreys", alpha = 0.05) {
     Method = "Baghestani",
     Prior = prior,
     Alpha = alpha,
+    Tails = tails,
     CritVal = cutoff,
     MinJudges = min_jueces
   )

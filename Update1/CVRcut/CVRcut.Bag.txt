@@ -1,24 +1,32 @@
-@title Critical value for CVR, based on Baghestani
-@description Calculate critical values for Lawshe’s content validity ratio (CVR), Baghestani's method.
-@param num_jueces Número de jueces que dieron sus calificaciones.
-@param prior 
-@param alpha Por defecto: 0.05
+@title Critical value for CVR, based on Baghestani et al., (2019)
+@description Calculates critical values for Lawshe’s content validity ratio (CVR) using the Bayesian method 
+proposed by Baghestani et al. (2019), based on Beta priors and posterior probabilities.
+@param num_jueces Number of judges who provided their ratings (must be >= 2).
+@param prior Type of prior distribution: "Jeffreys" (default) or "Uniform".
+@param alpha Significance level for the critical value calculation (default: 0.05).
+@param tails Distribution tails: "one" for one-tailed test (default) or "two" for two-tailed test.
 
 @return 
-Dataframe with numeric results, and four columns: "Method", "Prior", "Alpha", "CritVal"", "Minjudges".
+A data frame with numeric results and six columns: 
+- "Method": The method used (Baghestani).
+- "Prior": The type of prior used ("Jeffreys" or "Uniform").
+- "Alpha": The chosen significance level.
+- "Tails": The type of test ("one" or "two").
+- "CritVal": The calculated critical value for CVR.
+- "MinJudges": The minimum number of judges needed for the critical CVR.
 
 @details
 Lawshe's content validity ratio (CVR; ) requires critical values for interpretation, based on the 
 alpha level chosen (0.05 or 0.01) and the number of judges. `CVRcut.Bag` estimates this critical
-value based on the Bayesian statistic (Baghestani et al., 2017). Este enfoque puede maximizar
-la exactitud de los valores críticos para CVR, debido al habitual tamaño pequeño de las
-muestras para obtener evidencias de validez de contenido. Este método requiere información clave
-sobre la posible previa distribición. Baghestani et al., (2017) usa  noninformative priors para CVR,
-basado: a) Jeffrey (1935), Beta(1/2, 1/2); o b) Berger (2013)'s uniform, Beta(1,1)
+value based on the Bayesian statistic (Baghestani et al., 2017). This approach can maximize the 
+accuracy of the critical values for CVR, due to the usual small sample size to obtain evidence 
+of content validity. This method requires key information about the possible prior distribution. 
+Baghestani et al., (2017) uses noninformative priors for CVR, based on: a) Jeffrey (1935), 
+Beta(1/2, 1/2); or b) Berger (2013)'s uniform, Beta(1,1).
+
 
 @references
-
-Baghestani, A. R., Ahmadi, F., Tanha, A., & Meshkat, M. (2017). Bayesian Critical Values for Lawshe’s 
+Baghestani, A. R., Ahmadi, F., Tanha, A., & Meshkat, M. (2019). Bayesian Critical Values for Lawshe’s 
 Content Validity Ratio. Measurement and Evaluation in Counseling and Development, 52(1), 69–73. 
 https://doi.org/10.1080/07481756.2017.1308227
 
@@ -32,54 +40,17 @@ https://doi.org/10.1111/j.1744-6570.1975.tb01393.x
 
 @examples
 
-### Example 1
-# Group 1 output
-Vgroup1 <- data.frame(
-  V = c(0.85, 0.78, 0.90),
-  lwr.ci = c(0.80, 0.75, 0.88),
-  upr.ci = c(0.90, 0.82, 0.92)
-)
-rownames(group1) <- c("Item1", "Item2", "Item3")
+### Examples ----------
 
-# Group 2 output
-Vgroup2 <- data.frame(
-  V = c(0.80, 0.75),
-  lwr.ci = c(0.76, 0.70),
-  upr.ci = c(0.84, 0.78)
-)
-rownames(group2) <- c("Item1", "Item2")
+# N judges = 45, uniform prior, alpha = .05, one-tailed test
+CVRcut.Bag(num_jueces = 45, prior = "Uniform", alpha = .05, tails = "one")
 
-## Run 
-CID(Vgroup1, Vgroup2, coef_col = "V", lwr_col = "lwr.ci", upr_col = "upr.ci")
 
-### Example 2
-# Random data (Low ratings): 11 items (rows), 4 raters (columns)
+# N judges = 45, Jeffreys prior, alpha = .05, one-tailed test
+CVRcut.Bag(num_jueces = 45, prior = "Jeffreys", alpha = .05, tails = "one")
 
-random_data2 <- data.frame(
-  juez1 = sample(1:2, 11, replace = TRUE),
-  juez2 = sample(2:3, 11, replace = TRUE),
-  juez3 = sample(1:2, 11, replace = TRUE),
-  juez4 = sample(1:3, 11, replace = TRUE))
-
-## Random data (High ratings): 10 items (rows), 6 raters (columns)
-random_data3 <- data.frame(
-  obs1 = sample(5:7, 10, replace = TRUE),
-  obs2 = sample(4:7, 10, replace = TRUE),
-  obs3 = sample(4:7, 10, replace = TRUE),
-  obs4 = sample(5:7, 10, replace = TRUE),
-  obs5 = sample(5:7, 10, replace = TRUE),
-  obs6 = sample(6:7, 10, replace = TRUE))
-
-# Saving results from Aiken's V analysis, for each group
-output.V1 <- Vaiken(data = random_data2, min = 1, max = 7, conf.level = .90)
-output.V2 <- Vaiken(data = random_data3, min = 1, max = 7, conf.level = .90)
-
-# Run CID
-CID(group1 = output.V2, 
-    group2 = output.V1,
-    coef.col = "V", 
-    lwr.col = "lwr.ci", 
-    upr.col = "upr.ci")
+# N judges = 45, Jeffreys prior, alpha = .01, two-tailed test
+CVRcut.Bag(num_jueces = 45, prior = "Jeffreys", alpha = .01, tails = "two")
 
 
 #' @author

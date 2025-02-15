@@ -1,5 +1,5 @@
-CVRcut_Wilson <- function(num_jueces, alpha = 0.05, tails = "one") {
-  # Validar número de jueces
+CVRcut.Wilson <- function(num_jueces, alpha = 0.05, tails = "one") {
+  # Validar numero de jueces
   if (num_jueces < 2) {
     stop("El número de jueces debe ser al menos 2 para un cálculo válido.")
   }

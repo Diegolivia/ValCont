@@ -1,4 +1,4 @@
-CVRcut_Lawshe <- function(num_jueces, interpolacion = "none", legend = TRUE) {
+CVRcut.Lawshe <- function(num_jueces, interpolacion = "none", legend = TRUE) {
   # Datos tabulados de Lawshe
   data <- data.frame(
     num_jueces = c(5, 6, 7, 8, 9, 10, 15, 20, 25, 30, 40),
