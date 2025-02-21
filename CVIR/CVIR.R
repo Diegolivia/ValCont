@@ -1,5 +1,5 @@
 # Función principal para calcular el CVI con ajuste por acuerdo por azar
-CVI_R <- function(data, cut, conf.level) {
+CVIR <- function(data, cut, conf.level) {
   # Función interna para calcular el intervalo de confianza de Wilson
   get_wilson_CI <- function(x, n, conf.level) {
     p_hat <- x
