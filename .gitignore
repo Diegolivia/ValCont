@@ -1,10 +1,14 @@
 # History files
 .Rhistory
 .Rapp.history
+#RStudio Session
+.DS_Store
+.quarto
 
 # Session Data files
 .RData
 .RDataTmp
+.vscode/
 
 # User-specific files
 .Ruserdata
