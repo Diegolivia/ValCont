@@ -3,19 +3,22 @@
 R package for content validity analysis
 
 **Package:** ValCont\
-**Title:** Package for content validity coefficient estimation\
+**Title:** R Package for content validity coefficient estimation\
 **Version:** xxx\
 **Date:** xxx-xx-xx\
 [**Authors\@R**](mailto:Authors@R){.email}**:**\
-- Cesar Merino-Soto (aut, cre, ctb, rev)\
+- **Cesar Merino-Soto (aut, cre, ctb, rev)**\
 - Email: [sikayax\@yahoo.com.ar](mailto:sikayax@yahoo.com.ar){.email}\
 - ORCID: 0000-0001-8049-7069\
-- Jose Livia-Segovia\
-- Email: [joselivia\@gmail.com](mailto:joselivia@gmail.com){.email} - ORCID: 0000-0003-2226-3349 - Diego Livia-Ortiz (aut, ctb, cre, rev)\
-- Email:[diegolivia\@hotmail.com](mailto:diegolivia@hotmail.com){.email} - ORCID:0000-0002-2107-3140
+- **Jose Livia-Segovia (aut, ctb)**\
+- Email: [joselivia\@gmail.com](mailto:joselivia@gmail.com){.email}\
+- ORCID: 0000-0003-2226-3349\
+- **Diego Livia-Ortiz (aut, ctb, cre, rev)**\
+- Email:[diegolivia\@hotmail.com](mailto:diegolivia@hotmail.com){.email}\
+- ORCID:0000-0002-2107-3140
 
 **Description:**\
-'ValCont' is a dedicated content validity package in R. ValCont' implement the computation of several coefficients used in content validity studies, with data usually obtained from selected participants such as expert judges or experiential judges. The coefficients calculated by ValCont are:
+`ValCont` is a dedicated content validity package in R. `ValCont` implement the computation of several coefficients used in content validity studies, with data usually obtained from selected participants such as expert judges or experiential judges. The coefficients calculated by ValCont are:
 
 -   CVC (Hernandez-Nieto, 2002)
 -   CVI (Matuza, 1977; Lynn, 1986)
