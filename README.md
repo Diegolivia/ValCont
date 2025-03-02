@@ -28,7 +28,7 @@ R package for content validity analysis
 -   V (Aiken, 1980, 1985)
 -   MER (Mean of Expert Ratings; Penfield, & Miller, 2004)
 
-Given that these coefficients can be conceptualized and/or are handled as proportions, with limits at 0.0 and 1.0, 'ValCont' also implements asymmetric confidence intervals for each coefficient, appropriate for small samples and non-normally distributed data (Penfield & Giacobbi, 2004; Wilson, 1927).
+Given that these coefficients can be conceptualized and/or are handled as proportions, with limits at 0.0 and 1.0, `ValCont` also implements asymmetric confidence intervals for each coefficient, appropriate for small samples and non-normally distributed data (Penfield & Giacobbi, 2004; Wilson, 1927).
 
 Some functions were added to estimate other relevant aspects of the content validity analysis:
 
