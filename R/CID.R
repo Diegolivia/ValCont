@@ -1,5 +1,6 @@
 #'@title CID (confidence interval for diference)
 #'@description Calculates confidence interval for the difference of content validity coefficients, based on Method of Variance Estimates Recovery (MOVER).
+#'
 #'@param group1 Output dataframe 1 of one of the 'ValCont' functions to obtain content validity coefficients.
 #'@param group2 Output Output dataframe 2 of one of the 'ValCont' functions to obtain content validity coefficients.
 #'@param coef.col Name of the column in the dataframe storing the calculated coefficient
@@ -9,7 +10,6 @@
 #'@return
 #'dataframe with four columns: label of the items, difference between the coefficients, the upper and upper limit of the confidence interval of the difference.
 #'
-#'@exclude CID.R
 #'@details
 #''CID' uses Method of Variance Estimates Recovery (MOVER; Zou, & Donner, 2008).
 #'Because data produced by judges' judgments tend to be asymmetrically distributed (if the item is rated, on a scale of 1 to 5, as predominantly valid then its values will be > 3), MOVER is appropriate for non-normal distributions.
@@ -31,6 +31,7 @@
 #'@author
 #'Cesar Merino-Soto (\email{sikayax@yahoo.cam.ar})
 #'
+#'@export
 #'
 #'@seealso
 #'\code{\link[ratesci:moverci]{ratesci::moverci}}
@@ -55,7 +56,7 @@
 #'rownames(Vgroup2) <- c("Item1", "Item2")
 #'
 #'## Run
-#'CID(Vgroup1, Vgroup2, coef_col = "V", lwr_col = "lwr.ci", upr_col = "upr.ci")
+#'CID(Vgroup1, Vgroup2,"V","lwr.ci","upr.ci")
 #'
 #'### Example 2
 #'# Random data (Low ratings): 11 items (rows), 4 raters (columns)
@@ -85,7 +86,6 @@
 #'    coef.col = "V",
 #'    lwr.col = "lwr.ci",
 #'    upr.col = "upr.ci")
-
 
 CID <- function(group1, group2, coef.col = "coef", lwr.col = "lwr.ci", upr.col = "upr.ci") {
   # Validar que los argumentos son data.frames

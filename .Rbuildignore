@@ -1,9 +1,5 @@
 ^.*\.Rproj$
 ^\.Rproj\.user$
 ^LICENSE\.md$
-^R/CID\.R$
 ^R/CIR\.R$
-^R/CVI\.R$
-^R/HAiken\.R$
-^R/MER\.R$
 .vscode

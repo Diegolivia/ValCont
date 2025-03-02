@@ -28,6 +28,10 @@
 #'@seealso
 #'\code{\link[PropCIs:scoreci]{PropCIs::scoreci}} for score method confidence interval
 #'
+#'@author
+#'Cesar Merino-Soto (\email{sikayax@yahoo.cam.ar})
+#'
+#'@export
 #'
 #'@examples
 #'### Example 1
@@ -43,25 +47,16 @@
 #')
 #'
 #'# Run HAiken
-#'HAiken(Ej2,
-#'       ncat = 5,
-#'       alpha = .90)
+#'Haiken(Ej2, ncat = 5, conf.level = .90)
 #'
 #'### Example 2
 #'# In a dataframe where the rows are the items and the columns are the raters,
 #'# H can be calculated for the raters (columns) by simply transposing the data
 #'# and entering it as a data frame.
 #'
-#'Haiken(as.data.frame(t(Ej2)),
-#'       ncat = 5,
-#'       alpha = .90)
+#'Haiken(as.data.frame(t(Ej2)), ncat = 5, conf.level = .90)
 #'
 #'
-#'#' @author
-#'#' Cesar Merino-Soto (\email: {sikayax@yahoo.cam.ar})
-#'
-#'
-#'#' @export
 
 Haiken <- function(data, ncat, conf.level) {
 

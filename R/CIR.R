@@ -1,5 +1,6 @@
 #'@title CIR Confidence Intervals of Ratios of content validity coefficients (confidence interval for diference)
 #'@description Calculates confidence interval for the ratio of two content validity coefficients, based on method of variance recovery for ratios (MOVER-R).
+#'
 #'@param group1 Output dataframe 1 of one of the 'ValCont' functions to obtain content validity coefficients.
 #'@param group2 Output Output dataframe 2 of one of the 'ValCont' functions to obtain content validity coefficients.
 #'@param coef.col Name of the column in the dataframe storing the calculated coefficient
@@ -20,13 +21,16 @@
 #'Note: The function has not yet been prepared to resolve missing values, so the user must remove or impute any missing values.
 #'
 #'@references
-#'
 #'Zou, G., Donner, A. & Qiu, S. (2025). MOVER-R for Confidence Intervals of Ratios. In  N. Balakrishnan, T. Colton, B. Everitt, W. Piegorsch, F. Ruggeri and J.L. Teugels (Eds.), Wiley StatsRef: Statistics Reference Online. https://doi.org/10.1002/9781118445112.stat08085
 #'
+#' @author
+#'Cesar Merino-Soto (\email{sikayax@yahoo.cam.ar})
+#'
+#' @export
 #'
 #'@seealso
 #'\code{\link[ratesci:moverci]{ratesci::moverci}}
-#'\code{\link[ValCont:CID]{ValCont::CID}}
+#'\code{\link[ValContent:CID]{ValContent::CID}}
 #'
 #'@examples
 #'
@@ -37,7 +41,7 @@
 #'  lwr.ci = c(0.80, 0.75, 0.88),
 #'  upr.ci = c(0.90, 0.82, 0.92)
 #')
-#'rownames(group1) <- c("Item1", "Item2", "Item3")
+#'rownames(Vgroup1) <- c("Item1", "Item2", "Item3")
 #'
 #'# Group 2 output
 #'Vgroup2 <- data.frame(
@@ -45,10 +49,13 @@
 #'  lwr.ci = c(0.76, 0.70),
 #'  upr.ci = c(0.84, 0.78)
 #')
-#'rownames(group2) <- c("Item1", "Item2")
+#'rownames(Vgroup2) <- c("Item1", "Item2")
 #'
 #'## Run
-#'CIR(Vgroup1, Vgroup2, coef_col = "V", lwr_col = "lwr.ci", upr_col = "upr.ci")
+#'CIR(Vgroup1, Vgroup2,
+#'    coef.col = "V",
+#'    lwr.col = "lwr.ci",
+#'    upr.col = "upr.ci")
 #'
 #'### Example 2
 #'# Random data (Low ratings): 11 items (rows), 4 raters (columns)
@@ -78,11 +85,6 @@
 #'    coef.col = "V",
 #'    lwr.col = "lwr.ci",
 #'    upr.col = "upr.ci")
-#'
-#'#' @author
-#'#' Cesar Merino-Soto (\email: {sikayax@yahoo.cam.ar})
-#'
-#'#' @export
 #'
 
 CIR <- function(group1, group2, coef.col, lwr.col, upr.col) {
