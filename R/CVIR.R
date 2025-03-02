@@ -1,21 +1,19 @@
-#'@title CVI
-#'@description Calculate the Content Validity Index (CVI), without adjustment for random agreement.
-#'@param data dataframe, with the columns assigned to each judge, and the rows assigned to each assessed item.
-#'@param cut Specific cut-off point, from which the item is considered valid (or relevant, clear, etc.)
+#'@title CVI_R
+#'@description Calculate the CVI coefficient with random agreement adjustment (Polit & Beck, 2007).
+#'@param data dataframe, with the columns assigned to each judge, and the rows assigned to each evaluated item.
+#'@param cut Specific cut-off point in the response rating, from which the item is considered valid (or relevant, clear, etc.).
 #'@param conf.level confidence level for asymmetric confidence intervals (ex., .90, .95, .99)
 #'
 #'@return
-#'dataframe with CVI for all items analyzed, and confidence intervals.
+#'dataframe with CVI_R coefficients for all items analyzed, and confidence intervals.
 #'
 #'@details
-#'Calculate the CVI coefficient (Martuza, 1977; Lynn, 1986), and asymmetric confidence intervals (Wilson, 1927; Penfield & Giacobbi, 2004). The results should be complemented by an estimator of inter-judge variability or agreement.
-#'The content validity index (CVI) was first proposed by Martuza (1977), but frequently associated with other researchers (Polit, & Beck, 2006), e.g., Lynn (1986), Davis (1992), among others.
-#'The **CVI** function calculates the CVI without adjustment for chance agreement (Polit, & Beck, 2007).
-#'Items can be rated according to traditional recommendations (Polit, Beck, & Owen, 2007; Polit, & Beck, 2006), based on an ordinal scale between 3 to 5 points (Lynn, 1986), or on a 4-point scale (Lynn, 1986; Waltz & Bausell, 1981).
-#'The usual labels to evaluate the relevance for each item are: not relevant, somewhat relevant, etc. (Davis, 1992).
-#'The usual CVI cut-off point for identifying valid from invalid items is generally in the top two ratings (3 or higher on a relevance scale of 1 to 4; Beck & Gable, 2001; Grant & Davis, 1997). 'cut' dichotomizes the judges' responses to calculate CVI.
-#'The **CVI** function can be used for rated items with any rating range, and any chosen cut point ('cut').
-#'Asymmetric confidence intervals use Wilson's (1927) approach, as used for Aiken's V coefficient (Penfield, & Giacobbi, 2004).
+#'The 'CVI_R' function calculates the CVI, with adjustment for chance agreement (Polit, Beck, & Owen, 2007).
+#'As with the 'CVI' function, in 'CVI_R' items can be rated with a wide range of point scales (Polit, Beck, & Owen, 2007; Polit, & Beck, 2006). This rating scale can be 3-point, or usually 4- or 5-point (Lynn, 1986; Waltz & Bausell, 1981).
+#'The 'CVI_R' cutoff point, for identifying valid items, is generally based on the last two top ratings; for example, on a relevance scale of 1 to 4, the cutoff point may be 3 (Beck & Gable, 2001; Grant & Davis, 1997). 'CVI_R' uses 'cut' to dichotomize the judges' responses and transform them into the CVI.
+#'The asymmetric confidence intervals use Wilson's (1927) approach, as applied to Aiken's V coefficient (Penfield, & Giacobbi, 2004).
+#'The results should be complemented by an estimator of inter-judge variability or agreement.
+#'
 #'Note: The function has not yet been prepared to resolve missing values, so the user must remove or impute any missing values.
 #'
 #'@references
@@ -33,7 +31,6 @@
 #'\code{\link[PropCIs:scoreci]{PropCIs::scoreci}} for score method confidence interval
 #'
 #'@examples
-#'
 #'# Load data
 #'Ej1 <- data.frame(
 #'  J1 = c(5, 5, 6, 6, 6, 6, 6, 6, 5, 6, 5, 6, 3, 4, 4),
@@ -52,17 +49,18 @@
 #'  J14 = c(5, 5, 6, 6, 6, 6, 6, 5, 6, 6, 6, 6, 5, 4, 5),
 #'  J15 = c(5, 5, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 5, 3, 4))
 #'
-#'# Run CVI
-#'CVI(data = Ej1, cut = 4, conf.level = .90)
+#'# Run CVIR
+#'CVI_R(data = Ej1, cut = 4, conf.level = .90)
 #'
-#' @author
+#'@author
 #'Cesar Merino-Soto (\email{sikayax@yahoo.cam.ar})
 #'
 #'@export
 #'
-#'
-CVI <- function(data, cut, conf.level) {
-  # Funcion interna para calcular el intervalo de confianza de Wilson
+
+# FunciOn principal para calcular el CVI con ajuste por chance agreement
+CVI_R <- function(data, cut, conf.level) {
+  # FunciOn interna para calcular el intervalo de confianza de Wilson
   get_wilson_CI <- function(x, n, conf.level) {
     p_hat <- x
     SE_hat_sq <- p_hat * (1 - p_hat) / n
@@ -74,42 +72,53 @@ CVI <- function(data, cut, conf.level) {
             'upper' = omega * (A + B))
     return(CI)
   }
-
-  # Verificar si los datos son numericos
+  # FunciOn interna para calcular P_C usando la fOrmula combinatoria
+  calculate_pc <- function(N, A) {
+    if (A > N || A < 0) {
+      return(0) # Evita errores si A es mayor que N o menor que 0
+    }
+    # Aplicamos la fOrmula combinatoria
+    Pc <- (factorial(N) / (factorial(A) * factorial(N - A))) * (0.5^N)
+    return(Pc)
+  }
+  # Verificar si los datos son numEricos
   if (!all(sapply(data, is.numeric))) {
-    stop("Todas las columnas deben contener datos numericos.")
+    stop("Todas las columnas deben contener datos numEricos.")
   }
-
-  # Numero total de jueces
+  # NUmero total de jueces
   num_jueces <- ncol(data)
-
   # Inicializar listas para almacenar resultados
-  CVI_vals <- numeric(nrow(data))
+  cvipb_vals <- numeric(nrow(data))
   lwr_cis <- numeric(nrow(data))
-  upp_cis <- numeric(nrow(data))
-
-  # Calcular CVI, porcentaje de acuerdo y CI de Wilson para cada item
+  upr_cis <- numeric(nrow(data))
+  # Calcular CVI ajustado para cada Item
   for (i in 1:nrow(data)) {
-    Na <- sum(data[i, ] >= cut)
-    Nna <- num_jueces - Na
-    N <- Na + Nna
-
-    CVI_vals[i] <- Na / N
-
-    # Calcular intervalo de confianza de Wilson
-    CI <- get_wilson_CI(CVI_vals[i], N, conf.level)
-    lwr_cis[i] <- CI['lower']
-    upp_cis[i] <- CI['upper']
+    Na <- sum(data[i, ] >= cut)  # Jueces en acuerdo
+    Nna <- num_jueces - Na       # Jueces en desacuerdo
+    N <- Na + Nna                # Total de jueces
+    CVI_val <- Na / N
+    # Calcular P_C usando la nueva fOrmula combinatoria dentro de la funciOn
+    P_C <- calculate_pc(N, Na)
+    # Calcular kappa de Lynn
+    cvipb_vals[i] <- (CVI_val - P_C) / (1 - P_C)
+    # Calcular intervalo de confianza de Wilson para kappa usando el valor absoluto
+    abs_kappa <- abs(cvipb_vals[i])
+    CI_kappa <- get_wilson_CI(abs_kappa, N, conf.level)
+    # Si kappa es negativo, devolver el signo negativo a los lImites del CI
+    if (!is.na(cvipb_vals[i]) && cvipb_vals[i] < 0) {
+      lwr_cis[i] <- -CI_kappa['upper']  # Intercambia el lImite superior e inferior
+      upr_cis[i] <- -CI_kappa['lower']
+    } else {
+      lwr_cis[i] <- CI_kappa['lower']
+      upr_cis[i] <- CI_kappa['upper']
+    }
   }
-
   # Crear un data frame con los resultados y redondear a 3 decimales
   resultado <- data.frame(
     Item = 1:nrow(data),
-    CVI = round(CVI_vals, 3),
+    CVIR = round(cvipb_vals, 3),
     lwr.ci = round(lwr_cis, 3),
-    upr.ci = round(upp_cis, 3)
+    upr.ci = round(upr_cis, 3)
   )
-
   return(resultado)
 }
-

@@ -15,9 +15,7 @@
 #'Because data produced by judges' judgments tend to be asymmetrically distributed (if the item is rated, on a scale of 1 to 5, as predominantly valid then its values will be > 3), MOVER-R is appropriate for non-normal distributions.
 #'MOVER-R depends on the quality or precision of the confidence intervals calculated for the coefficients in each group.
 #'The compared content validity coefficients obtained should be of the same type, and the estimated confidence intervals for these coefficients should also come from the same level; for example, at .95 or .90.
-#'
 #'If the two dataframes have different numbers of evaluated items (i.e., different numbers of rows), 'CIR' function matches the commonly labeled items, assuming they are the same items.
-#'
 #'Note: The function has not yet been prepared to resolve missing values, so the user must remove or impute any missing values.
 #'
 #'@references

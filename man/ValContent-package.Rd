@@ -9,7 +9,7 @@
 More about what it does (maybe more than one line). Continuation lines should be indented.
 }
 \author{
-\strong{Maintainer}: Jane Doe \email{jane@example.com}
+\strong{Maintainer}: Cesar Merino \email{jane@example.com}
 
 }
 \keyword{internal}
