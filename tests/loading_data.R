@@ -39,6 +39,7 @@ random_data2 <- data.frame(
 
 ## Random data: 10 items (filas), 6 jueces (columnas)
 #High ratings
+set.seed(123)
 random_data3 <- data.frame(
   obs1 = sample(5:7, 10, replace = TRUE),
   obs2 = sample(4:7, 10, replace = TRUE),
