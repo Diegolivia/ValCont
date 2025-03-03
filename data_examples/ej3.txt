@@ -1,0 +1,7 @@
+
+### random data, 1:5 ratings, 
+random_data <- data.frame(replicate(n = 6,sample(1:5,12,rep=TRUE)))
+
+barplot(random_data)
+
+

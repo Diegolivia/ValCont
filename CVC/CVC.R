@@ -40,7 +40,5 @@ CVC <- function(data, max, conf.level) {
     lwr.ci = round(intervalos_CI[, "lower"],3),
     upr.ci = round(intervalos_CI[, "upper"],3)
   )
-  
   return(resultado_df)
 }
-

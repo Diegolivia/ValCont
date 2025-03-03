@@ -1,5 +1,6 @@
-@title CIR Confidence Intervals of Ratios of content validity coefficients (confidence interval for diference)
-@description Calculates confidence interval for the ratio of two content validity coefficients, based on method of variance recovery for ratios (MOVER-R).
+@title `CIR` Confidence Intervals of Ratios of content validity coefficients (confidence interval for diference of ratios)
+@description Calculates confidence interval for the ratio of two content validity coefficients, based on method of
+variance recovery for ratios (MOVER-R).
 @param group1 Output dataframe 1 of one of the 'ValCont' functions to obtain content validity coefficients.
 @param group2 Output Output dataframe 2 of one of the 'ValCont' functions to obtain content validity coefficients.
 @param coef.col Name of the column in the dataframe storing the calculated coefficient
@@ -7,22 +8,31 @@
 @param upr.col Name of the column in the dataframe that stores the upper limit of the confidence interval
 
 @return 
-dataframe with four columns: label of the items, ratio between the coefficients, the upper and upper limit of the confidence interval of the difference.
+dataframe with four columns: label of the items, ratio between the coefficients, the upper and upper limit of the
+confidence interval of the difference.
 
 @details
-'CIR' uses method of variance recovery for ratios (MOVER-R; Zou, Donner, & Qiu, 2025), como enfoque general para dos cantidades no normales.
-Because data produced by judges' judgments tend to be asymmetrically distributed (if the item is rated, on a scale of 1 to 5, as predominantly valid then its values will be > 3), MOVER-R is appropriate for non-normal distributions. 
+'CIR' uses method of variance recovery for ratios (MOVER-R; Zou, Donner, & Qiu, 2025), cas a general approach for 
+two non-normal quantities. It is influenced by the general framework created by Zou and Donner (2008).
+Because data produced by judges' judgments tend to be asymmetrically distributed (if the item is rated, on a scale 
+of 1 to 5, as predominantly valid then its values will be > 3), MOVER-R is appropriate for non-normal distributions. 
 MOVER-R depends on the quality or precision of the confidence intervals calculated for the coefficients in each group.
-The compared content validity coefficients obtained should be of the same type, and the estimated confidence intervals for these coefficients should also come from the same level; for example, at .95 or .90.
+The compared content validity coefficients obtained should be of the same type, and the estimated confidence intervals
+for these coefficients should also come from the same level; for example, at .95 or .90.
 
-If the two dataframes have different numbers of evaluated items (i.e., different numbers of rows), 'CIR' function matches the commonly labeled items, assuming they are the same items. 
+If the two dataframes have different numbers of evaluated items (i.e., different numbers of rows), 'CIR' function 
+matches the commonly labeled items, assuming they are the same items. 
 
-Note: The function has not yet been prepared to resolve missing values, so the user must remove or impute any missing values.
+Note: The function has not yet been prepared to resolve missing values, so the user must remove or impute any missing 
+values.
 
 @references
 
-Zou, G., Donner, A. & Qiu, S. (2025). MOVER-R for Confidence Intervals of Ratios. In  N. Balakrishnan, T. Colton, B. Everitt, W. Piegorsch, F. Ruggeri and J.L. Teugels (Eds.), Wiley StatsRef: Statistics Reference Online. https://doi.org/10.1002/9781118445112.stat08085
-
+Zou, G., Donner, A. & Qiu, S. (2025). MOVER-R for Confidence Intervals of Ratios. In  N. Balakrishnan, T. Colton, 
+B. Everitt, W. Piegorsch, F. Ruggeri and J.L. Teugels (Eds.), Wiley StatsRef: Statistics Reference Online. 
+https://doi.org/10.1002/9781118445112.stat08085
+Zou, G.Y. and Donner, A. (2008). Construction of confidence limits about effect measures: A general approach. 
+Statist. Med., 27: 1693-1702. https://doi.org/10.1002/sim.3095
 
 @seealso
 \code{\link{ratesci::mover}}
@@ -30,7 +40,7 @@ Zou, G., Donner, A. & Qiu, S. (2025). MOVER-R for Confidence Intervals of Ratios
 
 @examples
 
-### Example 1
+### Example 1 ----------
 # Group 1 output
 Vgroup1 <- data.frame(
   V = c(0.85, 0.78, 0.90),
@@ -50,7 +60,7 @@ rownames(group2) <- c("Item1", "Item2")
 ## Run 
 CIR(Vgroup1, Vgroup2, coef_col = "V", lwr_col = "lwr.ci", upr_col = "upr.ci")
 
-### Example 2
+### Example 2  ----------
 # Random data (Low ratings): 11 items (rows), 4 raters (columns)
 
 random_data2 <- data.frame(
@@ -86,7 +96,3 @@ CIR(group1 = output.V2,
 
 #' @export
 
-
-
-
-https://onlinelibrary.wiley.com/doi/abs/10.1002/9781118445112.stat08085

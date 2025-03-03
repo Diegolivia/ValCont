@@ -11,13 +11,13 @@ CVR <- function(data) {
   )
   
     
-  # Iterar sobre las filas (ítems)
+  # Iterar sobre las filas (?tems)
   for (i in seq_len(nrow(data_binaria))) {
-    # Contar el número de respuestas "essential" (ne) y total (N)
+    # Contar el n?mero de respuestas "essential" (ne) y total (N)
     ne <- sum(data_binaria[i, ])  # Respuestas 1 ("essential")
     N <- ncol(data_binaria)       # Total de respuestas (jueces)
     
-    # Calcular CVR para el ítem
+    # Calcular CVR para el ?tem
     CVR <- (ne - (N / 2)) / (N / 2)
     
    
