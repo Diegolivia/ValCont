@@ -1,8 +1,8 @@
 @title CID (confidence interval for diference)
 @description Calculates confidence interval for the difference of content validity coefficients, based on Method
-of Variance Estimates Recovery (MOVER).
+of Variance Estimates Recovery (MOVER). Used in dataframes of Valcont results
 @param group1 Output dataframe 1 of one of the 'ValCont' functions to obtain content validity coefficients.
-@param group2 Output Output dataframe 2 of one of the 'ValCont' functions to obtain content validity coefficients.
+@param group2 Output dataframe 2 of one of the 'ValCont' functions to obtain content validity coefficients.
 @param coef.col Name of the column in the dataframe storing the calculated coefficient
 @param lwr.col Name of the column in the dataframe that stores the lower bound of the confidence interval
 @param upr.col Name of the column in the dataframe that stores the upper limit of the confidence interval
