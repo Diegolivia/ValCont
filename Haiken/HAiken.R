@@ -2,134 +2,124 @@
 #' @description Calculate the coefficient of homogeneity of response for each item (Aiken, 1980, 1985).
 #' 
 #' @param data dataframe, with the columns assigned to each judge, and the rows assigned to each evaluated item.
-#' @param ncat number of response categories or options used in the rating
-#' @param conf.level confidence level for the confidence intervals (eg., .90, .95, .99)
+#' @param ncat number of response categories or options used in the rating.
+#' @param conf.level confidence level for the confidence intervals (e.g., .90, .95, .99).
 #' 
 #' @return 
-#' dataframe with H coefficients for all items analyzed, and their confidence intervals.
+#' A dataframe with H coefficients for all items analyzed, and their confidence intervals.
 #' 
 #' @details
 #' Compute the H coefficient (Aiken, 1980, 1985) to estimate the homogeneity of response of the judges/scorers to the items. 
 #' To maintain consistency with the methods usually associated with content validity, 'HAiken' is proposed as an option.
-#' 'HAiken' also compute asymmetric confidence intervals use the method of Wilson (1927). and adapted by Penfield and 
-#' Giacobbi (2004) for Aiken's V coefficient. 
-#' The H coefficient, or equivalent coefficients, should complement the results of the content validity coefficients. 
-#' Other methods for estimating judges' agreement or homogeneity of response may also be useful. 
-#' 
-#' Note: The function has not yet been prepared to resolve missing values, so the user must remove or impute any missing values.
+#' 'HAiken' also computes asymmetric confidence intervals using the method of Wilson (1927), adapted by Penfield and 
+#' Giacobbi (2004) for Aiken's V coefficient.
+#'
+#' The H coefficient can theoretically range from 0 (maximum disagreement among judges) to 1 (perfect agreement). 
+#' However, due to the nature of the pairwise differences used in its calculation, the H value may occasionally fall 
+#' below 0 in cases of extreme disagreement. These negative values should be interpreted as indicating very low 
+#' homogeneity and are retained for transparency in exploratory analyses.
+#'
+#' In such cases, the asymmetric confidence interval (Wilson method) cannot be computed, since the H coefficient 
+#' falls outside the bounds of a valid proportion (0–1). When this occurs, the confidence interval will be returned 
+#' as NA. This behavior is expected and consistent with the statistical properties of the method.
+#'
+#' Users are advised to interpret such results as indicators of extremely low agreement among raters. If desired, 
+#' H values can be truncated to the 0–1 range, but this should be done with caution and transparency.
+#'
+#' Note: The function does not currently handle missing values. Please remove or impute missing data before using it.
 #' 
 #' @references
 #' Aiken, L. R. (1980). Content validity and reliability of single items or questionnaires. Educational and Psychological 
-#' Measurement, 40, 955-959. https://doi.org/10.1177/001316448004000419
+#' Measurement, 40, 955–959. https://doi.org/10.1177/001316448004000419
 #' 
 #' Aiken, L. R. (1985). Three coefficients for analyzing the reliability and validity of ratings. Educational and
-#' Psychological Measurement, 45, 131-142. https://doi.org/10.1177/0013164485451012
+#' Psychological Measurement, 45, 131–142. https://doi.org/10.1177/0013164485451012
 #' 
 #' Penfield, R. D., & Miller, J. M. (2004). Improving Content Validation Studies Using an Asymmetric Confidence Interval 
 #' for the Mean of Expert Ratings. Applied Measurement in Education, 17(4), 359–370. https://doi.org/10.1207/s15324818ame1704_2
 #' 
 #' Wilson, E. B. (1927). Probable inference, the law of succession, and statistical inference. Journal of the American
-#' Statistical Association, 22, 209-212. https://doi.org/10.2307/2276774
+#' Statistical Association, 22, 209–212. https://doi.org/10.2307/2276774
 #' 
 #' @seealso
-#' \code{\link{PropCIs::scoreci}} for score method confidence interval
-#' \code{\link{irr::agree}} for Simple and extended percentage agreement
-#' \code{\link{irr::kendall}} for Kendall's coefficient of concordance W
-#' \code{\link{irr::meanrho}} for Mean of bivariate rank correlations between raters
-#' 
+#' \code{\link[PropCIs]{scoreci}} for score method confidence interval  
+#' \code{\link[irr]{agree}} for Simple and extended percentage agreement  
+#' \code{\link[irr]{kendall}} for Kendall's coefficient of concordance W  
+#' \code{\link[irr]{meanrho}} for Mean of bivariate rank correlations between raters
 #' 
 #' @examples
-#' ### Example 1 ----------
-#' 
-#Load data
 #' Ej2 <- data.frame(
-#' j1 = c(4, 1, 1, 1, 4),
-#' j2 = c(4, 1, 2, 2, 3),
-#' j3 = c(4, 1, 3, 3, 5),
-#' j4 = c(4, 1, 4, 5, 5),
-#' j5 = c(4, 1, 5, 5, 5),
-#' j6 = c(4, 1, 3, 5, 5))
+#'   j1 = c(4, 1, 1, 1, 4),
+#'   j2 = c(4, 1, 2, 2, 3),
+#'   j3 = c(4, 1, 3, 3, 5),
+#'   j4 = c(4, 1, 4, 5, 5),
+#'   j5 = c(4, 1, 5, 5, 5),
+#'   j6 = c(4, 1, 3, 5, 5))
 #' 
-# Run
-#' HAiken(Ej2, 
-#' ncat = 5, 
-#' alpha = .90)
+#' HAiken(Ej2, ncat = 5, conf.level = .90)
 #' 
-#' ### Example 2 ----------
-#' In a dataframe where the rows are the items and the columns are the raters, H 
-#' can be calculated for the raters (columns) by simply transposing the data and
-#' entering it as a data frame.
-#' 
-#' Haiken(as.data.frame(t(Ej2)), 
-#' ncat = 5, 
-#' alpha = .90)
-#' 
+#' # If rows are judges and columns are items:
+#' HAiken(as.data.frame(t(Ej2)), ncat = 5, conf.level = .90)
 #' 
 #' @author
-#' Cesar Merino-Soto (\email: {sikayax@yahoo.cam.ar})
+#' Cesar Merino-Soto (\email{sikayax@yahoo.com.ar})
 #' 
 #' @keywords
+#' content validity, homogeneity, agreement
+#' 
+#' @importFrom stats qnorm
 #' 
 #' @export
 Haiken <- function(data, ncat, conf.level) {
   
-  sum_missing <- rowSums(is.na(data))
-  n_subj <- nrow(data) - sum_missing
+  # Validations
+  if (!is.data.frame(data)) stop("The 'data' argument must be a dataframe.")
+  if (!is.numeric(ncat) || ncat < 2) stop("'ncat' must be a number greater than or equal to 2.")
+  if (!is.numeric(conf.level) || conf.level <= 0 || conf.level >= 1) stop("'conf.level' must be a number between 0 and 1.")
+  if (anyNA(data)) warning("Missing values detected. Please remove or impute missing data before using HAiken().")
   
-  # Número de filas
-  num_filas <- nrow(data)
+  num_items <- nrow(data)
+  n <- ncol(data)  # number of raters
+  k <- ncat
+  j <- ifelse(n %% 2 == 0, 0, 1)
   
-  # Calcular j según si ncol(data) es par o impar
-  j <- ifelse(ncol(data) %% 2 == 0, 0, 1)
-  
-  # data frame para almacenar resultados
   resultados <- data.frame(
-    Item = 1:num_filas,
-    H = numeric(num_filas),
-    lwr.ci = numeric(num_filas),
-    upr.ci = numeric(num_filas),
-    n.subj = numeric(num_filas)
+    Item = 1:num_items,
+    H = numeric(num_items),
+    lwr.ci = numeric(num_items),
+    upr.ci = numeric(num_items)
   )
   
-  # Calcular las diferencias por pares (diferencias absolutas) y los intervalos de confianza para cada fila
-  for (i in 1:num_filas) {
-    fila_actual <- data[i, ]
+  get_wilson_CI <- function(p_hat, n, conf.level) {
+    SE_hat_sq <- p_hat * (1 - p_hat) / n
+    crit <- qnorm(1 - conf.level / 2)
+    omega <- n / (n + crit^2)
+    A <- p_hat + crit^2 / (2 * n)
+    B <- crit * sqrt(SE_hat_sq + crit^2 / (4 * n^2))
+    CI <- c('lower' = omega * (A - B), 
+            'upper' = omega * (A + B))
+    return(CI)
+  }
+  
+  for (i in 1:num_items) {
+    fila <- data[i, ]
     
-    # Calcular las diferencias por pares como diferencias absolutas y desempaquetarlas
-    diff_abs <- combn(colnames(fila_actual), 2, function(pair) {
-      col1 <- fila_actual[pair[1]]
-      col2 <- fila_actual[pair[2]]
-      diff_abs <- abs(col1 - col2)
-      return(diff_abs)
-    }, simplify = FALSE)  # Utilizar simplify = FALSE para obtener una lista
+    diff_abs <- combn(colnames(fila), 2, function(pair) {
+      abs(fila[[pair[1]]] - fila[[pair[2]]])
+    }, simplify = TRUE)
     
-    # Desempaquetar las diferencias absolutas de la lista
-    diff_abs_unlist <- unlist(diff_abs)
+    H <- 1 - (4 * sum(diff_abs)) / ((k - 1) * (n^2 - j))
     
-    # Calcular el resultado para la fila actual usando ncat, diff_abs_unlist y j
-    resultado_actual <- 1 - (4 * sum(diff_abs_unlist) / ((ncat - 1) * (ncol(data)^2) - j))
-    
-    get_wilson_CI <- function(x, n, conf.level) {
-      n <- n
-      p_hat <- x
-      SE_hat_sq <- p_hat * (1 - p_hat) / n
-      crit <- qnorm(1 - conf.level / 2)
-      omega <- n / (n + crit^2)
-      A <- p_hat + crit^2 / (2 * n)
-      B <- crit * sqrt(SE_hat_sq + crit^2 / (4 * n^2))
-      CI <- c('lower' = omega * (A - B), 
-              'upper' = omega * (A + B))
-      return(CI)
+    # Evaluar si el IC puede calcularse
+    if (H < 0 || H > 1) {
+      wilson_interval <- c(lower = NA, upper = NA)
+    } else {
+      wilson_interval <- get_wilson_CI(H, n, conf.level)
     }
-    # Calcular el intervalo de confianza con la función get_wilson_CI y el nivel de confianza alpha
-    wilson_interval <- get_wilson_CI(resultado_actual, ncol(data), conf.level)
     
-    # Almacenar los resultados en el data frame
-    resultados[i, "H"] <- resultado_actual
-    resultados[i, "lwr.ci"] <- wilson_interval['lower']
-    resultados[i, "upr.ci"] <- wilson_interval['upper']
-    resultados[i, "n.subj"] <- num_filas
-    
+    resultados[i, "H"] <- H
+    resultados[i, "lwr.ci"] <- wilson_interval["lower"]
+    resultados[i, "upr.ci"] <- wilson_interval["upper"]
   }
   
   return(round(resultados, 3))
