@@ -1,4 +1,4 @@
-@title CID_single (Confidence interval for difference: single item)
+@title CIDsingle (Confidence interval for difference: single item)
 @description Calculate confidence intervals for the difference of specific content validity coefficients on a single item, based on Method of Variance Estimates Recovery (MOVER).
 @param coef1 numerical value obtained for coefficient 1
 @param coef2 numerical value obtained for coefficient 2
