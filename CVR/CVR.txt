@@ -1,4 +1,4 @@
-@title CVR (content validity ratio)
+@title CVR: Content Validity Ratio
 @description Calculate the CVR coefficient (content validity ratio)
 @param data dataframe, with the columns assigned to each judge, and the rows assigned to each evaluated item.
 

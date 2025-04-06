@@ -1,5 +1,5 @@
-@title CVI_R
-@description Calculate the CVI coefficient with random agreement adjustment (Polit & Beck, 2007).
+@title CVI_R: Content Validity Index, Revised
+@description Calculate the CVI coefficient with chance agreement adjustment (Polit & Beck, 2007).
 @param data dataframe, with the columns assigned to each judge, and the rows assigned to each evaluated item.
 @param cut Specific cut-off point in the response rating, from which the item is considered valid (or relevant, clear, etc.).
 @param conf.level confidence level for asymmetric confidence intervals (ex., .90, .95, .99)
@@ -8,11 +8,16 @@
 dataframe with CVI_R coefficients for all items analyzed, and confidence intervals.
 
 @details 
-The 'CVI_R' function calculates the CVI, with adjustment for chance agreement (Polit, Beck, & Owen, 2007).
-As with the 'CVI' function, in 'CVI_R' items can be rated with a wide range of point scales (Polit, Beck, & Owen, 2007; Polit, & Beck, 2006). This rating scale can be 3-point, or usually 4- or 5-point (Lynn, 1986; Waltz & Bausell, 1981). 
-The 'CVI_R' cutoff point, for identifying valid items, is generally based on the last two top ratings; for example, on a relevance scale of 1 to 4, the cutoff point may be 3 (Beck & Gable, 2001; Grant & Davis, 1997). 'CVI_R' uses 'cut' to dichotomize the judges' responses and transform them into the CVI.
-The asymmetric confidence intervals use Wilson's (1927) approach, as applied to Aiken's V coefficient (Penfield, & Giacobbi, 2004).
-The results should be complemented by an estimator of inter-judge variability or agreement.
+The 'CVIR' function calculates the CVI, with adjustment for chance agreement (Polit, Beck, & Owen, 2007).
+As with the 'CVI' function, in 'CVIR' items can be rated with a wide range of point scales (Polit, Beck,
+& Owen, 2007; Polit, & Beck, 2006). This rating scale can be 3-point, or usually 4- or 5-point (Lynn, 
+1986; Waltz & Bausell, 1981). 
+The 'CVIR' cutoff point, for identifying valid items, is generally based on the last two top ratings; 
+for example, on a relevance scale of 1 to 4, the cutoff point may be 3 (Beck & Gable, 2001; Grant & 
+Davis, 1997). 'CVI_R' uses 'cut' to dichotomize the judges' responses and transform them into the CVI.
+The asymmetric confidence intervals use Wilson's (1927) approach, as applied to Aiken's V coefficient
+(Penfield, & Giacobbi, 2004). The results should be complemented by an estimator of inter-judge
+variability or agreement.
 
 Note: The function has not yet been prepared to resolve missing values, so the user must remove or impute any missing values.
 
@@ -39,7 +44,7 @@ Wilson, E. B. (1927). Probable inference, the law of succession, and statistical
 
 @seealso
 \code{\link{PropCIs::scoreci}} for score method confidence interval
-
+\code{\link{ValCont::CVI}} for Content Validity
 
 @examples
 ## Load data

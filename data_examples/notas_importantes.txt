@@ -1,0 +1,4 @@
+datasets elegidos:
+ej1.txt
+
+gaisdata.txt

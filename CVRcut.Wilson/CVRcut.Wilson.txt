@@ -36,14 +36,15 @@ content validity ratio. Measurement and Evaluation in Counseling and Development
 @examples
 
 
-### Examples ----------
+### Example 1 ----------
 # N judges = 45, alpha = .05
-# Expected output: Critical value and minimum number of judges for CVR.
+# (Expected output: Critical value and minimum number of judges for CVR.)
 
 CVRcut.Wilson(num_jueces = 45,alpha = .05, tails = "one")
 
+### Example 2 ----------
 # N judges = 45, alpha = .01
-# Lower alpha results in higher critical values.
+# (Expected output: Lower alpha results in higher critical values.)
 
 CVRcut.Wilson(num_jueces = 45,alpha = .01, tails = "one")
 
