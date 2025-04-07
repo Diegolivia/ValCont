@@ -39,7 +39,9 @@
 #' 
 #' @seealso
 #' \code{\link[PropCIs]{scoreci}} for score method confidence interval
-#' 
+#' \code{\link[ValCont]{SVALmult}} for multi-item analysis. \cr
+#' \code{\link[ValCont]{SVALplot}} for visualizing results of SVAL analyses.
+#'  
 #' @examples
 #' # Example 1 -----------------------
 #' gais <- data.frame(

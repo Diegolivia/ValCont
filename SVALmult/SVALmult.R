@@ -62,7 +62,8 @@
 #'
 #' @seealso
 #' \code{\link[PropCIs]{scoreci}} for score-based confidence intervals. \cr
-#' \code{\link[ValCont]{SVALsingle}} for computing substantive validity on single items.
+#' \code{\link[ValCont]{SVALsingle}} for computing substantive validity on individual items. \cr
+#' \code{\link[ValCont]{SVALplot}} for visualizing the results of SVALmult.
 #'
 #' @examples
 #' data.gais <- data.frame(

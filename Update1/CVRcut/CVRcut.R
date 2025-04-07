@@ -1,7 +1,7 @@
 CVRcut <- function(N_min, N_max, method, alpha = 0.05, tails = "one", prior = "Jeffreys", interpolacion = "none") {
   # Validar método
-  if (!method %in% c("Lawshe", "Wilson", "Ayres", "Bag")) {
-    stop("Método no válido. Use 'Lawshe', 'Wilson', 'Ayres' o 'Baghestani'.")
+  if (!method %in% c("Wilson", "Ayres", "Bag")) {
+    stop("Método no válido. Use 'Wilson', 'Ayres' o 'Baghestani'.")
   }
 
   # Validar rango de N
@@ -14,9 +14,7 @@ CVRcut <- function(N_min, N_max, method, alpha = 0.05, tails = "one", prior = "J
 
   # Iterar sobre el rango de N
   for (N in N_min:N_max) {
-    if (method == "Lawshe") {
-      res <- CVRcut.Lawshe(N, interpolacion = interpolacion, legend = FALSE)
-    } else if (method == "Wilson") {
+    if (method == "Wilson") {
       res <- CVRcut.Wilson(N, alpha = alpha, tails = tails)
     } else if (method == "Ayres") {
       res <- CVRcut.Ayres(N)
