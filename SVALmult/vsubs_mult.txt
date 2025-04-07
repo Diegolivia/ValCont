@@ -1,4 +1,4 @@
-@title Substantive validity: multiple item
+@title Substantive validity: set of items
 @description For a dataframe of items, this function calculates substantive coefficients ('psa' and 'svc' coefficients; Anderson & Garbin, 1991), more asymmetric confidence intervals.
 @param data dataframe with the responses to several items. Each response represents a chosen construct, usually forming a multinomial variable.
 @param columns vector of indexes or column names to be analyzed.

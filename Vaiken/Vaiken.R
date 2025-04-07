@@ -1,123 +1,106 @@
-#' @title Coeficiente V de Aiken
-#' @description Calculate the V coefficient, known as Aiken's V.
-#' 
+#' @title Aiken's V Coefficient
+#' @description Calculate Aiken's V coefficient for content validity with asymmetric confidence intervals.
+#'
 #' @param data dataframe, with the columns assigned to each rater, and the rows assigned to each evaluated item.
-#' @param min minimum possible rating value
-#' @param max maximum possible rating value
-#' @param level confidence level for confidence intervals (ex., .90, .95, .99)
+#' @param min numeric. Minimum possible rating value in the scale used by the judges.
+#' @param max numeric. Maximum possible rating value in the scale used by the judges.
+#' @param conf.level numeric. Confidence level for the confidence intervals (e.g., .90, .95, .99).
 #'
-#'@return
-#'dataframe with V-coefficients for all items analyzed, and confidence intervals
+#' @return
+#' A dataframe with the V coefficients for all analyzed items, and their corresponding asymmetric confidence intervals.
 #'
-#'@details
-#'Calculate the V coefficient (Aiken, 1980, 1985), with the formula of Penfield & Giacobbi (2004). It also
-#'calculates asymmetric confidence intervals (Wilson, 1927; Penfield & Giacobbi, 2004). The results 
-#'should be complemented by an estimator of variability or inter-judge agreement. 
-#'The function uses the modified formula presented by Penfield & Giacobbi (2004).
-#'This function substantially improves on Vaiken (Merino, & Livia, 2009) because it calculates for multiple
-#'items and any confidence level.
+#' @details
+#' This function calculates Aiken's V coefficient (Aiken, 1980, 1985) using the modified formula by Penfield & Giacobbi (2004),
+#' and computes asymmetric confidence intervals based on Wilson's method. It provides results for multiple items simultaneously.
+#' The function assumes that the dataset contains no missing values.
 #'
-#'Note: The function has not yet been prepared to resolve missing values, so the user must remove or impute any missing values.
+#' @references
+#' Aiken, L. R. (1980). Content validity and reliability of single items or questionnaires. *Educational and Psychological Measurement, 40*, 955–959. https://doi.org/10.1177/001316448004000419
 #'
-#'@references
-#'Aiken, L. R. (1980). Content validity and reliability of single items or questionnaires. Educational and. Psychological Measurement, 40, 955-959. doi: 10.1177/001316448004000419
+#' Aiken, L. R. (1985). Three coefficients for analyzing the reliability and validity of ratings. *Educational and Psychological Measurement, 45*, 131–142. https://doi.org/10.1177/0013164485451012
 #'
-#'Aiken, L. R. (1985). Three coefficients for analyzing the reliability and validity of ratings. Educational and Psychological Measurement, 45, 131-142. doi: 10.1177/0013164485451012
+#' Merino, C., & Livia, J. (2009). Intervalos de confianza asimétricos para el índice de validez de contenido: un programa Visual Basic para la V de Aiken. *Anales de Psicología, 25*(1), 169–171.
 #'
-#'Merino, C., & Livia, J. (2009). Intervalos de confianza asimétricos para el índice de validez de contenido: un programa Visual Basic para la V de Aiken. Anales de Psicología, 25(1), 169-171
+#' Penfield, R. D., & Giacobbi, P. R. Jr. (2004). Applying a score confidence interval to Aiken’s item content-relevance index. *Measurement in Physical Education and Exercise Science, 8*(4), 213–225. https://doi.org/10.1207/s15327841mpee0804_3
 #'
-#'Penfield, R. D. & Giacobbi, P. R., Jr. (2004) Applying a score confidence interval to Aiken’s item content-relevance index. Measurement in Physical Education and Exercise Science, 8(4), 213-225. doi: 10.1207/s15327841mpee0804_3
+#' Wilson, E. B. (1927). Probable inference, the law of succession, and statistical inference. *Journal of the American Statistical Association, 22*, 209–212. https://doi.org/10.2307/2276774
 #'
-#'Wilson, E. B. (1927). Probable inference, the law of succession, and statistical inference. Journal of the American Statistical Association, 22, 209-212. doi: 10.2307/2276774
+#' @seealso
+#' \code{\link[PropCIs]{scoreci}} for score method confidence intervals, 
+#' \code{\link[ValCont]{Haiken}} for score homogeneity of ratings.
 #'
-#'@seealso
-#'\code{\linkPropCIs::scoreci}} for score method confidence interval
-#'\code{\ValCont::Haiken}} for score homogeneity of ratings
+#' @examples
+#' ### Example 1: Good content validity ---------------
+#' data.ej <- data.frame(
+#'   j1 = c(4, 1, 1, 1, 4),
+#'   j2 = c(4, 1, 2, 2, 3),
+#'   j3 = c(4, 1, 3, 3, 5),
+#'   j4 = c(4, 1, 4, 5, 5),
+#'   j5 = c(4, 1, 5, 5, 5),
+#'   j6 = c(4, 1, 3, 5, 5))
+#'   
+#' rownames(data.ej) <- paste0("Item_", 1:5)
+#' 
+#' Run
+#' Vaiken(data = data.ej, min = 1, max = 5, conf.level = .90)
 #'
-#'@examples
-#'### Example 1 ---------------
+#' ### Example 2: Poor content validity ---------------
+#' data.low <- data.frame(
+#'   j1 = c(1, 2, 2, 3, 5),
+#'   j2 = c(1, 3, 2, 1, 5),
+#'   j3 = c(2, 1, 3, 1, 5),
+#'   j4 = c(2, 1, 2, 1, 5),
+#'   j5 = c(1, 4, 2, 2, 5))
+#'   
+#'rownames(data.low) <- c("Item_A", "Item_B", "Item_C", "Item_D", "Item_E")
 #'
-#'# Load data
-#'data.ej <- data.frame(
-#'  j1 = c(4, 1, 1, 1, 4),
-#' j2 = c(4, 1, 2, 2, 3),
-#'  j3 = c(4, 1, 3, 3, 5),
-#'  j4 = c(4, 1, 4, 5, 5),
-#'  j5 = c(4, 1, 5, 5, 5),
-#'  j6 = c(4, 1, 3, 5, 5))
-#'
-#'# Run
-#'Vaiken(data = data.ej, min = 1, max = 5, level = .90)
+#' # Run
+#' Vaiken(data = data.low, min = 1, max = 5, conf.level = .95)
 #'
 #' @author
-#' Diego Livia-Ortiz (\email{diegolivia@hotmail.com})
+#' Diego Livia-Ortiz (\email{diegolivia@hotmail.com})  
 #' Cesar Merino-Soto (\email{sikayax@yahoo.com.ar})
-#' 
+#'
 #' @export
 Vaiken <- function(data, min, max, conf.level = 0.95) {
-  # Validation: data
-  if (!is.data.frame(data)) {
-    stop("El argumento 'data' debe ser un data.frame.")
-  }
-  if (!is.numeric(as.matrix(data))) {
-    stop("El 'data' debe contener solo valores numericos.")
-  }
+  # Validation
+  if (!is.data.frame(data)) stop("'data' must be a data.frame.")
+  if (!is.numeric(as.matrix(data))) stop("'data' must contain only numeric values.")
+  if (!is.numeric(min) || !is.numeric(max)) stop("'min' and 'max' must be numeric values.")
+  if (min >= max) stop("'min' must be less than 'max'.")
+  if (!is.numeric(conf.level) || conf.level <= 0 || conf.level >= 1) stop("'conf.level' must be between 0 and 1.")
+  if (any(is.na(data))) stop("'data' contains missing values. Please remove or impute them.")
+  if (any(data < min | data > max)) stop("All scores must be between 'min' and 'max'.")
   
-  # Validation: min, max
-  if (!is.numeric(min) || !is.numeric(max)) {
-    stop("'min' y 'max' deben ser valores numericos.")
-  }
-  if (min >= max) {
-    stop("'min' debe ser menor que 'max'.")
-  }
-  
-  # Validation: confidence level
-  if (!is.numeric(conf.level) || conf.level <= 0 || conf.level >= 1) {
-    stop("'conf.level' debe estar entre 0 y 1 (excluyendo los extremos).")
-  }
-  
-  # Verification: NA
-  if (any(is.na(data))) {
-    stop("'data' contiene valores NA. Por favor, limpiar los datos antes de usar la funcion.")
-  }
-  
-  # Verification: valid range of data
-  if (any(data < min | data > max)) {
-    stop("Todas las puntuaciones en 'data' deben estar entre 'min' y 'max'.")
-  }
-  
-  # N judges
   n <- ncol(data)
-  
-  # Critic value Z for confidence level
   z <- qnorm(1 - (1 - conf.level) / 2)
   
-  # Calculate V Aiken and confidence interval
   calcular_valores <- function(puntajes) {
-    M <- mean(puntajes) # Media de las calificaciones
-    V <- (M - min) / (max - min) # C?lculo de V de Aiken
-    
-    # lower and upper limits, method Wilson's score
+    M <- mean(puntajes)
+    V <- (M - min) / (max - min)
     nk <- n * (max - min)
     term1 <- 2 * nk * V + z^2
     term2 <- z * sqrt(4 * nk * V * (1 - V) + z^2)
     denom <- 2 * (nk + z^2)
-    
     lwr.ci <- (term1 - term2) / denom
     upr.ci <- (term1 + term2) / denom
-    
-    return(c(V = V, lwr.ci = lwr.ci, upr.ci = upr.ci))
+    c(V = V, lwr.ci = lwr.ci, upr.ci = upr.ci)
   }
   
-  # Aiken V for every item (row in the data frame)
   resultados <- t(apply(data, 1, calcular_valores))
   
-  # Data frame for the output
+  item_names <- if (!is.null(rownames(data)) && all(rownames(data) != "")) {
+    rownames(data)
+  } else {
+    paste0("Item_", seq_len(nrow(data)))
+  }
+  
   resultados_df <- data.frame(
-    Item = 1:nrow(data),
+    Item = item_names,
     V = round(resultados[, "V"], 3),
     lwr.ci = round(resultados[, "lwr.ci"], 3),
-    upr.ci = round(resultados[, "upr.ci"], 3)
+    upr.ci = round(resultados[, "upr.ci"], 3),
+    row.names = NULL
   )
   
   return(resultados_df)
