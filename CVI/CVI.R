@@ -39,7 +39,7 @@
 #' 
 #' @seealso
 #' \code{\link{PropCIs::scoreci}} for score method confidence interval
-#'  \code{\link{ValCont::CVIR}}
+#'  \code{\link{ValCont::CVIR}}  for Content Validity Index revised
 #' 
 #' @examples
 #' ### Example 1 ----------
