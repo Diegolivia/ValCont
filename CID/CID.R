@@ -50,6 +50,7 @@
 #' 
 #' @seealso
 #' \code{\link{ratesci::mover}}
+#' \code{\link{ValCont::CIDsingle}}
 #' 
 #' @examples
 #' 
