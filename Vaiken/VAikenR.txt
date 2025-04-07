@@ -10,8 +10,12 @@
 dataframe with V-coefficients for all items analyzed, and confidence intervals
 
 @details
-Calculate the V coefficient (Aiken, 1980, 1985), with the formula of Penfield & Giacobbi (2004). It also calculates asymmetric confidence intervals (Wilson, 1927; Penfield & Giacobbi, 2004). The results should be complemented by an estimator of variability or inter-judge agreement. The function uses the modified formula presented by Penfield & Giacobbi (2004).
-This function substantially improves on Vaiken (Merino, & Livia, 2009) because it calculates for multiple items and any confidence level.
+Calculate the V coefficient (Aiken, 1980, 1985), with the formula of Penfield & Giacobbi (2004). It also
+calculates asymmetric confidence intervals (Wilson, 1927; Penfield & Giacobbi, 2004). The results 
+should be complemented by an estimator of variability or inter-judge agreement. 
+The function uses the modified formula presented by Penfield & Giacobbi (2004).
+This function substantially improves on Vaiken (Merino, & Livia, 2009) because it calculates for multiple
+items and any confidence level.
 
 Note: The function has not yet been prepared to resolve missing values, so the user must remove or impute any missing values.
 
