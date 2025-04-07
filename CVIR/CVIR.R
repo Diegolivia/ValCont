@@ -51,7 +51,7 @@
 #' 
 #' @seealso
 #' \code{\link{PropCIs::scoreci}} for score method confidence interval
-#' \code{\link{ValCont::CVI}} for Content Validity
+#' \code{\link{ValCont::CVI}} for Content Validity Index
 #' 
 #' @examples
 #' ### Example 1 ----------
