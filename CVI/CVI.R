@@ -39,6 +39,7 @@
 #' 
 #' @seealso
 #' \code{\link{PropCIs::scoreci}} for score method confidence interval
+#'  \code{\link{ValCont::CVIR}}
 #' 
 #' @examples
 #' ### Example 1 ----------
