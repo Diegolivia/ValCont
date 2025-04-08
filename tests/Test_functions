@@ -1,20 +1,9 @@
-## Random data: 11 items (in rows), 4 jueces (in columns)
+#### Artificial data ####
 #Low ratings
-randata_low <- data.frame(
-  juez1 = sample(1:2, 11, replace = TRUE),
-  juez2 = sample(2:3, 11, replace = TRUE),
-  juez3 = sample(1:2, 11, replace = TRUE),
-  juez4 = sample(1:3, 11, replace = TRUE))
+randata_low <- read.table(file = "C:\\Users\\C NINJA\\Documents\\GitHub\\ValContent\\Data\\randata_low", header = T)
 
-## Random data: 10 items (filas), 6 jueces (columnas)
 #High ratings
-randata_high <- data.frame(
-  obs1 = sample(5:7, 10, replace = TRUE),
-  obs2 = sample(4:7, 10, replace = TRUE),
-  obs3 = sample(4:7, 10, replace = TRUE),
-  obs4 = sample(5:7, 10, replace = TRUE),
-  obs5 = sample(5:7, 10, replace = TRUE),
-  obs6 = sample(6:7, 10, replace = TRUE))
+randata_high <- read.table(file = "C:\\Users\\C NINJA\\Documents\\GitHub\\ValContent\\Data\\randata_high", header = T)
 
 
 #### CVC ####
@@ -240,6 +229,14 @@ $gais4$svc_results
 3   3    2 -0.867 -0.704 -0.947
 4   4   15  0.000  0.000  0.000
 
+#### SVALplot ####
+output.SVALmult <- SVALmult(data = gaisdata, columns = c("gais3", "gais4"))
+
+SVALplot(results = output.SVALmult, 
+         item = "gais4", 
+         type = "psa",
+         target = 4, 
+         labels = c("A", "B", "C", "D"))
 
 #### CID ####
 MER.group1 <- MER(data = randata_high, ncat = 7, start = 1, conf.level = .90)
@@ -290,6 +287,11 @@ In CIR(group1 = MER.group1, group2 = MER.group2, coef.col = "MER",  :
   Algunos items no coinciden entre group1 y group2. Se procesaran unicamente los items comunes.
 
 
-#### SVALplot ####
-
 #### CVplot ####
+CVplot(data = MER.group1, 
+       item.col = "Item",
+       point.coeficient = "MER", 
+       lwr.ci = "lwr.ci", 
+       up.ci = "upr.ci")
+
+#### ####
