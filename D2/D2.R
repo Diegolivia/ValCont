@@ -3,10 +3,11 @@
 #' Calculates the D2 statistic for comparing distributions of ratings between two independent groups of raters.
 #' This nonparametric method is particularly useful in content validity studies, where the number of raters is typically small.
 #'
-#' @param ratings1 A numeric vector (for a single item) or a data frame/matrix (for multiple items)
-#'                 containing ratings from the first group of raters. Rows represent raters,
-#'                 and columns represent the items being evaluated.
-#' @param ratings2 Same structure as `ratings1`, for the second group of raters.
+#' @param ratings1 A numeric vector (for a single item) or a data frame (for multiple items)
+#'   containing ratings from the first group of raters. For single-item comparisons, this can be a numeric
+#'   vector of any length, or even a single number.
+#' @param ratings2 Same structure as `ratings1`, for the second group of raters. When both inputs are vectors,
+#'   they can have different lengths (i.e., different number of raters per group)
 #' @param c An integer indicating the number of categories in the rating scale (e.g., 5 for a Likert scale from 1 to 5).
 #' @param tail A character string, either `"one"` for a one-tailed test or `"two"` for a two-tailed test. Default is `"two"`.
 #' @param digits Number of decimal places to round the results. Default is 3.
@@ -18,6 +19,15 @@
 #' The data frame inputs (`ratings1` and `ratings2`) must be structured such that
 #' **rows represent raters** and **columns represent items**. Each cell should contain
 #' the rating that a rater gave to a specific item.
+#' 
+#' - If `ratings1` and `ratings2` are numeric vectors (or single numbers), they are interpreted as the ratings
+#'   from two independent groups on a single item. In this case, they do **not** need to be of equal length.
+#'
+#' - If both are data frames (or matrices), each column represents an item, and each row is a rater. In this case,
+#'   the number of columns (items) must match in both data frames.
+#'
+#' - The function computes the D2 statistic, a Z-transformed difference in means standardized by the rating scale
+#'   and number of raters, and optionally estimates a correlation-type effect size with confidence intervals.
 #'
 #' The D2 statistic, proposed by Aiken and Aiken (1986), evaluates the extent to which two independent groups of raters
 #' assign systematically different ratings to the same items. It is designed for use with ordinal rating scales (e.g., Likert-type),
