@@ -230,6 +230,8 @@ $gais4$svc_results
 4   4   15  0.000  0.000  0.000
 
 #### SVALplot ####
+# Ver archivo: SVALplot_use.jpeg, en la carpeta tests
+
 output.SVALmult <- SVALmult(data = gaisdata, columns = c("gais3", "gais4"))
 
 SVALplot(results = output.SVALmult, 
@@ -288,11 +290,13 @@ In CIR(group1 = MER.group1, group2 = MER.group2, coef.col = "MER",  :
 
 
 #### CVplot ####
+# Ver archivo: CVplot_use.jpeg, en la carpeta tests
 CVplot(data = MER.group1, 
        item.col = "Item",
        point.coeficient = "MER", 
        lwr.ci = "lwr.ci", 
        up.ci = "upr.ci")
+
 
 #### D2 ####
 # Single-item case: two groups with different number of raters
