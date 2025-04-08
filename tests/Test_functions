@@ -240,9 +240,6 @@ $gais4$svc_results
 3   3    2 -0.867 -0.704 -0.947
 4   4   15  0.000  0.000  0.000
 
-#### SVALplot ####
-
-#### CVplot ####
 
 #### CID ####
 MER.group1 <- MER(data = randata_high, ncat = 7, start = 1, conf.level = .90)
@@ -291,3 +288,8 @@ In CID(group1 = MER.group1, group2 = MER.group2, coef.col = "MER",  :
 Warning message:
 In CIR(group1 = MER.group1, group2 = MER.group2, coef.col = "MER",  :
   Algunos items no coinciden entre group1 y group2. Se procesaran unicamente los items comunes.
+
+
+#### SVALplot ####
+
+#### CVplot ####
