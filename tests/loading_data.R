@@ -31,7 +31,7 @@ ej4 <- load(ej4)
 
 ## Random data: 11 items (in rows), 4 jueces (in columns)
 #Low ratings
-random_data2 <- data.frame(
+randata_low <- data.frame(
   juez1 = sample(1:2, 11, replace = TRUE),
   juez2 = sample(2:3, 11, replace = TRUE),
   juez3 = sample(1:2, 11, replace = TRUE),
@@ -39,7 +39,7 @@ random_data2 <- data.frame(
 
 ## Random data: 10 items (filas), 6 jueces (columnas)
 #High ratings
-random_data3 <- data.frame(
+randata_high <- data.frame(
   obs1 = sample(5:7, 10, replace = TRUE),
   obs2 = sample(4:7, 10, replace = TRUE),
   obs3 = sample(4:7, 10, replace = TRUE),
