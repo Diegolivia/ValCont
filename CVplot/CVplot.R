@@ -102,8 +102,9 @@ CVplot <- function(data, item.col, point.coeficient, lwr.ci, up.ci,
     data[[item.col]] <- factor(data[[item.col]], levels = unique(data[[item.col]]), ordered = TRUE)
   }
   
-  p <- ggplot(data, aes_string(x = item.col, y = point.coeficient)) +
-    geom_errorbar(aes_string(ymin = lwr.ci, ymax = up.ci), width = 0.2) +
+  library(ggplot2)
+  p <- ggplot(data, aes(x = .data[[item.col]], y = .data[[point.coeficient]])) +
+    geom_errorbar(aes(ymin = .data[[lwr.ci]], ymax = .data[[up.ci]]), width = 0.2) +
     geom_point(size = 3) +
     labs(title = title, x = x.label, y = y.label) +
     theme_minimal()
