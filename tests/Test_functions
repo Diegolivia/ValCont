@@ -61,6 +61,22 @@ randata_high <- data.frame(
 10   10 0.565  0.267  0.822
 
 #### CVR ####
+randata.CVR <- data.frame(
+  obs1 = rep(3, 10),
+  obs2 = sample(2:3, 10, replace = TRUE),
+  obs3 = rep(3, 10),
+  obs4 = c(rep(3, 7), rep(2, 3)),
+  obs5 = rep(x = 2, times = 10, each = 1),
+  obs6 = sample(1:3, 10, replace = TRUE))
+
+> CVR(data = t(randata.CVR))
+  Item  CVR
+1    1  1.0
+2    2 -0.4
+3    3  1.0
+4    4  0.4
+5    5 -1.0
+6    6  0.0
 
 #### Haiken ####
 
