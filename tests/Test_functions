@@ -93,10 +93,52 @@ randata.CVR <- data.frame(
 10   10 0.667  0.642  0.690
 
 #### MER ####
+> MER(data = randata_high, ncat = 7, start = 1, conf.level = .95)
+   Item   MER lwr.ci upr.ci
+1     1 6.333  3.933  6.912
+2     2 5.667  3.327  6.705
+3     3 6.333  3.933  6.912
+4     4 5.667  3.327  6.705
+5     5 6.167  3.773  6.869
+6     6 5.833  3.471  6.765
+7     7 5.667  3.327  6.705
+8     8 6.500  4.101  6.947
+9     9 6.333  3.933  6.912
+10   10 5.667  3.327  6.705
 
 #### Vaiken ####
+> Vaiken(data = randata_high, min = 1, max = 7, conf.level = .90)
+   Item     V lwr.ci upr.ci
+1     1 0.889  0.774  0.949
+2     2 0.778  0.647  0.870
+3     3 0.889  0.774  0.949
+4     4 0.778  0.647  0.870
+5     5 0.861  0.741  0.931
+6     6 0.806  0.677  0.891
+7     7 0.778  0.647  0.870
+8     8 0.917  0.809  0.966
+9     9 0.889  0.774  0.949
+10   10 0.778  0.647  0.870
 
 #### SVALsingle ####
+
+gaisdata <- read.table(file = "C:\\Users\\C NINJA\\Documents\\GitHub\\ValContent\\Data\\gais.data.txt", header = T)
+
+
+> SVALsingle(item = gaisdata$gais2, conf.level = .90)
+$PSA
+  Cat Freq   psa lwr.ci up.ci
+1   1    1 0.033  0.007 0.136
+2   2    5 0.167  0.084 0.305
+3   3    6 0.200  0.107 0.343
+4   4   18 0.600  0.451 0.733
+
+$SVC
+  Cat Freq    svc lwr.ci  up.ci
+1   1    1 -0.933 -0.817 -0.978
+2   2    5 -0.667 -0.517 -0.789
+3   3    6 -0.600 -0.451 -0.733
+4   4   18  0.200  0.107  0.343
 
 #### SVALmult ####
 
