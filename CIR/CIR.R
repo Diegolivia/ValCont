@@ -12,7 +12,7 @@
 #' confidence interval of the difference.
 #' 
 #' @details
-#' 'CIR' uses method of variance recovery for ratios (MOVER-R; Zou, Donner, & Qiu, 2025), cas a general approach for 
+#' 'CIR' uses method of variance recovery for ratios (MOVER-R; Zou, Donner, & Qiu, 2025), as a general approach for 
 #' two non-normal quantities. It is influenced by the general framework created by Zou and Donner (2008).
 #' Because data produced by judges' judgments tend to be asymmetrically distributed (if the item is rated, on a scale 
 #' of 1 to 5, as predominantly valid then its values will be > 3), MOVER-R is appropriate for non-normal distributions. 
