@@ -50,9 +50,9 @@ randata_high <- data.frame(
 ## Random data for CVR: 10 items (filas), 6 jueces (columnas)
 #High ratings
 randata.CVR <- data.frame(
-  obs1 = sample(1:3, 10, replace = TRUE),
-  obs2 = sample(2:3, 10, replace = TRUE),
+  obs1 = sample(3:3, 10, replace = TRUE),
+  obs2 = sample(3:3, 10, replace = TRUE),
   obs3 = sample(2:3, 10, replace = TRUE),
-  obs4 = sample(2:3, 10, replace = TRUE),
+  obs4 = sample(3:3, 10, replace = TRUE),
   obs5 = sample(2:3, 10, replace = TRUE),
   obs6 = sample(1:3, 10, replace = TRUE))
