@@ -55,52 +55,59 @@
 #' Behavior Research Methods, 49(1), 294–309. \doi{10.3758/s13428-016-0702-8}
 #'
 #' @examples
-#' ratings1 <- data.frame(Item1 = c(1, 3, 2, 2, 1), Item2 = c(2, 2, 4, 4, 3))
-#' ratings2 <- data.frame(Item1 = c(3, 5, 5, 4, 5), Item2 = c(5, 5, 4, 5, 5))
-#' D2(ratings1, ratings2, c = 5, CI = TRUE)
+#' # Single-item case: two groups with different number of raters
+#' g1 <- c(7, 6, 5)
+#' g2 <- c(1, 2, 1, 2)
+#' D2(g1, g2, c = 7)
 #'
+#' # Single-item case with scalar values
+#' D2(ratings1 = 3.2, ratings2 = 4.9, c = 7)
+#'
+#' # Multiple-item case
+#' ratings1 <- data.frame(Item1 = c(1, 3, 2), Item2 = c(4, 5, 6))
+#' ratings2 <- data.frame(Item1 = c(5, 4, 5), Item2 = c(6, 5, 4))
+#' D2(ratings1, ratings2, c = 7, CI = TRUE)
+#' 
 #' @export
 D2 <- function(ratings1, ratings2, c, tail = "two", digits = 3, CI = FALSE, conf.level = 0.95, B = 500) {
-  if (!requireNamespace("boot", quietly = TRUE)) {
+  if (!requireNamespace("boot", quietly = TRUE) && CI) {
     stop("Package 'boot' is required for bootstrap confidence intervals. Please install it.")
   }
   
-  if (!is.numeric(as.matrix(ratings1)) | !is.numeric(as.matrix(ratings2))) {
-    stop("Both ratings1 and ratings2 must contain only numeric values.")
+  # Detect single comparison (vector or scalar)
+  vector_case <- is.vector(ratings1) && is.vector(ratings2)
+  
+  # Convert to data.frame only if needed
+  if (vector_case) {
+    ratings1 <- list(ratings1)
+    ratings2 <- list(ratings2)
+    item_names <- NULL
+  } else {
+    # Ensure same columns (items)
+    if (!is.data.frame(ratings1) || !is.data.frame(ratings2)) {
+      stop("For multiple items, both ratings1 and ratings2 must be data frames.")
+    }
+    if (!identical(colnames(ratings1), colnames(ratings2))) {
+      stop("ratings1 and ratings2 must have the same item names (column names).")
+    }
+    item_names <- colnames(ratings1)
+    ratings1 <- as.list(ratings1)
+    ratings2 <- as.list(ratings2)
   }
   
-  if (is.vector(ratings1)) ratings1 <- as.data.frame(ratings1)
-  if (is.vector(ratings2)) ratings2 <- as.data.frame(ratings2)
-  
-  if (!is.data.frame(ratings1) | !is.data.frame(ratings2)) {
-    stop("Both ratings1 and ratings2 must be numeric vectors or data frames.")
-  }
-  
-  if (ncol(ratings1) != ncol(ratings2)) {
-    stop("ratings1 and ratings2 must have the same number of items (columns).")
-  }
-  
-  if (!is.numeric(c) | c <= 1 | c != as.integer(c)) {
+  # Validate inputs
+  if (!is.numeric(c) || c <= 1 || c != as.integer(c)) {
     stop("The number of categories (c) must be an integer greater than 1.")
   }
-  
   if (!tail %in% c("one", "two")) {
     stop('The argument "tail" must be either "one" or "two".')
   }
   
-  complete_cases <- complete.cases(ratings1, ratings2)
-  ratings1 <- ratings1[complete_cases, , drop = FALSE]
-  ratings2 <- ratings2[complete_cases, , drop = FALSE]
-  
-  if (nrow(ratings1) == 0 | nrow(ratings2) == 0) {
-    stop("No valid data remaining after removing missing values.")
-  }
-  
-  n1 <- nrow(ratings1)
-  n2 <- nrow(ratings2)
-  N <- n1 + n2
-  
+  # Compute D2 statistics
   compute_D2 <- function(x, y) {
+    n1 <- length(x)
+    n2 <- length(y)
+    N <- n1 + n2
     r1 <- mean(x)
     r2 <- mean(y)
     D2_value <- (r1 - r2) / (c - 1)
@@ -110,21 +117,17 @@ D2 <- function(ratings1, ratings2, c, tail = "two", digits = 3, CI = FALSE, conf
     return(c(D2 = D2_value, ZD2 = ZD2, p.value = p_value, ES = ES))
   }
   
-  results <- mapply(compute_D2, ratings1, ratings2)
-  results_df <- as.data.frame(t(results))
+  results <- mapply(compute_D2, ratings1, ratings2, SIMPLIFY = FALSE)
+  results_df <- as.data.frame(do.call(rbind, results))
   results_df <- round(results_df, digits)
   
-  item_names <- colnames(ratings1)
-  if (is.null(item_names)) item_names <- paste0("Item ", seq_len(nrow(results_df)))
-  results_df$items <- item_names
-  results_df <- results_df[, c("items", "D2", "ZD2", "p.value", "ES")]
-  rownames(results_df) <- NULL
-  
+  # Optional bootstrap CI
   if (CI) {
-    ci_list <- lapply(seq_along(ratings1), function(i) {
-      x <- ratings1[[i]]
-      y <- ratings2[[i]]
-      data <- data.frame(group = rep(c("x", "y"), each = length(x)), rating = c(x, y))
+    ci_list <- mapply(function(x, y) {
+      n1 <- length(x)
+      n2 <- length(y)
+      N <- n1 + n2
+      data <- data.frame(group = rep(c("x", "y"), times = c(n1, n2)), rating = c(x, y))
       
       boot_fun <- function(d, idx) {
         d_resampled <- d[idx, ]
@@ -144,12 +147,19 @@ D2 <- function(ratings1, ratings2, c, tail = "two", digits = 3, CI = FALSE, conf
       } else {
         return(c(lower = NA, upper = NA))
       }
-    })
+    }, ratings1, ratings2, SIMPLIFY = FALSE)
     
     ci_df <- as.data.frame(do.call(rbind, ci_list))
     colnames(ci_df) <- c("ES.lower", "ES.upper")
     results_df <- cbind(results_df, round(ci_df, digits))
   }
   
+  # Add item names only if multiple items
+  if (!is.null(item_names)) {
+    results_df$items <- item_names
+    results_df <- results_df[, c("items", names(results_df)[-ncol(results_df)])]
+  }
+  
+  rownames(results_df) <- NULL
   return(results_df)
 }
