@@ -1,6 +1,7 @@
 ^.*\.Rproj$
 ^\.Rproj\.user$
 ^LICENSE\.md$
-^R/CIR\.R$
 .vscode
 README.html
+^R/CIR\.R$
+^R/CVplot\.R$

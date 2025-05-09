@@ -6,5 +6,6 @@
 #' @importFrom stats qt
 #' @importFrom stats sd
 #' @importFrom utils combn
+#' @importFrom ggplot2 plot_coefficients
 ## usethis namespace: end
 NULL
