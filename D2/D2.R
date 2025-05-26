@@ -33,7 +33,7 @@
 #' assign systematically different ratings to the same items. It is designed for use with ordinal rating scales (e.g., Likert-type),
 #' and does not assume normality of the data, making it especially appropriate for content validity studies involving small samples.
 #'
-#' The effect size `r` is computed using the transformation `r = Z / sqrt(N)`, based on Rosenthal (1991).
+#' The effect size `r` is computed using the transformation `r = Z / sqrt(N)`, based on Rosenthal (1991, p.19).
 #' When `CI = TRUE`, bootstrap confidence intervals for `r` are computed using the percentile method,
 #' which is preferred when data are non-normal or samples are small (Bishara & Hittner, 2017).
 #'
