@@ -1,5 +1,5 @@
 #' @title Critical value for CVR, based on Wilson et al. (2012)
-#' @description Calculates critical values for Lawshe’s content validity ratio (CVR) based
+#' @description Calculates critical values for Lawshe's content validity ratio (CVR) based
 #' on the method proposed by Wilson et al. (2012).
 #' @param num_jueces Number of judges who provided their ratings (must be >= 2).
 #' @param alpha Significance level for the critical value calculation (default: 0.05).
@@ -21,24 +21,25 @@
 #' distribution, as recalculated by Wilson et al. (2012).
 #'
 #' @references
-#' Lawshe, C. H. (1975). A quantitative approach to content validity. Personnel psychology, 28, 563–575.
+#' Lawshe, C. H. (1975). A quantitative approach to content validity. Personnel psychology, 28, 563-575.
 #' https://doi.org/10.1111/j.1744-6570.1975.tb01393.x
 #'
-#' Wilson, F. R., Pan, W., & Schumsky, D. A. (2012). Recalculation of the critical values for Lawshe’s
-#' content validity ratio. *Measurement and Evaluation in Counseling and Development, 45*, 197–210.
+#' Wilson, F. R., Pan, W., & Schumsky, D. A. (2012). Recalculation of the critical values for Lawshe's
+#' content validity ratio. *Measurement and Evaluation in Counseling and Development, 45*, 197-210.
 #' https://doi.org/10.1177/0748175612440286
 #'
 #' @seealso
-#' \code{\link{ValCont::CVR}}, \code{\link{ValCont::CVRcut}}
+#'\code{\link[ValContent:CVR]{ValContent::CVR}}
+#'\code{\link[ValContent:CVRcut]{ValContent::CVRcut}}
 #'
 #' @examples
 #' CVRcut.Wilson(num_jueces = 45, alpha = .05, tails = "one")
 #' CVRcut.Wilson(num_jueces = 45, alpha = .01, tails = "one")
 #' @export
 CVRcut.Wilson <- function(num_jueces, alpha = 0.05, tails = "one") {
-  # Validar número de jueces
+  # Validar numero de jueces
   if (num_jueces < 2) {
-    stop("El número de jueces debe ser al menos 2 para un cálculo válido.")
+    stop("El numero de jueces debe ser al menos 2 para un calculo valido.")
   }
 
   # Validar argumento tails
@@ -47,14 +48,14 @@ CVRcut.Wilson <- function(num_jueces, alpha = 0.05, tails = "one") {
     stop("El argumento 'tails' debe ser 'one' o 'two'.")
   }
 
-  # Determinar z_alpha según el tipo de prueba
+  # Determinar z_alpha segun el tipo de prueba
   if (tails == "one") {
     z_alpha <- stats::qnorm(1 - alpha)
   } else {
     z_alpha <- stats::qnorm(1 - alpha / 2)
   }
 
-  # Calcular CVR crítico y número mínimo de jueces
+  # Calcular CVR crítico y numero minimo de jueces
   cutoff <- round(z_alpha / sqrt(num_jueces), 3)
   min_jueces <- ceiling(z_alpha * sqrt(num_jueces / 2) + num_jueces / 2)
 

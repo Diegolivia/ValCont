@@ -19,8 +19,8 @@
 #'  it will be highlighted. You can also provide a vector of labels to improve interpretability of the category axis.
 #'
 #' @seealso
-#' \code{\link[ValCont]{SVALmult}} to compute substantive validity coefficients across multiple items. \cr
-#' \code{\link[ValCont]{SVALsingle}} for single-item analysis.
+#'\code{\link[ValContent:SVALmult]{ValContent::SVALmult}} to compute substantive validity coefficients across multiple items. \cr
+#'\code{\link[ValContent:SVALsingle]{ValContent::SVALsingle}} for single-item analysis.
 #'
 #' @examples
 #' \dontrun{
@@ -53,15 +53,15 @@ SVALplot <- function(results, item, type = "svc", target = NULL, labels = NULL) 
     df$CategoryLabel[df$Cat == target] <- paste0(df$CategoryLabel[df$Cat == target], "*")
   }
 
-  ggplot2::ggplot(df, ggplot2::aes(x = CategoryLabel, y = .data[[type]])) +
-    ggplot2::geom_point(size = 3, color = "#0072B2") +
-    ggplot2::geom_errorbar(
-      ggplot2::aes(ymin = lwr.ci, ymax = up.ci), width = 0.2, color = "#0072B2"
+  ggplot(df, aes(x = CategoryLabel, y = .data[[type]])) +
+    geom_point(size = 3, color = "#0072B2") +
+    geom_errorbar(
+      aes(ymin = lwr.ci, ymax = up.ci), width = 0.2, color = "#0072B2"
     ) +
-    ggplot2::labs(
+    labs(
       title = paste("Substantive Validity -", toupper(type), "-", item),
       x = "Construct Category", y = toupper(type)
     ) +
-    ggplot2::theme_minimal()
+    theme_minimal()
 }
 

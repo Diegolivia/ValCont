@@ -4,12 +4,12 @@
 \name{ValContent-package}
 \alias{ValContent}
 \alias{ValContent-package}
-\title{ValContent: What the Package Does (Title Case)}
+\title{ValContent: Content Validation using Vaiken and other functions}
 \description{
 More about what it does (maybe more than one line). Continuation lines should be indented.
 }
 \author{
-\strong{Maintainer}: Cesar Merino \email{jane@example.com}
+\strong{Maintainer}: Jane Doe \email{jane@example.com}
 
 }
 \keyword{internal}

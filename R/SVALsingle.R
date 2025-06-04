@@ -38,9 +38,9 @@
 #' https://doi.org/10.2307/2276774
 #'
 #' @seealso
-#' \code{\link[PropCIs]{scoreci}} for score method confidence interval
-#' \code{\link[ValCont]{SVALmult}} for multi-item analysis. \cr
-#' \code{\link[ValCont]{SVALplot}} for visualizing results of SVAL analyses.
+#' \code{\link[PropCIs:scoreci]{scoreci}} for score method confidence interval
+#' \code{\link[ValContent:SVALmult]{SVALmult}} for multi-item analysis. \cr
+#' \code{\link[ValContent:SVALplot]{SVALplot}} for visualizing results of SVAL analyses.
 #'
 #' @examples
 #' # Example 1 -----------------------

@@ -139,8 +139,8 @@ D2 <- function(ratings1, ratings2, c, tail = "two", digits = 3, CI = FALSE, conf
         return(r)
       }
 
-      boot_obj <- boot::boot(data, statistic = boot_fun, R = B)
-      boot_ci <- boot::boot.ci(boot_obj, conf = conf.level, type = "perc")
+      boot_obj <- boot(data, statistic = boot_fun, R = B)
+      boot_ci <- boot.ci(boot_obj, conf = conf.level, type = "perc")
 
       if (!is.null(boot_ci$percent)) {
         return(c(lower = boot_ci$percent[4], upper = boot_ci$percent[5]))

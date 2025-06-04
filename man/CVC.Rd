@@ -59,11 +59,8 @@ CVC(random_data,max = 5, conf.level = .90)
 }
 \references{
 Hernandez-Nieto, R. A. (2002). Contributions to Statistical Analysis. Merida, Venezuela: Universidad de Los Andes.
-
 Penfield, R. D. & Giacobbi, P. R., Jr. (2004) Applying a score confidence interval to Aiken's item content-relevance index. Measurement in Physical Education and Exercise Science, 8(4), 213-225. https://doi.org/10.1207/s15327841mpee0804_3
-
 Polit DF, Beck CT, Owen SV.  Is the CVI an acceptable indicator of content validity?  Appraisal and recommendations. Research in Nursing & Health. 2007;30(4):459-67. https://doi.org/10.1002/nur.20199
-
 Wilson, E. B. (1927). Probable inference, the law of succession, and statistical inference. Journal of the American Statistical Association, 22, 209-212. https://doi.org/10.2307/2276774
 }
 \seealso{
