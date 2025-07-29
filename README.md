@@ -5,17 +5,17 @@ R package for content validity analysis
 **Package:** ValCont\
 **Title:** R Package for content validity coefficient estimation\
 **Version:** xxx\
-**Date:** xxx-xx-xx\
+**Date:** 07-28-2025\
 [**Authors\@R**](mailto:Authors@R){.email}**:**\
 - **Cesar Merino-Soto (aut, cre, ctb, rev)**\
-- Email: [sikayax\@yahoo.com.ar](mailto:sikayax@yahoo.com.ar){.email}\
-- ORCID: 0000-0001-8049-7069\
+- Email: [sikayax\@yahoo.com.ar](mailto:sikayax@yahoo.com.ar)\
+- ORCID: https://orcid.org/0000-0001-8049-7069\
 - **Jose Livia-Segovia (aut, ctb)**\
-- Email: [joselivia\@gmail.com](mailto:joselivia@gmail.com){.email}\
-- ORCID: 0000-0003-2226-3349\
+- Email: [joselivia\@gmail.com](mailto:joselivia@gmail.com)\
+- ORCID: https://orcid.org/0000-0003-2226-3349\
 - **Diego Livia-Ortiz (aut, ctb, cre, rev)**\
-- Email:[diegolivia\@hotmail.com](mailto:diegolivia@hotmail.com){.email}\
-- ORCID:0000-0002-2107-3140
+- Email: [diegolivia\@hotmail.com](mailto:diegolivia@hotmail.com)\
+- ORCID: https://orcid.org/0000-0002-2107-3140
 
 **Description:**\
 `ValCont` is a dedicated content validity package in R. `ValCont` implement the computation of several coefficients used in content validity studies, with data usually obtained from selected participants such as expert judges or experiential judges. The coefficients calculated by ValCont are:
@@ -62,5 +62,6 @@ Some functions were added to estimate other relevant aspects of the content vali
 **License:** GPL-3\
 **Encoding:** UTF-8\
 **LazyData:** true\
-**URL:** xxx\
-**Maintainer:** xxx
+**Maintainer:** Diego Livia-Ortiz\
+**URL:** https://github.com/Diegolivia/ValContent/\
+
