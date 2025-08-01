@@ -40,6 +40,14 @@ Some functions were added to estimate other relevant aspects of the content vali
 
 -   Basic functions to make graphs of results are also implemented.
 
+**Install:**
+
+You can install the development version of `ValCont` from GitHub using:
+
+install.packages("devtools")
+
+devtools::install_github("Diegolivia/ValCont")
+
 **References:**
 
 -   Aiken, L. R. (1980). Content validity and reliability of single items or questionnaires. Educational and Psychological Measurement, 40, 955-959. <https://doi.org/10.1177/001316448004000419>
