@@ -4,17 +4,17 @@ R package for content validity analysis
 
 **Package:** ValCont\
 **Title:** R Package for content validity coefficient estimation\
-**Version:** xxx\
+**Version:** 0.1.0\
 **Date:** 07-28-2025\
-[**Authors\@R**](mailto:Authors@R){.email}**:**\
-- **Cesar Merino-Soto (aut, cre, ctb, rev)**\
-- Email: [sikayax\@yahoo.com.ar](mailto:sikayax@yahoo.com.ar)\
-- ORCID: https://orcid.org/0000-0001-8049-7069\
-- **Jose Livia-Segovia (aut, ctb)**\
-- Email: [joselivia\@gmail.com](mailto:joselivia@gmail.com)\
-- ORCID: https://orcid.org/0000-0003-2226-3349\
-- **Diego Livia-Ortiz (aut, ctb, cre, rev)**\
-- Email: [diegolivia\@hotmail.com](mailto:diegolivia@hotmail.com)\
+[**Authors\@R**](mailto:Authors@R)**:**
+- **Cesar Merino-Soto (aut, cre, ctb, rev)**
+- Email: [sikayax\@yahoo.com.ar](mailto:sikayax@yahoo.com.ar)
+- ORCID: https://orcid.org/0000-0001-8049-7069
+- **Jose Livia-Segovia (aut, ctb)**
+- Email: [joselivia\@gmail.com](mailto:joselivia@gmail.com)
+- ORCID: https://orcid.org/0000-0003-2226-3349
+- **Diego Livia-Ortiz (aut, ctb, cre, rev)**
+- Email: [diegolivia\@hotmail.com](mailto:diegolivia@hotmail.com)
 - ORCID: https://orcid.org/0000-0002-2107-3140
 
 **Description:**\
@@ -24,7 +24,7 @@ R package for content validity analysis
 -   CVI (Matuza, 1977; Lynn, 1986)
 -   CVIR (Polit et al., 2007)
 -   CVR (Lawshe, 1975)
--   Psv (proportion of substantive agreementy) & Csv (coefficient of substantive validity); Anderson & Gerbing, 1991)
+-   Psv (proportion of substantive agreementy) & Csv (coefficient of substantive validity); (Anderson & Gerbing, 1991)
 -   V (Aiken, 1980, 1985)
 -   MER (Mean of Expert Ratings; Penfield, & Miller, 2004)
 
@@ -57,8 +57,8 @@ Some functions were added to estimate other relevant aspects of the content vali
 -   Wilson, E. B. (1927). Probable inference, the law of succession, and statistical inference. Journal of the American Statistical Association, 22, 209-212. <https://doi.org/10.2307/2276774>
 -   Zou, G., Donner, A. and Qiu, S. (2025). MOVER-R for Confidence Intervals of Ratios. In Wiley StatsRef: Statistics Reference Online (eds N. Balakrishnan, T. Colton, B. Everitt, W. Piegorsch, F. Ruggeri and J.L. Teugels). <https://doi.org/10.1002/9781118445112.stat08085>
 
-**Depends:** R (\>= 3.3.2)\
-**Imports:** xxx\
+**Depends:** R (\>= 2.10)\
+**Imports:** boots, ggplo2, stats, utils\
 **License:** GPL-3\
 **Encoding:** UTF-8\
 **LazyData:** true\
