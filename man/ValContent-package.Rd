@@ -6,10 +6,16 @@
 \alias{ValContent-package}
 \title{ValContent: Content Validation using Vaiken and other functions}
 \description{
-More about what it does (maybe more than one line). Continuation lines should be indented.
+ValCont is a dedicated content validity package in R. ValCont implement the computation of several coefficients used in content validity studies, with data usually obtained from selected participants such as expert judges or experiential judges.
 }
 \author{
-\strong{Maintainer}: Jane Doe \email{jane@example.com}
+\strong{Maintainer}: Diego Livia Ortiz \email{diegolivia@hotmail.com} [contributor, reviewer]
+
+Authors:
+\itemize{
+  \item Cesar Merino-Soto \email{sikayax@yahoo.com.ar} [contributor, reviewer]
+  \item Jose Livia Segovia \email{joselivia@gmail.com} [contributor]
+}
 
 }
 \keyword{internal}
