@@ -42,5 +42,5 @@ SVALplot(results, item = "gais3", type = "psa", labels = c("Anger", "Fear", "Joy
 \code{\link[ValCont:SVALsingle]{ValCont::SVALsingle}} for single-item analysis.
 }
 \author{
-César Merino-Soto (\email{sikayax@yahoo.com.ar})
+Cesar Merino-Soto (\email{sikayax@yahoo.com.ar})
 }

@@ -31,7 +31,7 @@
 #' \strong{Note}: The function has not yet been prepared to resolve missing values, so the user must remove or impute any `NA`s before plotting.
 #'
 #' @references
-#' Hink, J. K., Wogalter, M. S., & Eustace, J. K. (1996). Display of Quantitative Information: Are Grables better than Plain Graphs or Tables? *Proceedings of the Human Factors and Ergonomics Society Annual Meeting*, 40(23), 1155–1159. https://doi.org/10.1177/154193129604002302
+#' Hink, J. K., Wogalter, M. S., & Eustace, J. K. (1996). Display of Quantitative Information: Are Grables better than Plain Graphs or Tables? *Proceedings of the Human Factors and Ergonomics Society Annual Meeting*, 40(23), 1155-1159. https://doi.org/10.1177/154193129604002302
 #'
 #' Tufte, E. R. (2001). *The Visual Display of Quantitative Information*. Cheshire, CT: Graphics Press.
 #'
@@ -65,7 +65,7 @@ CVplot <- function(data, item.col, point.coeficient, lwr.ci, up.ci,
                    rotate.x.labels = FALSE,
                    na.rm = FALSE) {
 
-  # Detección de valores perdidos
+  # Deteccion de valores perdidos
   if (!na.rm) {
     if (any(is.na(data))) {
       stop("Valores perdidos detectados. Usa na.omit() primero o establece na.rm=TRUE.")

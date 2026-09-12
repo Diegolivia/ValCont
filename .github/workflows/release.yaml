@@ -1,0 +1,117 @@
+name: Build package release
+
+on:
+  push:
+    tags:
+      - 'v*.*.*'
+
+permissions:
+  contents: write
+
+env:
+  R_KEEP_PKG_SOURCE: yes
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out release tag
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up R
+        uses: r-lib/actions/setup-r@v2
+        with:
+          r-version: release
+
+      - name: Install package dependencies
+        uses: r-lib/actions/setup-r-dependencies@v2
+        with:
+          extra-packages: any::rcmdcheck any::roxygen2 any::testthat
+          needs: check
+
+      - name: Check tag and package version
+        shell: bash
+        run: |
+          set -euo pipefail
+          tag_version="${GITHUB_REF_NAME#v}"
+          package_version=$(Rscript -e "cat(read.dcf('DESCRIPTION')[1, 'Version'])")
+          package_name=$(Rscript -e "cat(read.dcf('DESCRIPTION')[1, 'Package'])")
+
+          if [ "$tag_version" != "$package_version" ]; then
+            echo "Tag version ($tag_version) does not match DESCRIPTION version ($package_version)."
+            exit 1
+          fi
+
+          echo "Package: $package_name"
+          echo "Version: $package_version"
+
+      - name: Check generated documentation
+        shell: bash
+        run: |
+          set -euo pipefail
+          Rscript -e "roxygen2::roxygenise()"
+          git diff --exit-code -- NAMESPACE man/
+
+      - name: Run package checks
+        shell: bash
+        run: |
+          set -euo pipefail
+          Rscript -e "testthat::test_dir('tests/testthat')"
+          Rscript -e "rcmdcheck::rcmdcheck('.', args = c('--no-manual', '--as-cran'), error_on = 'warning')"
+
+      - name: Build source archive
+        shell: bash
+        run: |
+          set -euo pipefail
+          Rscript - <<'RSCRIPT'
+          description <- read.dcf("DESCRIPTION")
+          package_name <- unname(description[1L, "Package"])
+          package_version <- unname(description[1L, "Version"])
+          expected_archive <- sprintf("%s_%s.tar.gz", package_name, package_version)
+
+          existing_archives <- list.files(
+            pattern = sprintf("^%s_%s\\.tar\\.gz$", package_name, package_version)
+          )
+          if (length(existing_archives) > 0L) {
+            unlink(existing_archives, force = TRUE)
+          }
+
+          r_executable <- file.path(R.home("bin"), "R")
+          status <- system2(
+            r_executable,
+            args = c("CMD", "build", "--no-manual", ".")
+          )
+          if (!identical(status, 0L)) {
+            stop(sprintf("R CMD build failed with status %d.", status))
+          }
+
+          archives <- list.files(
+            pattern = sprintf("^%s_%s\\.tar\\.gz$", package_name, package_version)
+          )
+          if (length(archives) != 1L || !identical(archives[[1L]], expected_archive)) {
+            stop(sprintf(
+              "Expected exactly one archive named %s, found: %s",
+              expected_archive,
+              paste(archives, collapse = ", ")
+            ))
+          }
+
+          cat(sprintf("Created %s\\n", expected_archive))
+          RSCRIPT
+
+      - name: Upload source archive as workflow artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: source-package
+          path: '*.tar.gz'
+          if-no-files-found: error
+          retention-days: 90
+
+      - name: Create GitHub Release and attach source archive
+        uses: softprops/action-gh-release@v2
+        with:
+          generate_release_notes: true
+          fail_on_unmatched_files: true
+          files: '*.tar.gz'

@@ -85,7 +85,7 @@ lwr.ci = "lwr.ci", up.ci = "upr.ci")
 
 }
 \references{
-Hink, J. K., Wogalter, M. S., & Eustace, J. K. (1996). Display of Quantitative Information: Are Grables better than Plain Graphs or Tables? *Proceedings of the Human Factors and Ergonomics Society Annual Meeting*, 40(23), 1155–1159. https://doi.org/10.1177/154193129604002302
+Hink, J. K., Wogalter, M. S., & Eustace, J. K. (1996). Display of Quantitative Information: Are Grables better than Plain Graphs or Tables? *Proceedings of the Human Factors and Ergonomics Society Annual Meeting*, 40(23), 1155-1159. https://doi.org/10.1177/154193129604002302
 
 Tufte, E. R. (2001). *The Visual Display of Quantitative Information*. Cheshire, CT: Graphics Press.
 

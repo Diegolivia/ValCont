@@ -3,3 +3,12 @@
 ^LICENSE\.md$
 .vscode
 README.html
+^\.github$
+^\.git$
+^validate_package\.R$
+^validate_report\.json$
+^AGENTS\.md$
+^build_package\.R$
+^project-docs$
+^.*\.Rcheck$
+^ValCont\.code-workspace$
