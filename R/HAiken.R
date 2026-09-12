@@ -23,7 +23,7 @@
 #'
 #'Aiken, L. R. (1985). Three coefficients for analyzing the reliability and validity of ratings. Educational and Psychological Measurement, 45, 131-142. https://doi.org/10.1177/0013164485451012
 #'
-#'Penfield, R. D., & Miller, J. M. (2004). Improving Content Validation Studies Using an Asymmetric Confidence Interval for the Mean of Expert Ratings. Applied Measurement in Education, 17(4), 359–370. https://doi.org/10.1207/s15324818ame1704_2
+#'Penfield, R. D., & Miller, J. M. (2004). Improving Content Validation Studies Using an Asymmetric Confidence Interval for the Mean of Expert Ratings. Applied Measurement in Education, 17(4), 359-370. https://doi.org/10.1207/s15324818ame1704_2
 #'
 #'Wilson, E. B. (1927). Probable inference, the law of succession, and statistical inference. Journal of the American Statistical Association, 22, 209-212. https://doi.org/10.2307/2276774
 #'
@@ -60,7 +60,7 @@
 #'@export
 Haiken <- function(data, ncat, conf.level, na.rm = FALSE) {
 
-  # Detección de valores perdidos
+  # Deteccion de valores perdidos
   if (!na.rm) {
     if (any(is.na(data))) {
       stop("Valores perdidos detectados. Usa na.omit() primero o establece na.rm=TRUE.")

@@ -2,7 +2,7 @@
 % Please edit documentation in R/MDScontent.R
 \name{MDScontent}
 \alias{MDScontent}
-\title{Multidimensional scaling (MDS) Map for Content Validity Ratings (Item–Trait Correspondence)}
+\title{Multidimensional scaling (MDS) Map for Content Validity Ratings (Item-Trait Correspondence)}
 \usage{
 MDScontent(
   data,
@@ -23,7 +23,7 @@ MDScontent(
 )
 }
 \arguments{
-\item{data}{Numeric `matrix` or `data.frame` of size J × (I*T): rows are judges;
+\item{data}{Numeric `matrix` or `data.frame` of size J x (I*T): rows are judges;
 each column corresponds to a specific (item, trait) pair rating.}
 
 \item{item}{Vector of length `ncol(data)` indicating the **item id** for each column.}
@@ -34,7 +34,7 @@ each column corresponds to a specific (item, trait) pair rating.}
 assignment for each item (used to define centroids). If `NULL`, items are assigned
 empirically to the trait with the largest profile score.}
 
-\item{score}{Aggregation of judges into the Items × Traits profile matrix:
+\item{score}{Aggregation of judges into the Items x Traits profile matrix:
 `"mean"` (default), `"median"`, or `"p_ge"` (proportion of ratings >= `cut`).}
 
 \item{cut}{Integer threshold for `score = "p_ge"`. Default is 4.}
@@ -51,7 +51,7 @@ empirically to the trait with the largest profile score.}
 
 \item{display}{Plot type: `"items"` (main map), `"biplot"`, or `"both"`.}
 
-\item{Dmatrix}{Logical; if `TRUE`, returns the item–trait distance matrix Δ (I × T).}
+\item{Dmatrix}{Logical; if `TRUE`, returns the item-trait distance matrix x (I x T).}
 
 \item{label.items}{Logical; label items in plot(s). Default `TRUE`.}
 
@@ -63,28 +63,28 @@ empirically to the trait with the largest profile score.}
 \value{
 A list with elements:
 \describe{
-  \item{profile}{Items × Traits matrix used to build distances.}
+  \item{profile}{Items x Traits matrix used to build distances.}
   \item{dist_items}{`dist` object of item-to-item dissimilarities.}
   \item{coords_items}{data.frame of MDS coordinates for items.}
   \item{centroids}{data.frame of centroid coordinates for traits and centroid type.}
   \item{fit}{list with `mds`, `k`, `stress` (if nonmetric), and `gof` (R^2 of distances).}
-  \item{Dmatrix}{(Optional) matrix Δ of item–trait distances in MDS space.}
+  \item{Dmatrix}{(Optional) matrix x of item-trait distances in MDS space.}
 }
 }
 \description{
 `MDScontent()` builds a **conceptual map** (MDS) from judges' ratings of the
 correspondence between each item and each trait (attribute). The function:
-(1) aggregates judges' ratings into an **Items × Traits** profile matrix,
+(1) aggregates judges' ratings into an **Items x Traits** profile matrix,
 (2) computes **item-to-item dissimilarities** (default: Euclidean),
 (3) obtains a **2D MDS configuration** (default: non-metric, with STRESS),
 (4) computes **trait centroids** in the MDS space (theoretical via `key`, or empirical),
-(5) optionally returns an **item–trait distance matrix** (`Dmatrix = TRUE`),
+(5) optionally returns an **item-trait distance matrix** (`Dmatrix = TRUE`),
 and (6) plots either the main map, a biplot, or both.
 }
 \details{
 ## Conceptual rationale
 The function provides a **geometric visualization** of content validity structure.
-Ratings from judges are first aggregated into an Items × Traits profile matrix.
+Ratings from judges are first aggregated into an Items x Traits profile matrix.
 Item-to-item dissimilarities are computed (default: Euclidean distance),
 and a multidimensional scaling (MDS) solution is obtained (default: non-metric).
 
@@ -125,56 +125,51 @@ Therefore, `MDScontent()` should be interpreted as a structural visualization to
 that complements coefficient-based evidence.
 }
 \examples{
-## Example 1
-#  This simulated data has the following structure: 12 judges evaluated the fit of 6
-#  items in  4 attributes. That is: 12 judges × 6 items × 4 traits matrix. In the administration
-#  of the validity survey, the items were presented in 12 rows, and each item
-#  was evaluated for its correspondence to four attributes. The database should
-#  be structured as follows:
-#
-#  item item1.judge1 item1.judge2 item1.judge3 item1.judge4 item2.judge1 item2.judge2 ...
-#
-#  For this example:
+# This simulated data has the following structure: 12 judges evaluated the fit
+# of 6 items on 4 traits. The data therefore contain 12 rows and 24 columns,
+# with four columns for each item, one column per trait.
 
-#  Item1 (Fit to Trait 1)
-#  Item2 (Fit to Trait 1)
-#  Item3 (Fit to Trait 2)
-#  Item4 (Fit to Trait 2)
-#  Item5 (Approximate fit to Trait 3)
-#  Item6 (Approximate fit to Trait 4)
-#
-#   Example2 <- matrix(c(
-#     5,2,2,1,  5,1,2,1,  2,5,1,2,  1,5,2,1,  2,1,5,2,  1,2,2,5,
-#     5,1,2,2,  4,2,1,1,  1,5,2,1,  2,5,1,1,  1,2,5,2,  2,1,1,5,
-#     4,2,1,1,  5,1,2,1,  2,4,1,2,  1,5,2,2,  2,1,5,1,  1,2,2,5,
-#     5,1,2,1,  5,2,1,1,  1,5,2,1,  2,4,1,2,  1,2,5,2,  2,1,1,5,
-#     4,2,1,2,  5,1,2,1,  2,5,1,1,  1,5,2,1,  2,1,4,2,  1,2,2,4,
-#     5,1,2,1,  4,2,1,2,  1,5,2,1,  2,5,1,1,  1,2,5,1,  2,1,2,5,
-#     5,2,1,1,  5,1,2,1,  2,4,1,2,  1,5,2,1,  2,1,5,2,  1,2,1,5,
-#     4,1,2,1,  5,2,1,1,  1,5,2,2,  2,4,1,1,  1,2,5,1,  2,1,2,5,
-#     5,2,1,1,  4,1,2,2,  2,5,1,1,  1,5,2,1,  2,1,5,2,  1,2,1,5,
-#     5,1,2,2,  5,2,1,1,  1,5,2,1,  2,5,1,2,  1,2,5,1,  2,1,2,5,
-#     4,2,1,1,  5,1,2,1,  2,4,1,2,  1,5,2,1,  2,1,4,2,  1,2,1,5,
-#     5,1,2,1,  4,2,1,1,  1,5,2,1,  2,4,1,2,  1,2,5,1,  2,1,2,5),
-#     nrow = 12,
-#     byrow = TRUE)
+# In the validity survey, the items were presented in 12 rows, and each item
+# was evaluated for its correspondence to the four traits. The columns follow
+# this pattern:
 
-## Short cut for grouping items
-rep(1:6, each = 4)
+# item item1.trait1 item1.trait2 item1.trait3 item1.trait4 item2.trait1 ...
 
-## Short cut for grouping traits
-#'rep(1:4, times = 6)
+# The theoretical correspondence used below is:
 
-## theorethical correspondence
-c(1,1,2,2,3,4)
+# Item 1 -> Trait 1
+# Item 2 -> Trait 1
+# Item 3 -> Trait 2
+# Item 4 -> Trait 2
+# Item 5 -> Trait 3
+# Item 6 -> Trait 4
 
-MDScontent(data = dat2,
-item = rep(1:6, each = 4),
-trait = rep(1:4, times = 6),
-key = key <- c(1,1,2,2,3,4),
-score = "mean",
-distance = "euclid",
-mds = "nonmetric",
-display = "items")
+dat2 <- matrix(c(
+  5,2,2,1,  5,1,2,1,  2,5,1,2,  1,5,2,1,  2,1,5,2,  1,2,2,5,
+  5,1,2,2,  4,2,1,1,  1,5,2,1,  2,5,1,1,  1,2,5,2,  2,1,1,5,
+  4,2,1,1,  5,1,2,1,  2,4,1,2,  1,5,2,2,  2,1,5,1,  1,2,2,5,
+  5,1,2,1,  5,2,1,1,  1,5,2,1,  2,4,1,2,  1,2,5,2,  2,1,1,5,
+  4,2,1,2,  5,1,2,1,  2,5,1,1,  1,5,2,1,  2,1,4,2,  1,2,2,4,
+  5,1,2,1,  4,2,1,2,  1,5,2,1,  2,5,1,1,  1,2,5,1,  2,1,2,5,
+  5,2,1,1,  5,1,2,1,  2,4,1,2,  1,5,2,1,  2,1,5,2,  1,2,1,5,
+  4,1,2,1,  5,2,1,1,  1,5,2,2,  2,4,1,1,  1,2,5,1,  2,1,2,5,
+  5,2,1,1,  4,1,2,2,  2,5,1,1,  1,5,2,1,  2,1,5,2,  1,2,1,5,
+  5,1,2,2,  5,2,1,1,  1,5,2,1,  2,5,1,2,  1,2,5,1,  2,1,2,5,
+  4,2,1,1,  5,1,2,1,  2,4,1,2,  1,5,2,1,  2,1,4,2,  1,2,1,5,
+  5,1,2,1,  4,2,1,1,  1,5,2,1,  2,4,1,2,  1,2,5,1,  2,1,2,5),
+  nrow = 12,
+  byrow = TRUE
+)
+key <- c(1, 1, 2, 2, 3, 4)
+MDScontent(
+  data = dat2,
+  item = rep(1:6, each = 4),
+  trait = rep(1:4, times = 6),
+  key = key,
+  score = "mean",
+  distance = "euclid",
+  mds = "nonmetric",
+  display = "items"
+)
 
 }

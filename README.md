@@ -1,55 +1,60 @@
 # ValCont
 
-R package for content validity analysis
+R package for content validity analysis.
 
-\strong{Package:} ValCont\
-\strong{Title:} Content Validation Using Vaiken and Other Functions\
-\strong{Version:} 0.1.0\
-\strong{Date:} 07-28-2025\
-[\strong{Authors\@R}](mailto:Authors@R)\strong{:}
-- \strong{Cesar Merino-Soto (aut, cre ctb, rev)}
-- Email: [sikayax\@yahoo.com.ar](mailto:sikayax@yahoo.com.ar)
-- ORCID: https://orcid.org/0000-0001-8049-7069
-- \strong{Jose Livia-Segovia (aut, ctb)}
-- Email: [joselivia\@gmail.com](mailto:joselivia@gmail.com)
-- ORCID: https://orcid.org/0000-0003-2226-3349
-- \strong{Diego Livia-Ortiz (aut, cre, ctb, rev)}
-- Email: [diegolivia\@hotmail.com](mailto:diegolivia@hotmail.com)
-- ORCID: https://orcid.org/0000-0002-2107-3140
+## Package Information
 
-\strong{Description:}\
-`ValCont` is a dedicated content validity package in R. `ValCont` implement the computation of several coefficients used in content validity studies, with data usually obtained from selected participants such as expert judges or experiential judges. The coefficients calculated by ValCont are:
+- **Title:** Content Validation Using Vaiken and Other Functions
+- **Version:** 0.1.0
+- **Date:** 2025-07-28
+- **License:** GPL (>= 3)
+- **URL:** <https://github.com/Diegolivia/ValCont>
+- **Bug reports:** <https://github.com/Diegolivia/ValCont/issues>
 
--   CVC (Hernandez-Nieto, 2002)
--   CVI (Matuza, 1977; Lynn, 1986)
--   CVIR (Polit et al., 2007)
--   CVR (Lawshe, 1975)
--   Psv (proportion of substantive agreementy) & Csv (coefficient of substantive validity); (Anderson & Gerbing, 1991)
--   V (Aiken, 1980, 1985)
--   MER (Mean of Expert Ratings; Penfield, & Miller, 2004)
+## Authors
 
-Given that these coefficients can be conceptualized and/or are handled as proportions, with limits at 0.0 and 1.0, `ValCont` also implements asymmetric confidence intervals for each coefficient, appropriate for small samples and non-normally distributed data (Penfield & Giacobbi, 2004; Wilson, 1927).
+- **Cesar Merino-Soto** (aut, ctb, rev) - [email](mailto:sikayax@yahoo.com.ar) - [ORCID](https://orcid.org/0000-0001-8049-7069)
+- **Jose Livia-Segovia** (aut, ctb) - [email](mailto:joselivia@gmail.com) - [ORCID](https://orcid.org/0000-0003-2226-3349)
+- **Diego Livia-Ortiz** (aut, cre, ctb, rev) - [email](mailto:diegolivia@hotmail.com) - [ORCID](https://orcid.org/0000-0002-2107-3140)
 
-Some functions were added to estimate other relevant aspects of the content validity analysis:
+## Description
 
--   Difference between two independent content validity coefficients: Confidence intervals for difference (Merino-Soto, 2018) and standardized difference (Merino-Soto, 2023)
+`ValCont` is an R package for computing coefficients used in content validity
+studies based on ratings from expert or experiential judges. The package
+implements:
 
--   Ratio of two independent content validity coefficients and confidence Intervals (MOVER-R approach; Zou, Donner, & Qiu, 2025)
+- CVC (Hernandez-Nieto, 2002)
+- CVI (Martuza, 1977; Lynn, 1986)
+- CVIR (Polit et al., 2007)
+- CVR (Lawshe, 1975)
+- Psv (proportion of substantive agreement) and Csv (coefficient of substantive validity; Anderson & Gerbing, 1991)
+- V (Aiken, 1980, 1985)
+- MER (mean of expert ratings; Penfield & Miller, 2004)
 
--   Homogeneity of ratings (H coefficient; Aiken, 1980, 1985).
+Because these coefficients are proportions bounded between 0 and 1, `ValCont`
+also implements asymmetric confidence intervals suitable for small samples and
+non-normal data (Penfield & Giacobbi, 2004; Wilson, 1927).
 
--   Basic functions to make graphs of results are also implemented.
+Additional functions support:
 
-\strong{Install:}
+- Differences between two independent content validity coefficients, including confidence intervals and standardized differences (Merino-Soto, 2018, 2023).
+- Ratios of two independent content validity coefficients and their confidence intervals using the MOVER-R approach (Zou, Donner, & Qiu, 2025).
+- Homogeneity of ratings using the H coefficient (Aiken, 1980, 1985).
+- Basic plots for visualizing results.
 
-You can install the development version of `ValCont` from GitHub using:
-```R
-if(!"devtools" %in% row.names(installed.packages())){
+## Installation
+
+You can install the development version of `ValCont` from GitHub with:
+
+```r
+if (!"devtools" %in% rownames(installed.packages())) {
   install.packages("devtools")
 }
+
 devtools::install_github("Diegolivia/ValCont")
 ```
-\strong{References:}
+
+## References
 
 -   Aiken, L. R. (1980). Content validity and reliability of single items or questionnaires. Educational and Psychological Measurement, 40, 955-959. <https://doi.org/10.1177/001316448004000419>
 -   Aiken, L. R. (1985). Three coefficients for analyzing the reliability and validity of ratings. Educational and Psychological Measurement, 45, 131-142. <https://doi.org/10.1177/0013164485451012>
@@ -66,10 +71,9 @@ devtools::install_github("Diegolivia/ValCont")
 -   Wilson, E. B. (1927). Probable inference, the law of succession, and statistical inference. Journal of the American Statistical Association, 22, 209-212. <https://doi.org/10.2307/2276774>
 -   Zou, G., Donner, A. and Qiu, S. (2025). MOVER-R for Confidence Intervals of Ratios. In Wiley StatsRef: Statistics Reference Online (eds N. Balakrishnan, T. Colton, B. Everitt, W. Piegorsch, F. Ruggeri and J.L. Teugels). <https://doi.org/10.1002/9781118445112.stat08085>
 
-\strong{Depends:} R (\>= 2.10)\
-\strong{Imports:} boot, ggplot2, stats, utils\
-\strong{License:} GPL-3\
-\strong{Encoding:} UTF-8\
-\strong{LazyData:} true\
-\strong{Maintainer:} Diego Livia-Ortiz\
-\strong{URL:} https://github.com/Diegolivia/ValCont/
+## Package Requirements
+
+- **R:** >= 2.10
+- **Imports:** boot, ggplot2, ggrepel, MASS, rlang, stats, utils
+- **Encoding:** UTF-8
+- **LazyData:** true

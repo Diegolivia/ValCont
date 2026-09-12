@@ -39,9 +39,9 @@ Vaikenpub(
 
 }
 \references{
-Penfield, R. D., & Giacobbi, P. R., Jr. (2004). Applying a score confidence interval to Aiken’s item content-relevance index. 
-\emph{Measurement in Physical Education and Exercise Science, 8}(4), 213–225.
+Penfield, R. D., & Giacobbi, P. R., Jr. (2004). Applying a score confidence interval to Aiken's item content-relevance index. 
+\emph{Measurement in Physical Education and Exercise Science, 8}(4), 213-225.
 
 Wilson, E. B. (1927). Probable inference, the law of succession, and statistical inference. 
-\emph{Journal of the American Statistical Association, 22}, 209–212.
+\emph{Journal of the American Statistical Association, 22}, 209-212.
 }

@@ -55,7 +55,7 @@ CVRcut.Wilson <- function(num_jueces, alpha = 0.05, tails = "one") {
     z_alpha <- stats::qnorm(1 - alpha / 2)
   }
 
-  # Calcular CVR crítico y numero minimo de jueces
+  # Calcular CVR critico y numero minimo de jueces
   cutoff <- round(z_alpha / sqrt(num_jueces), 3)
   min_jueces <- ceiling(z_alpha * sqrt(num_jueces / 2) + num_jueces / 2)
 
