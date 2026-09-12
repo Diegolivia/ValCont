@@ -23,22 +23,22 @@
 #' @references
 #' Anderson, J. C., & Gerbing, D. W. (1991). Predicting the performance of measures in
 #' a confirmatory factor analysis with a pretest assessment of their substantive
-#' validities. *Journal of Applied Psychology*, 76(5), 732–740. https://doi.org/10.1037/0021-9010.76.5.732
+#' validities. *Journal of Applied Psychology*, 76(5), 732-740. https://doi.org/10.1037/0021-9010.76.5.732
 #'
 #' Cabedo-Peris, J., Merino-Soto, C., Chans, G.M., & Marti-Vilar, M. (2024).
-#'  Exploring the Loss Aversion Scale’s psychometric properties in Spain.
+#'  Exploring the Loss Aversion Scale's psychometric properties in Spain.
 #'  *Scientific Reports*, 14, 15756. https://doi.org/10.1038/s41598-024-66695-6
 #'
 #' Penfield, R. D., & Giacobbi, P. R., Jr. (2004). Applying a score confidence interval
-#' to Aiken’s item content-relevance index. *Measurement in Physical Education and
-#' Exercise Science*, 8(4), 213–225. https://doi.org/10.1207/s15327841mpee0804_3
+#' to Aiken's item content-relevance index. *Measurement in Physical Education and
+#' Exercise Science*, 8(4), 213-225. https://doi.org/10.1207/s15327841mpee0804_3
 #'
 #' Wilson, E. B. (1927). Probable inference, the law of succession, and statistical
-#' inference. *Journal of the American Statistical Association*, 22, 209–212.
+#' inference. *Journal of the American Statistical Association*, 22, 209-212.
 #' https://doi.org/10.2307/2276774
 #'
 #' @seealso
-#' \code{\link[PropCIs:scoreci]{scoreci}} for score method confidence interval
+#' \code{\link[PropCIs:scoreci]{PropCIs::scoreci}} for score method confidence interval
 #' \code{\link[ValCont:SVALmult]{SVALmult}} for multi-item analysis. \cr
 #' \code{\link[ValCont:SVALplot]{SVALplot}} for visualizing results of SVAL analyses.
 #'

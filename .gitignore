@@ -51,3 +51,9 @@ po/*~
 
 # RStudio Connect folder
 rsconnect/
+validate_report.json
+validate_package.R
+build_package.R
+AGENTS.md
+/project-docs/
+ValCont.code-workspace

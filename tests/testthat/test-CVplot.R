@@ -1,3 +1,4 @@
+library(ValCont)
 
 # Create sample data mimicking CVI output
 test_that("CVplot function works correctly", {
@@ -18,21 +19,3 @@ test_that("CVplot function works correctly", {
   expect_s3_class(plot, "ggplot")
   expect_s3_class(plot, c("gg", "ggplot"))
 })
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
