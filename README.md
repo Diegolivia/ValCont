@@ -5,7 +5,7 @@ R package for content validity analysis.
 ## Package Information
 
 - **Title:** Content Validation Using Vaiken and Other Functions
-- **Version:** 0.1.0
+- **Releases:** <https://github.com/Diegolivia/ValCont/releases>
 - **Date:** 2025-07-28
 - **License:** GPL (>= 3)
 - **URL:** <https://github.com/Diegolivia/ValCont>
@@ -53,6 +53,8 @@ if (!"devtools" %in% rownames(installed.packages())) {
 
 devtools::install_github("Diegolivia/ValCont")
 ```
+
+See [NEWS.md](NEWS.md) for a summary of changes in each package version.
 
 ## References
 
