@@ -63,7 +63,43 @@ jobs:
 
       - name: Build source archive
         shell: bash
-        run: Rscript build_package.R --no-manual
+        run: |
+          set -euo pipefail
+          Rscript - <<'RSCRIPT'
+          description <- read.dcf("DESCRIPTION")
+          package_name <- unname(description[1L, "Package"])
+          package_version <- unname(description[1L, "Version"])
+          expected_archive <- sprintf("%s_%s.tar.gz", package_name, package_version)
+
+          existing_archives <- list.files(
+            pattern = sprintf("^%s_%s\\.tar\\.gz$", package_name, package_version)
+          )
+          if (length(existing_archives) > 0L) {
+            unlink(existing_archives, force = TRUE)
+          }
+
+          r_executable <- file.path(R.home("bin"), "R")
+          status <- system2(
+            r_executable,
+            args = c("CMD", "build", "--no-manual", ".")
+          )
+          if (!identical(status, 0L)) {
+            stop(sprintf("R CMD build failed with status %d.", status))
+          }
+
+          archives <- list.files(
+            pattern = sprintf("^%s_%s\\.tar\\.gz$", package_name, package_version)
+          )
+          if (length(archives) != 1L || !identical(archives[[1L]], expected_archive)) {
+            stop(sprintf(
+              "Expected exactly one archive named %s, found: %s",
+              expected_archive,
+              paste(archives, collapse = ", ")
+            ))
+          }
+
+          cat(sprintf("Created %s\\n", expected_archive))
+          RSCRIPT
 
       - name: Upload source archive as workflow artifact
         uses: actions/upload-artifact@v4

@@ -11,3 +11,4 @@ README.html
 ^build_package\.R$
 ^project-docs$
 ^.*\.Rcheck$
+^ValCont\.code-workspace$

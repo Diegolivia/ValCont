@@ -15,6 +15,7 @@ export(CVRcut.Ayres)
 export(CVRcut.Bag)
 export(CVRcut.Wilson)
 export(CVplot)
+export(ColquittHT)
 export(D2)
 export(HTmult)
 export(Haiken)
@@ -47,12 +48,14 @@ importFrom(ggplot2,
 importFrom(rlang,.data)
 importFrom(stats,
   complete.cases,
+  median,
   na.omit,
   pbeta,
   pbinom,
   pnorm,
   qnorm,
   qt,
+  quantile,
   sd
 )
 importFrom(utils,combn)
