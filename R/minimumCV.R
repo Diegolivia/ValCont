@@ -158,49 +158,49 @@ minimumCV <- function(target.value,
     y_range <- c(max(0, y_min - 0.05), min(1, y_max + 0.05))
 
     if (nrow(feasible_data) == 0) {
-      plot(1, type = "n",
-           xlim = range(Nsize),
-           ylim = c(0, 1),
-           xlab = "Number of Expert Judges (n)",
-           ylab = "Minimum Required Empirical Coefficient",
-           main = "Sample Size Planning for Content Validity (Wilson Inversion)")
-      legend("topright", legend = c("Target Bound", "Infeasible"),
-             lty = c(2, NA), pch = c(NA, 4), col = c("gray30", "red"), bty = "n")
-      abline(h = target.value, lty = 2, col = "gray30")
-      points(infeasible_data$N,
-             rep(0.5, nrow(infeasible_data)),
-             pch = 4, col = "red", cex = 1.2)
-      text(infeasible_data$N,
-           rep(0.5, nrow(infeasible_data)),
-           labels = "Unattainable", pos = 3, cex = 0.7, col = "red")
+      graphics::plot(1, type = "n",
+                     xlim = range(Nsize),
+                     ylim = c(0, 1),
+                     xlab = "Number of Expert Judges (n)",
+                     ylab = "Minimum Required Empirical Coefficient",
+                     main = "Sample Size Planning for Content Validity (Wilson Inversion)")
+      graphics::legend("topright", legend = c("Target Bound", "Infeasible"),
+                       lty = c(2, NA), pch = c(NA, 4), col = c("gray30", "red"), bty = "n")
+      graphics::abline(h = target.value, lty = 2, col = "gray30")
+      graphics::points(infeasible_data$N,
+                       rep(0.5, nrow(infeasible_data)),
+                       pch = 4, col = "red", cex = 1.2)
+      graphics::text(infeasible_data$N,
+                     rep(0.5, nrow(infeasible_data)),
+                     labels = "Unattainable", pos = 3, cex = 0.7, col = "red")
     } else {
-      plot(feasible_data$N,
-           feasible_data$Min.coef,
-           pch = 19,
-           col = "steelblue",
-           xlim = range(Nsize),
-           ylim = y_range,
-           xlab = "Number of Expert Judges (n)",
-           ylab = "Minimum Required Empirical Coefficient",
-           main = "Sample Size Planning for Content Validity (Wilson Inversion)")
+      graphics::plot(feasible_data$N,
+                     feasible_data$Min.coef,
+                     pch = 19,
+                     col = "steelblue",
+                     xlim = range(Nsize),
+                     ylim = y_range,
+                     xlab = "Number of Expert Judges (n)",
+                     ylab = "Minimum Required Empirical Coefficient",
+                     main = "Sample Size Planning for Content Validity (Wilson Inversion)")
 
       if (nrow(infeasible_data) > 0) {
         y_infeasible <- min(1, y_max + 0.02)
-        points(infeasible_data$N,
-               rep(y_infeasible, nrow(infeasible_data)),
-               pch = 4, col = "red", cex = 1.2)
-        text(infeasible_data$N,
-             rep(y_infeasible, nrow(infeasible_data)),
-             labels = "Unattainable", pos = 3, cex = 0.7, col = "red")
+        graphics::points(infeasible_data$N,
+                         rep(y_infeasible, nrow(infeasible_data)),
+                         pch = 4, col = "red", cex = 1.2)
+        graphics::text(infeasible_data$N,
+                       rep(y_infeasible, nrow(infeasible_data)),
+                       labels = "Unattainable", pos = 3, cex = 0.7, col = "red")
       }
 
-      abline(h = target.value, lty = 2, col = "gray30")
-      legend("topright",
-             legend = c("Feasible (Wilson Inversion)", "Target Bound", "Infeasible"),
-             pch = c(19, NA, 4),
-             lty = c(NA, 2, NA),
-             col = c("steelblue", "gray30", "red"),
-             bty = "n")
+      graphics::abline(h = target.value, lty = 2, col = "gray30")
+      graphics::legend("topright",
+                       legend = c("Feasible (Wilson Inversion)", "Target Bound", "Infeasible"),
+                       pch = c(19, NA, 4),
+                       lty = c(NA, 2, NA),
+                       col = c("steelblue", "gray30", "red"),
+                       bty = "n")
     }
   }
 

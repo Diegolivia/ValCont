@@ -1,4 +1,4 @@
-#' Hinkin–Tracey Content Validity Indices for Multiple Items
+#' Hinkin-Tracey Content Validity Indices for Multiple Items
 #'
 #' @description
 #' Computes Hinkin and Tracey (1999) content validity indices for multiple items
@@ -20,7 +20,7 @@
 #' and then rescaled to the \code{htc}/\code{htd} metrics.
 #'
 #' @param data A data frame or matrix in wide format, where each column
-#'   corresponds to one item–construct combination. Columns are expected
+#'   corresponds to one item-construct combination. Columns are expected
 #'   to follow the pattern \code{"item.construct"}, e.g.,
 #'   \code{"item1.c1"}, \code{"item1.c2"}, \code{"item1.c3"}.
 #' @param items Character vector with the base names of the items to be
@@ -116,12 +116,12 @@
 #'     \code{item}, \code{target}, \code{nj}, and the construct means
 #'     (\code{M.<construct>} columns).}
 #'   \item{\code{Item.criteria}}{A data frame with one row per item,
-#'     containing the global Hinkin–Tracey indices:
+#'     containing the global Hinkin-Tracey indices:
 #'     \code{item}, \code{htc}, \code{htc.lci}, \code{htc.uci},
 #'     \code{htd}, \code{htd.lci}, \code{htd.uci}. If \code{ci = FALSE},
 #'     the confidence interval columns are filled with \code{NA}.}
 #'   \item{\code{Pairwise.criteria}}{A data frame in long format, with one
-#'     row per item–orbiting construct combination, containing:
+#'     row per item-orbiting construct combination, containing:
 #'     \code{item}, \code{target}, \code{orbiting}, \code{htd},
 #'     \code{htd.lci}, \code{htd.uci}. If \code{ci = FALSE}, the confidence
 #'     interval columns are filled with \code{NA}.}
@@ -129,16 +129,16 @@
 #'
 #' @references
 #' Hinkin, T. R., & Tracey, J. B. (1999). An analysis of variance approach
-#' to content validation. \emph{Organizational Research Methods, 2}(2), 175–186.
+#' to content validation. \emph{Organizational Research Methods, 2}(2), 175-186.
 #'
 #' Colquitt, J. A., Sabey, T. B., Rodell, J. B., & Hill, E. T. (2019).
 #' Content validation guidelines: Evaluation criteria for definitional
 #' correspondence and definitional distinctiveness. \emph{Journal of Applied
-#' Psychology, 104}(10), 1243–1265.
+#' Psychology, 104}(10), 1243-1265.
 #'
 #' Penfield, R. D., & Miller, J. M. (2004). Improving content validation
 #' studies using an asymmetric confidence interval for the mean of expert
-#' ratings. \emph{Applied Measurement in Education, 17}(4), 359–370.
+#' ratings. \emph{Applied Measurement in Education, 17}(4), 359-370.
 #'
 #' @examples
 #' \dontrun{

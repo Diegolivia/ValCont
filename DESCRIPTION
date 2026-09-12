@@ -31,6 +31,9 @@ LazyData: true
 Imports: 
     boot,
     ggplot2,
+    ggrepel,
+    MASS,
+    rlang,
     stats,
     utils
 Depends: 

@@ -7,3 +7,5 @@ README.html
 ^\.git$
 ^validate_package\.R$
 ^validate_report\.json$
+^AGENTS\.md$
+^build_package\.R$

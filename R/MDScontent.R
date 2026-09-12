@@ -1,23 +1,23 @@
-#' Multidimensional scaling (MDS) Map for Content Validity Ratings (Item–Trait Correspondence)
+#' Multidimensional scaling (MDS) Map for Content Validity Ratings (Item-Trait Correspondence)
 #'
 #' @description
 #' `MDScontent()` builds a **conceptual map** (MDS) from judges' ratings of the
 #' correspondence between each item and each trait (attribute). The function:
-#' (1) aggregates judges' ratings into an **Items × Traits** profile matrix,
+#' (1) aggregates judges' ratings into an **Items x Traits** profile matrix,
 #' (2) computes **item-to-item dissimilarities** (default: Euclidean),
 #' (3) obtains a **2D MDS configuration** (default: non-metric, with STRESS),
 #' (4) computes **trait centroids** in the MDS space (theoretical via `key`, or empirical),
-#' (5) optionally returns an **item–trait distance matrix** (`Dmatrix = TRUE`),
+#' (5) optionally returns an **item-trait distance matrix** (`Dmatrix = TRUE`),
 #' and (6) plots either the main map, a biplot, or both.
 #'
-#' @param data Numeric `matrix` or `data.frame` of size J × (I*T): rows are judges;
+#' @param data Numeric `matrix` or `data.frame` of size J x (I*T): rows are judges;
 #'   each column corresponds to a specific (item, trait) pair rating.
 #' @param item Vector of length `ncol(data)` indicating the **item id** for each column.
 #' @param trait Vector of length `ncol(data)` indicating the **trait id** for each column.
 #' @param key Optional vector of length I (number of unique items). Theoretical trait
 #'   assignment for each item (used to define centroids). If `NULL`, items are assigned
 #'   empirically to the trait with the largest profile score.
-#' @param score Aggregation of judges into the Items × Traits profile matrix:
+#' @param score Aggregation of judges into the Items x Traits profile matrix:
 #'   `"mean"` (default), `"median"`, or `"p_ge"` (proportion of ratings >= `cut`).
 #' @param cut Integer threshold for `score = "p_ge"`. Default is 4.
 #' @param distance Item-to-item dissimilarity computed from profiles:
@@ -27,7 +27,7 @@
 #' @param centroid How to compute centroid coordinates per trait:
 #'   `"mean"` (default) or `"median"` (coordinate-wise).
 #' @param display Plot type: `"items"` (main map), `"biplot"`, or `"both"`.
-#' @param Dmatrix Logical; if `TRUE`, returns the item–trait distance matrix Δ (I × T).
+#' @param Dmatrix Logical; if `TRUE`, returns the item-trait distance matrix x (I x T).
 #' @param label.items Logical; label items in plot(s). Default `TRUE`.
 #' @param label.traits Logical; label trait centroids in plot(s). Default `TRUE`.
 #' @param ... Additional arguments forwarded to the MDS routine:
@@ -35,18 +35,18 @@
 #'
 #' @return A list with elements:
 #' \describe{
-#'   \item{profile}{Items × Traits matrix used to build distances.}
+#'   \item{profile}{Items x Traits matrix used to build distances.}
 #'   \item{dist_items}{`dist` object of item-to-item dissimilarities.}
 #'   \item{coords_items}{data.frame of MDS coordinates for items.}
 #'   \item{centroids}{data.frame of centroid coordinates for traits and centroid type.}
 #'   \item{fit}{list with `mds`, `k`, `stress` (if nonmetric), and `gof` (R^2 of distances).}
-#'   \item{Dmatrix}{(Optional) matrix Δ of item–trait distances in MDS space.}
+#'   \item{Dmatrix}{(Optional) matrix x of item-trait distances in MDS space.}
 #' }
 #'
 #' @details
 #' ## Conceptual rationale
 #' The function provides a **geometric visualization** of content validity structure.
-#' Ratings from judges are first aggregated into an Items × Traits profile matrix.
+#' Ratings from judges are first aggregated into an Items x Traits profile matrix.
 #' Item-to-item dissimilarities are computed (default: Euclidean distance),
 #' and a multidimensional scaling (MDS) solution is obtained (default: non-metric).
 #'
@@ -86,58 +86,54 @@
 #' Therefore, `MDScontent()` should be interpreted as a structural visualization tool
 #' that complements coefficient-based evidence.
 #'
+#' @importFrom rlang .data
 #' @examples
-#' ## Example 1
-#'#  This simulated data has the following structure: 12 judges evaluated the fit of 6
-#'#  items in  4 attributes. That is: 12 judges × 6 items × 4 traits matrix. In the administration
-#'#  of the validity survey, the items were presented in 12 rows, and each item
-#'#  was evaluated for its correspondence to four attributes. The database should
-#'#  be structured as follows:
-#'#
-#'#  item item1.judge1 item1.judge2 item1.judge3 item1.judge4 item2.judge1 item2.judge2 ...
-#'#
-#'#  For this example:
+#' # This simulated data has the following structure: 12 judges evaluated the fit
+#' # of 6 items on 4 traits. The data therefore contain 12 rows and 24 columns,
+#' # with four columns for each item, one column per trait.
 #'
-#'#  Item1 (Fit to Trait 1)
-#'#  Item2 (Fit to Trait 1)
-#'#  Item3 (Fit to Trait 2)
-#'#  Item4 (Fit to Trait 2)
-#'#  Item5 (Approximate fit to Trait 3)
-#'#  Item6 (Approximate fit to Trait 4)
-#'#
-#'#   Example2 <- matrix(c(
-#'#     5,2,2,1,  5,1,2,1,  2,5,1,2,  1,5,2,1,  2,1,5,2,  1,2,2,5,
-#'#     5,1,2,2,  4,2,1,1,  1,5,2,1,  2,5,1,1,  1,2,5,2,  2,1,1,5,
-#'#     4,2,1,1,  5,1,2,1,  2,4,1,2,  1,5,2,2,  2,1,5,1,  1,2,2,5,
-#'#     5,1,2,1,  5,2,1,1,  1,5,2,1,  2,4,1,2,  1,2,5,2,  2,1,1,5,
-#'#     4,2,1,2,  5,1,2,1,  2,5,1,1,  1,5,2,1,  2,1,4,2,  1,2,2,4,
-#'#     5,1,2,1,  4,2,1,2,  1,5,2,1,  2,5,1,1,  1,2,5,1,  2,1,2,5,
-#'#     5,2,1,1,  5,1,2,1,  2,4,1,2,  1,5,2,1,  2,1,5,2,  1,2,1,5,
-#'#     4,1,2,1,  5,2,1,1,  1,5,2,2,  2,4,1,1,  1,2,5,1,  2,1,2,5,
-#'#     5,2,1,1,  4,1,2,2,  2,5,1,1,  1,5,2,1,  2,1,5,2,  1,2,1,5,
-#'#     5,1,2,2,  5,2,1,1,  1,5,2,1,  2,5,1,2,  1,2,5,1,  2,1,2,5,
-#'#     4,2,1,1,  5,1,2,1,  2,4,1,2,  1,5,2,1,  2,1,4,2,  1,2,1,5,
-#'#     5,1,2,1,  4,2,1,1,  1,5,2,1,  2,4,1,2,  1,2,5,1,  2,1,2,5),
-#'#     nrow = 12,
-#'#     byrow = TRUE)
+#' # In the validity survey, the items were presented in 12 rows, and each item
+#' # was evaluated for its correspondence to the four traits. The columns follow
+#' # this pattern:
 #'
-#'## Short cut for grouping items
-#'rep(1:6, each = 4)
+#' # item item1.trait1 item1.trait2 item1.trait3 item1.trait4 item2.trait1 ...
 #'
-#'## Short cut for grouping traits
-#'#'rep(1:4, times = 6)
+#' # The theoretical correspondence used below is:
 #'
-#'## theorethical correspondence
-#'c(1,1,2,2,3,4)
+#' # Item 1 -> Trait 1
+#' # Item 2 -> Trait 1
+#' # Item 3 -> Trait 2
+#' # Item 4 -> Trait 2
+#' # Item 5 -> Trait 3
+#' # Item 6 -> Trait 4
 #'
-#'MDScontent(data = dat2,
-#'item = rep(1:6, each = 4),
-#'trait = rep(1:4, times = 6),
-#'key = key <- c(1,1,2,2,3,4),
-#'score = "mean",
-#'distance = "euclid",
-#'mds = "nonmetric",
-#'display = "items")
+#' dat2 <- matrix(c(
+#'   5,2,2,1,  5,1,2,1,  2,5,1,2,  1,5,2,1,  2,1,5,2,  1,2,2,5,
+#'   5,1,2,2,  4,2,1,1,  1,5,2,1,  2,5,1,1,  1,2,5,2,  2,1,1,5,
+#'   4,2,1,1,  5,1,2,1,  2,4,1,2,  1,5,2,2,  2,1,5,1,  1,2,2,5,
+#'   5,1,2,1,  5,2,1,1,  1,5,2,1,  2,4,1,2,  1,2,5,2,  2,1,1,5,
+#'   4,2,1,2,  5,1,2,1,  2,5,1,1,  1,5,2,1,  2,1,4,2,  1,2,2,4,
+#'   5,1,2,1,  4,2,1,2,  1,5,2,1,  2,5,1,1,  1,2,5,1,  2,1,2,5,
+#'   5,2,1,1,  5,1,2,1,  2,4,1,2,  1,5,2,1,  2,1,5,2,  1,2,1,5,
+#'   4,1,2,1,  5,2,1,1,  1,5,2,2,  2,4,1,1,  1,2,5,1,  2,1,2,5,
+#'   5,2,1,1,  4,1,2,2,  2,5,1,1,  1,5,2,1,  2,1,5,2,  1,2,1,5,
+#'   5,1,2,2,  5,2,1,1,  1,5,2,1,  2,5,1,2,  1,2,5,1,  2,1,2,5,
+#'   4,2,1,1,  5,1,2,1,  2,4,1,2,  1,5,2,1,  2,1,4,2,  1,2,1,5,
+#'   5,1,2,1,  4,2,1,1,  1,5,2,1,  2,4,1,2,  1,2,5,1,  2,1,2,5),
+#'   nrow = 12,
+#'   byrow = TRUE
+#' )
+#' key <- c(1, 1, 2, 2, 3, 4)
+#' MDScontent(
+#'   data = dat2,
+#'   item = rep(1:6, each = 4),
+#'   trait = rep(1:4, times = 6),
+#'   key = key,
+#'   score = "mean",
+#'   distance = "euclid",
+#'   mds = "nonmetric",
+#'   display = "items"
+#' )
 #'
 #' @export
 MDScontent <- function(
@@ -166,7 +162,7 @@ MDScontent <- function(
 
   if (is.data.frame(data)) data <- as.matrix(data)
   if (!is.matrix(data) || !is.numeric(data)) stop("`data` must be a numeric matrix/data.frame.")
-  if (ncol(data) < 2) stop("`data` must have at least 2 columns (>= 2 item×trait pairs).")
+  if (ncol(data) < 2) stop("`data` must have at least 2 columns (>= 2 itemxtrait pairs).")
 
   if (missing(item) || missing(trait)) stop("Both `item` and `trait` must be provided.")
   if (length(item) != ncol(data)) stop("`item` must have length equal to ncol(data).")
@@ -184,7 +180,7 @@ MDScontent <- function(
   k <- as.integer(k)
 
   # -----------------------
-  # Build Items × Traits profile matrix X
+  # Build Items x Traits profile matrix X
   # -----------------------
   item_levels <- unique(item)
   trait_levels <- unique(trait)
@@ -227,14 +223,14 @@ MDScontent <- function(
     euclid = stats::dist(X, method = "euclidean"),
     cor = {
       Ci <- stats::cor(t(X), method = "pearson", use = "pairwise.complete.obs")
-      as.dist(pmax(0, 1 - Ci))
+      stats::as.dist(pmax(0, 1 - Ci))
     },
     cosine = {
       norms <- sqrt(rowSums(X^2))
       norms[norms == 0] <- 1
       Xn <- X / norms
       S <- Xn %*% t(Xn)
-      as.dist(pmax(0, 1 - S))
+      stats::as.dist(pmax(0, 1 - S))
     }
   )
 
@@ -328,7 +324,7 @@ MDScontent <- function(
   )
 
   # -----------------------
-  # Dmatrix: item–trait distances in the MDS plane
+  # Dmatrix: item-trait distances in the MDS plane
   # -----------------------
   Dmat <- NULL
   if (isTRUE(Dmatrix)) {
@@ -369,7 +365,7 @@ MDScontent <- function(
   # Convex Hulls
   hull_data <- do.call(rbind, lapply(split(df_items, df_items$trait), function(d) {
     if (nrow(d) >= 3) {
-      h <- d[chull(d$Dim1, d$Dim2), , drop = FALSE]
+      h <- d[grDevices::chull(d$Dim1, d$Dim2), , drop = FALSE]
       return(h)
     }
     return(NULL)
@@ -400,7 +396,7 @@ MDScontent <- function(
   )
   df_arrows <- df_arrows[!is.na(df_arrows$xend) & df_arrows$xend != 0, ]
 
-  # Construcción del gráfico base
+  # Construccion del grafico base
   p <- ggplot2::ggplot() +
     ggplot2::theme_minimal() +
     ggplot2::labs(
@@ -413,45 +409,54 @@ MDScontent <- function(
   if (display == "items" || display == "both") {
     if (!is.null(hull_data)) {
       p <- p + ggplot2::geom_polygon(data = hull_data,
-                                     ggplot2::aes(x = Dim1, y = Dim2, group = trait, fill = trait),
+                                     ggplot2::aes(x = .data$Dim1, y = .data$Dim2,
+                                                  group = .data$trait, fill = .data$trait),
                                      alpha = 0.1, color = NA, show.legend = FALSE)
     }
     p <- p +
       ggplot2::geom_segment(data = df_segments,
-                            ggplot2::aes(x = Dim1_item, y = Dim2_item, xend = Dim1_cent, yend = Dim2_cent, color = trait),
+                            ggplot2::aes(x = .data$Dim1_item, y = .data$Dim2_item,
+                                         xend = .data$Dim1_cent, yend = .data$Dim2_cent,
+                                         color = .data$trait),
                             alpha = 0.4, show.legend = FALSE) +
       ggplot2::geom_point(data = df_items,
-                          ggplot2::aes(x = Dim1, y = Dim2, color = trait),
+                          ggplot2::aes(x = .data$Dim1, y = .data$Dim2, color = .data$trait),
                           size = 3, alpha = 0.9) +
       ggplot2::geom_point(data = df_centroids,
-                          ggplot2::aes(x = Dim1, y = Dim2, fill = trait),
+                          ggplot2::aes(x = .data$Dim1, y = .data$Dim2, fill = .data$trait),
                           shape = 22, size = 5, color = "black", stroke = 1.2, show.legend = TRUE)
 
     if (isTRUE(label.items)) {
       p <- p + ggrepel::geom_text_repel(data = df_items,
-                                        ggplot2::aes(x = Dim1, y = Dim2, label = item),
+                                        ggplot2::aes(x = .data$Dim1, y = .data$Dim2,
+                                                     label = .data$item),
                                         size = 3, max.overlaps = 20)
     }
     if (isTRUE(label.traits)) {
       p <- p + ggplot2::geom_text(data = df_centroids,
-                                  ggplot2::aes(x = Dim1, y = Dim2, label = trait),
+                                  ggplot2::aes(x = .data$Dim1, y = .data$Dim2,
+                                               label = .data$trait),
                                   vjust = -1.5, fontface = "bold", size = 4)
     }
   }
 
   if (display == "biplot" || display == "both") {
     p <- p + ggplot2::geom_segment(data = df_arrows,
-                                   ggplot2::aes(x = x, y = y, xend = xend, yend = yend, color = trait),
+                                   ggplot2::aes(x = .data$x, y = .data$y,
+                                                xend = .data$xend, yend = .data$yend,
+                                                color = .data$trait),
                                    arrow = ggplot2::arrow(length = ggplot2::unit(0.15, "inches")),
                                    linewidth = 1.1, show.legend = FALSE)
     if (display == "biplot" && isTRUE(label.items)) {
       p <- p + ggrepel::geom_text_repel(data = df_items,
-                                        ggplot2::aes(x = Dim1, y = Dim2, label = item),
+                                        ggplot2::aes(x = .data$Dim1, y = .data$Dim2,
+                                                     label = .data$item),
                                         size = 3, max.overlaps = 20)
     }
     if (isTRUE(label.traits)) {
       p <- p + ggplot2::geom_text(data = df_arrows,
-                                  ggplot2::aes(x = xend, y = yend, label = trait, color = trait),
+                                  ggplot2::aes(x = .data$xend, y = .data$yend,
+                                               label = .data$trait, color = .data$trait),
                                   vjust = -1, hjust = -0.1, fontface = "bold", size = 4, show.legend = FALSE)
     }
   }

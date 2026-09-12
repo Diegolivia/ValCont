@@ -26,6 +26,8 @@ export(SVALmult)
 export(SVALplot)
 export(SVALsingle)
 export(Vaiken)
+export(Vaikenpub)
+export(minimumCV)
 importFrom(boot,
   boot,
   boot.ci
@@ -42,6 +44,7 @@ importFrom(ggplot2,
   theme,
   theme_minimal
 )
+importFrom(rlang,.data)
 importFrom(stats,
   complete.cases,
   na.omit,

@@ -25,43 +25,43 @@
 #'
 #' The score confidence interval does not require the standard deviation of the
 #' ratings; it derives the standard error from the mean and the number of raters,
-#' assuming the data follow a bounded binomial‑like distribution. This approach
+#' assuming the data follow a bounded binomial-like distribution. This approach
 #' is more appropriate for content validity ratings, which typically involve small
 #' numbers of experts (often < 10) and few response categories.
 #'
 #' For an item with mean M and n raters, the interval is computed as:
 #' \itemize{
 #'   \item Compute p = M/k if start = 0, or p = (M-1)/k if start = 1, where k = ncat - 1.
-#'   \item Obtain π_L and π_U via Wilson score limits for the proportion p.
-#'   \item Compute LCL = M - z * sqrt(k * π_L * (1 - π_L) / n)
-#'   \item Compute UCL = M + z * sqrt(k * π_U * (1 - π_U) / n)
+#'   \item Obtain ?_L and ?_U via Wilson score limits for the proportion p.
+#'   \item Compute LCL = M - z * sqrt(k * ?_L * (1 - ?_L) / n)
+#'   \item Compute UCL = M + z * sqrt(k * ?_U * (1 - ?_U) / n)
 #' }
 #' The resulting limits are truncated to the possible scale range [start, start + ncat - 1].
 #'
 #' @references
 #' Penfield, R. D. (2003). A score method of constructing asymmetric confidence
 #' intervals for the mean of a rating scale item. Psychological Methods, 8(2), 149-163.
-#' \url{https://doi.org/10.1037/1082-989x.8.2.149}
+#' \doi{10.1037/1082-989x.8.2.149}
 #'
 #' Penfield, R. D., & Miller, J. M. (2004). Improving content validation studies
 #' using an asymmetric confidence interval for the mean of expert ratings.
-#' Applied Measurement in Education, 17(4), 359–370.
-#' \url{https://doi.org/10.1207/s15324818ame1704_2}
+#' Applied Measurement in Education, 17(4), 359-370.
+#' \doi{10.1207/s15324818ame1704_2}
 #'
 #' Miller, J. M., & Penfield, R. D. (2005). Using the score method to construct
 #' asymmetric confidence intervals: An SAS program for content validation in
 #' scale development. Behavior Research Methods, 37, 450-452.
-#' \url{https://doi.org/10.3758/BF03192713}
+#' \doi{10.3758/BF03192713}
 #'
 #' Wilson, E. B. (1927). Probable inference, the law of succession, and statistical
 #' inference. Journal of the American Statistical Association, 22, 209-212.
-#' \url{https://doi.org/10.2307/2276774}
+#' \doi{10.2307/2276774}
 #'
 #' @seealso
 #' \code{\link{MER}} for the version that works with raw ratings (dataframe of judges).
 #'
 #' @examples
-#' \dontest{
+#' \donttest{
 #' # Example with vectors directly
 #' medias <- c(4.2, 3.8, 4.5)
 #' ns     <- c(8, 10, 7)

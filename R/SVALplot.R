@@ -29,7 +29,7 @@
 #' SVALplot(results, item = "gais3", type = "psa", labels = c("Anger", "Fear", "Joy", "Sadness"))}
 #'
 #' @author
-#' César Merino-Soto (\email{sikayax@yahoo.com.ar})
+#' Cesar Merino-Soto (\email{sikayax@yahoo.com.ar})
 #'
 #' @export
 SVALplot <- function(results, item, type = "svc", target = NULL, labels = NULL) {
@@ -47,7 +47,7 @@ SVALplot <- function(results, item, type = "svc", target = NULL, labels = NULL) 
     df$CategoryLabel <- labels
   }
 
-  # Añadir asterisco al target si se indica
+  # Anadir asterisco al target si se indica
   if (!is.null(target)) {
     df$CategoryLabel[df$Cat == target] <- paste0(df$CategoryLabel[df$Cat == target], "*")
   }

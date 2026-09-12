@@ -7,7 +7,7 @@
 #' When \code{correct = TRUE}, the function computes the adjusted coefficient \code{CVI.R}
 #' and applies the Wilson method to its absolute value. For computational stability,
 #' CVI values of exactly 1.0 or 0.0 are replaced by 0.9999 and 0.0001 respectively.
-#' If an extreme negative value of CVI.R is detected (e.g., from CVI ≈ 0), the value is
+#' If an extreme negative value of CVI.R is detected (e.g., from CVI ? 0), the value is
 #' truncated to 0 and the confidence interval is not estimated.
 #'
 #' @param cvi Numeric vector of CVI values (between 0 and 1).
@@ -58,7 +58,7 @@ CVIpub <- function(cvi, n, conf.level = 0.95, item.names = NULL, correct = FALSE
     if (correct) {
       A <- round(cvi.safe[i] * n[i])
       
-      # Cálculo estable usando log-factorial
+      # Calculo estable usando log-factorial
       log_pc <- lchoose(n[i], A) + n[i] * log(0.5)
       Pc <- exp(log_pc)
       
@@ -69,7 +69,7 @@ CVIpub <- function(cvi, n, conf.level = 0.95, item.names = NULL, correct = FALSE
         cvir <- 0
         lwr[i] <- upr[i] <- NA
         if (!truncation_reported) {
-          message("Extreme negative CVI.R value detected (CVI ≈ 0). Truncated to 0; confidence interval not estimated.")
+          message("Extreme negative CVI.R value detected (CVI ? 0). Truncated to 0; confidence interval not estimated.")
           truncation_reported <- TRUE
         }
       } else {

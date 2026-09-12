@@ -89,7 +89,7 @@ CVI <- function(data, cut, conf.level, na.rm = FALSE) {
     stop("Todas las columnas deben contener datos numericos.")
   }
 
-  # Detección de valores perdidos
+  # Deteccion de valores perdidos
   if (!na.rm) {
     if (any(is.na(data))) {
       stop("Valores perdidos detectados. Usa na.omit() primero o establece na.rm=TRUE.")

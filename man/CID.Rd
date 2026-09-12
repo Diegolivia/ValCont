@@ -112,9 +112,9 @@ Merino-Soto, C. (2018) Confidence interval for difference between coefficients o
 
 Merino-Soto, C. (2023). Coeficientes V de Aiken: diferencias en los juicios de validez de contenido. MHSalud, 20(1), 23-32. https://doi.org/10.15359/mhs.20-1.3
 
-Singer, J. (2010). Construction of confidence limits about effect measures: A general approach, by G. Y. Zou and A. Donner, Statistics in Medicine 2008; 27:1693-1702. Statistics in Medicine, 29(16), 1757–1759. https://doi.org/10.1002/sim.3887
+Singer, J. (2010). Construction of confidence limits about effect measures: A general approach, by G. Y. Zou and A. Donner, Statistics in Medicine 2008; 27:1693-1702. Statistics in Medicine, 29(16), 1757-1759. https://doi.org/10.1002/sim.3887
 
-Zou, G.Y. and Donner, A. (2008) Construction of confidence limits about effect measures: a general approach. Stat. Med. 27, 1693–1702. https://doi.org//10.1002/sim.3095
+Zou, G.Y. and Donner, A. (2008) Construction of confidence limits about effect measures: a general approach. Stat. Med. 27, 1693-1702. https://doi.org//10.1002/sim.3095
 }
 \seealso{
 \code{\link[ratesci:moverci]{ratesci::moverci}}

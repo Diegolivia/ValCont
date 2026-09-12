@@ -68,7 +68,7 @@ CVC <- function(data, max, conf.level, na.rm = FALSE) {
     stop("El data.frame debe contener solo valores numericos.")
   }
 
-  # Detección de valores perdidos
+  # Deteccion de valores perdidos
   if (!na.rm) {
     if (any(is.na(data))) {
       stop("Valores perdidos detectados. Usa na.omit() primero o establece na.rm=TRUE.")
