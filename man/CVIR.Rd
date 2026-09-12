@@ -74,7 +74,7 @@ Wilson, E. B. (1927). Probable inference, the law of succession, and statistical
 }
 \seealso{
 \code{\link[PropCIs:scoreci]{PropCIs::scoreci}} for score method confidence interval
-\code{\link[ValCont:CVI]{ValCont:CVI}} for CVI
+\code{\link[ValCont:CVI]{ValCont::CVI}} for CVI
 }
 \author{
 Cesar Merino-Soto (\email{sikayax@yahoo.cam.ar})

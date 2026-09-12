@@ -63,7 +63,7 @@
 #' Wilson, E. B. (1927). Probable inference, the law of succession, and statistical inference. \emph{Journal of the American Statistical Association, 22}, 209–212. https://doi.org/10.2307/2276774
 #'
 #' @seealso
-#' \code{\link[PropCIs]{scoreci}} for score-based confidence intervals. \cr
+#' \code{\link[PropCIs:scoreci]{PropCIs::scoreci}} for score-based confidence intervals. \cr
 #' \code{\link[ValCont:SVALsingle]{SVALsingle}} for computing substantive validity on individual items. \cr
 #' \code{\link[ValCont:SVALplot]{SVALplot}} for visualizing the results of SVALmult.
 #'

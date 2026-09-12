@@ -3,17 +3,17 @@
 R package for content validity analysis
 
 \strong{Package:} ValCont\
-\strong{Title:} R Package for content validity coefficient estimation\
+\strong{Title:} Content Validation Using Vaiken and Other Functions\
 \strong{Version:} 0.1.0\
 \strong{Date:} 07-28-2025\
 [\strong{Authors\@R}](mailto:Authors@R)\strong{:}
-- \strong{Cesar Merino-Soto (aut, cre, ctb, rev)}
+- \strong{Cesar Merino-Soto (aut, cre ctb, rev)}
 - Email: [sikayax\@yahoo.com.ar](mailto:sikayax@yahoo.com.ar)
 - ORCID: https://orcid.org/0000-0001-8049-7069
 - \strong{Jose Livia-Segovia (aut, ctb)}
 - Email: [joselivia\@gmail.com](mailto:joselivia@gmail.com)
 - ORCID: https://orcid.org/0000-0003-2226-3349
-- \strong{Diego Livia-Ortiz (aut, ctb, cre, rev)}
+- \strong{Diego Livia-Ortiz (aut, cre, ctb, rev)}
 - Email: [diegolivia\@hotmail.com](mailto:diegolivia@hotmail.com)
 - ORCID: https://orcid.org/0000-0002-2107-3140
 
@@ -60,17 +60,16 @@ devtools::install_github("Diegolivia/ValCont")
 -   Martuza, V.R. (1977). Applying norm-referenced and criterion-referenced measurement in education. Boston: Allyn & Bacon
 -   Merino-Soto, C. (2023). Aiken’s V Coefficient: Differences in Content Validity Judgments. MHSalud: Revista En Ciencias Del Movimiento Humano Y Salud, 20(1), 1-10. <https://doi.org/10.15359/mhs.20-1.3>
 -   Merino-Soto, C. (2018). Confidence interval for difference between coefficients of content validity (Aiken's V): a SPSS syntax. Anales de Psicología, 34(3), 587-590. <https://dx.doi.org/10.6018/analesps.34.3.283481>
--   Penfield, R. D. & Giacobbi, P. R., Jr. (2004) Applying a score confidence interval to Aiken’s item content-relevance index. Measurement in Physical Education and Exercise Science, 8(4), 213-225. <https://doi.org/> 10.1207/s15327841mpee0804_3
+-   Penfield, R. D. & Giacobbi, P. R., Jr. (2004) Applying a score confidence interval to Aiken’s item content-relevance index. Measurement in Physical Education and Exercise Science, 8(4), 213-225. <https://doi.org/10.1207/s15327841mpee0804_3>
 -   Penfield, R. D., & Miller, J. M. (2004). Improving Content Validation Studies Using an Asymmetric Confidence Interval for the Mean of Expert Ratings. Applied Measurement in Education, 17(4), 359–370. <https://doi.org/10.1207/s15324818ame1704_2>
 -   Polit, D.F., Beck, C.T. and Owen, S.V. (2007), Is the CVI an acceptable indicator of content validity? Appraisal and recommendations. Res. Nurs. Health, 30: 459-467. <https://doi.org/10.1002/nur.20199>
 -   Wilson, E. B. (1927). Probable inference, the law of succession, and statistical inference. Journal of the American Statistical Association, 22, 209-212. <https://doi.org/10.2307/2276774>
 -   Zou, G., Donner, A. and Qiu, S. (2025). MOVER-R for Confidence Intervals of Ratios. In Wiley StatsRef: Statistics Reference Online (eds N. Balakrishnan, T. Colton, B. Everitt, W. Piegorsch, F. Ruggeri and J.L. Teugels). <https://doi.org/10.1002/9781118445112.stat08085>
 
 \strong{Depends:} R (\>= 2.10)\
-\strong{Imports:} boots, ggplo2, stats, utils\
+\strong{Imports:} boot, ggplot2, stats, utils\
 \strong{License:} GPL-3\
 \strong{Encoding:} UTF-8\
 \strong{LazyData:} true\
 \strong{Maintainer:} Diego Livia-Ortiz\
 \strong{URL:} https://github.com/Diegolivia/ValCont/
-

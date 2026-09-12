@@ -60,7 +60,7 @@ inference. *Journal of the American Statistical Association*, 22, 209–212.
 https://doi.org/10.2307/2276774
 }
 \seealso{
-\code{\link[PropCIs:scoreci]{scoreci}} for score method confidence interval
+\code{\link[PropCIs:scoreci]{PropCIs::scoreci}} for score method confidence interval
 \code{\link[ValCont:SVALmult]{SVALmult}} for multi-item analysis. \cr
 \code{\link[ValCont:SVALplot]{SVALplot}} for visualizing results of SVAL analyses.
 }

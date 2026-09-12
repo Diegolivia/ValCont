@@ -67,7 +67,7 @@ Singer, J. (2010). Construction of confidence limits about effect measures: A ge
 Zou, G.Y. and Donner, A. (2008) Construction of confidence limits about effect measures: a general approach. Stat. Med. 27, 1693–1702. https://doi.org/10.1002/sim.3095
 }
 \seealso{
-\code{\link[ratesci:moverci]{ratesci::moverci}} for MOVER method ofr ratios
+\code{\link[ratesci:moverci]{ratesci::moverci}} for MOVER method of ratios
 \code{\link[PropCIs:scoreci]{PropCIs::scoreci}} for score method confidence interval
 \code{\link[ValCont:CID]{ValCont::CID}} for this method for multiple items
 }

@@ -4,9 +4,17 @@
 \name{ValCont-package}
 \alias{ValCont}
 \alias{ValCont-package}
-\title{ValCont: Content Validation using Vaiken and other functions}
+\title{ValCont: Content Validation Using Vaiken and Other Functions}
 \description{
-ValCont is a dedicated content validity package in R. ValCont implement the computation of several coefficients used in content validity studies, with data usually obtained from selected participants such as expert judges or experiential judges.
+Provides functions for content validity studies, including the computation of several coefficients using data obtained from selected participants such as expert judges or experiential judges.
+}
+\seealso{
+Useful links:
+\itemize{
+  \item \url{https://github.com/Diegolivia/ValCont}
+  \item Report bugs at \url{https://github.com/Diegolivia/ValCont/issues}
+}
+
 }
 \author{
 \strong{Maintainer}: Diego Livia Ortiz \email{diegolivia@hotmail.com} [contributor, reviewer]
