@@ -4,7 +4,7 @@ name: R-hub
 
 run-name: >-
   ${{ github.event.inputs.id || format('Automatic run by @{0}', github.triggering_actor) }}:
-  ${{ github.event.inputs.name || github.event.inputs.config || 'linux,windows,macos' }}
+  ${{ github.event.inputs.name || github.event.inputs.config || 'linux,windows' }}
 
 on:
   push:
@@ -18,7 +18,7 @@ on:
           Comma-separated list of R-hub platforms to use.
           Full list: https://r-hub.github.io/containers/
         type: string
-        default: 'linux,windows,macos'
+        default: 'linux,windows'
       name:
         description: 'Run name. You can leave this empty.'
         type: string
@@ -39,7 +39,7 @@ jobs:
       - uses: r-hub/actions/setup@v1
         id: rhub-setup
         with:
-          config: ${{ github.event.inputs.config || 'linux,windows,macos' }}
+          config: ${{ github.event.inputs.config || 'linux,windows' }}
 
   linux-containers:
     needs: setup
