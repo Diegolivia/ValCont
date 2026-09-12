@@ -1,6 +1,6 @@
 # ValCont News
 
-## ValCont 0.2.0
+## ValCont 0.1.0
 
 ### Added
 
@@ -12,6 +12,12 @@
 - `minimumCV()` for Wilson-based minimum sample-size or critical-value calculations.
 - Additional public and supporting functions for content validity analyses, including `CVIpub()` and `Vaikenpub()`.
 - GitHub Actions workflows for cross-platform package validation and source-package release archives.
+- Content validity coefficients such as CVC, CVI, CVIR, CVR, MER, and Aiken's V.
+- Asymmetric confidence intervals for bounded content validity coefficients.
+- Functions for comparing independent content validity coefficients.
+- MOVER-R confidence intervals for ratios of independent coefficients.
+- Functions for evaluating rating homogeneity.
+- Basic plotting functions for validity-coefficient results.
 
 ### Changed
 
@@ -27,14 +33,3 @@
 - Corrected documentation, namespace, and package-structure issues identified during CRAN-style validation.
 - Improved handling of package examples and test execution.
 - Added package build exclusions and validation checks for clean source-package archives.
-
-## ValCont 0.1.0
-
-Initial public version of `ValCont`, including:
-
-- Content validity coefficients such as CVC, CVI, CVIR, CVR, MER, and Aiken's V.
-- Asymmetric confidence intervals for bounded content validity coefficients.
-- Functions for comparing independent content validity coefficients.
-- MOVER-R confidence intervals for ratios of independent coefficients.
-- Functions for evaluating rating homogeneity.
-- Basic plotting functions for validity-coefficient results.
