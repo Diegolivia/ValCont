@@ -2,7 +2,7 @@
 % Please edit documentation in R/ColquittHT.R
 \name{ColquittHT}
 \alias{ColquittHT}
-\title{Hinkin–Tracey Content Validity Indices with Wilson Confidence Intervals}
+\title{Hinkin–Tracey Content Validity Indices with Confidence Intervals}
 \usage{
 ColquittHT(
   data,
@@ -34,11 +34,11 @@ Names must match \code{items} and values must belong to \code{constructs}
 \item{anchors}{Integer. Number of response scale options (e.g., 5 or 7). Ratings
 are assumed to range from 1 to \code{anchors}.}
 
-\item{ci}{Logical. If \code{TRUE}, asymmetric Wilson score confidence intervals are
-computed for \code{htc}, \code{htd}, and pairwise \code{htd}. Default is \code{FALSE}.}
+\item{ci}{Logical. If \code{TRUE}, asymmetric confidence intervals are
+computed for \code{htc} (Wilson score) and \code{htd} (Willink Cornish-Fisher). Default is \code{FALSE}.}
 
 \item{conf.level}{Confidence level for intervals (e.g., \code{0.90}, \code{0.95}).
-Default is \code{0.90}.}
+Default is \code{0.95}.}
 
 \item{na.rm}{Logical. If \code{TRUE} (default), missing values are removed pair-wise or
 list-wise depending on the sub-index calculation.}
@@ -49,7 +49,7 @@ list-wise depending on the sub-index calculation.}
 A list with three data frames:
 \describe{
   \item{\code{Item.descriptive}}{Item names, target constructs, judge counts (\code{nj}), and mean ratings.}
-  \item{\code{Item.criteria}}{Global \code{htc} and \code{htd} indices with corresponding Wilson CIs.}
+  \item{\code{Item.criteria}}{Global \code{htc} and \code{htd} indices with corresponding confidence intervals.}
   \item{\code{Pairwise.criteria}}{Pairwise \code{htd} indices comparing target vs. each orbiting construct.}
 }
 }
@@ -68,8 +68,9 @@ Colquitt et al. (2019). For each item, the function computes:
 }
 
 Asymmetric confidence intervals are constructed using Wilson's score interval method
-for proportions (Penfield & Miller, 2004), eliminating out-of-bounds limits and
-providing realistic coverage even under zero sample variance or small expert sample sizes.
+for proportions for \code{htc} (Penfield & Miller, 2004), and Willink's (2005) asymmetric
+interval incorporating the third moment and Cornish-Fisher expansion for \code{htd},
+eliminating out-of-bounds limits and providing realistic coverage even under small expert sample sizes.
 }
 \details{
 \strong{Empirical Benchmarks (Colquitt et al., 2019)}
@@ -94,18 +95,13 @@ Colquitt et al. (2019) suggest the following evaluation criteria:
 \strong{Rationale and Construction of Confidence Intervals}
 
 Standard Studentized \emph{t}-intervals often fail in content validity tasks because rating
-distributions near scale bounds produce zero sample variance (e.g., perfect agreement across judges),
-yielding artificially collapsed zero-width intervals. To overcome this, confidence intervals
-for \code{htc} and \code{htd} are computed via Wilson's score interval (Penfield & Miller, 2004) for mean of
-rating expert:
+distributions near scale bounds produce zero sample variance or skewness. To overcome this:
 \itemize{
-  \item \strong{\code{htc} Transformation:} The raw target mean \eqn{\bar{X}} (bounded in \eqn{[1, a]})
-        is mapped to a proportion \eqn{p = (\bar{X} - 1) / (a - 1)}. Wilson's score interval is
-        computed on \eqn{p} and then rescaled back to the \code{htc} metric (\eqn{[1/a, 1.0]}).
-  \item \strong{\code{htd} Transformation:} The distinctiveness index \eqn{htd} naturally ranges in
-        \eqn{[-1, 1]}. To apply score-based estimation, it is linearly mapped to a pseudo-proportion
-        space \eqn{p_{htd} = (htd + 1) / 2 \in [0, 1]}. Wilson limits are derived for \eqn{p_{htd}}
-        and then back-transformed via \eqn{htd_{\text{limit}} = (p_{\text{wilson}} \times 2) - 1}.
+  \item \strong{\code{htc} Transformation:} Computed via Wilson's score interval (Penfield & Miller, 2004)
+        after mapping the raw target mean to proportion space \eqn{p \in [0, 1]}.
+  \item \strong{\code{htd} Transformation:} Computed via Willink's (2005) asymmetric interval method,
+        which corrects for sample skewness using the third central moment and Cornish-Fisher expansion,
+        with post-hoc truncation to the natural domain \eqn{[-1, 1]}.
 }
 
 \strong{Methodological Note on Comparisons:}
@@ -124,4 +120,7 @@ Hinkin, T. R., & Tracey, J. B. (1999). An analysis of variance approach to conte
 
 Penfield, R. D., & Miller, J. M. (2004). Improving content validation studies using an asymmetric
 confidence interval for the mean of expert ratings. \emph{Applied Measurement in Education, 17}(4), 359–370.
+
+Willink, R. (2005). A confidence interval for a mean with a correction for skewness.
+\emph{Metrika}, 61(2), 159–173.
 }
