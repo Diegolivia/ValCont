@@ -4,18 +4,26 @@
 \name{ValCont-package}
 \alias{ValCont}
 \alias{ValCont-package}
-\title{ValCont: Content Validation using Vaiken and other functions}
+\title{ValCont: Content Validation Using Vaiken and Other Functions}
 \description{
-ValCont is a dedicated content validity package in R. ValCont implement the computation of several coefficients used in content validity studies, with data usually obtained from selected participants such as expert judges or experiential judges.
+Provides tools for content validity studies, including functions to calculate content validity coefficients from ratings by expert or experiential judges. It implements CVC(), CVI(), CVIR(), CVR(), and Vaiken() together with asymmetric confidence intervals for bounded coefficients and methods for comparing independent coefficients. The methods are based on Aiken (1980, 1985) \doi{10.1177/001316448004000419}, Wilson (1927) \doi{10.2307/2276774}, and Merino-Soto (2018) \doi{10.6018/analesps.34.3.283481}.
+}
+\seealso{
+Useful links:
+\itemize{
+  \item \url{https://github.com/Diegolivia/ValCont}
+  \item Report bugs at \url{https://github.com/Diegolivia/ValCont/issues}
+}
+
 }
 \author{
-\strong{Maintainer}: Diego Livia Ortiz \email{diegolivia@hotmail.com} [contributor, reviewer]
+\strong{Maintainer}: Diego Livia Ortiz \email{diegolivia@hotmail.com} (\href{https://orcid.org/0000-0002-2107-3140}{ORCID}) [contributor, reviewer]
 
 Authors:
 \itemize{
-  \item Diego Livia Ortiz \email{diegolivia@hotmail.com} [contributor, reviewer]
-  \item Cesar Merino-Soto \email{sikayax@yahoo.com.ar} [contributor, reviewer]
-  \item Jose Livia Segovia \email{joselivia@gmail.com} [contributor]
+  \item Diego Livia Ortiz \email{diegolivia@hotmail.com} (\href{https://orcid.org/0000-0002-2107-3140}{ORCID}) [contributor, reviewer]
+  \item Cesar Merino-Soto \email{sikayax@yahoo.com.ar} (\href{https://orcid.org/0000-0001-8049-7069}{ORCID}) [contributor, reviewer]
+  \item Jose Livia Segovia \email{joselivia@gmail.com} (\href{https://orcid.org/0000-0003-2226-3349}{ORCID}) [contributor]
 }
 
 }

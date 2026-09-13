@@ -31,7 +31,7 @@ with optional correction for chance agreement based on Polit et al. (2007).
 When \code{correct = TRUE}, the function computes the adjusted coefficient \code{CVI.R}
 and applies the Wilson method to its absolute value. For computational stability,
 CVI values of exactly 1.0 or 0.0 are replaced by 0.9999 and 0.0001 respectively.
-If an extreme negative value of CVI.R is detected (e.g., from CVI ≈ 0), the value is
+If an extreme negative value of CVI.R is detected (e.g., from CVI ? 0), the value is
 truncated to 0 and the confidence interval is not estimated.
 }
 \examples{

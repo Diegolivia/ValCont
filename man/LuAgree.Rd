@@ -78,7 +78,7 @@ If \code{group} is \code{NULL}, returns an object of class
   \item \code{n_subjects} Number of subjects used in the analysis.
   \item \code{n_judges} Number of judges.
   \item \code{categories} The ordered rating categories used.
-  \item \code{p_empirical} Empirical category probabilities (información
+  \item \code{p_empirical} Empirical category probabilities (informacion
         auxiliar; no se imprime por defecto).
   \item \code{call} The matched function call.
 }

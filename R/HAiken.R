@@ -59,6 +59,7 @@
 #' }
 #'
 #' @export
+#' @importFrom stats median quantile
 Haiken <- function(data, ncat, conf.level = .95, na.rm = FALSE,
                    overall = TRUE, B = 1000,
                    ci.type = c("logit", "perc", "norm")) {

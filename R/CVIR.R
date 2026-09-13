@@ -37,7 +37,7 @@
 #'
 #'@seealso
 #'\code{\link[PropCIs:scoreci]{PropCIs::scoreci}} for score method confidence interval
-#'\code{\link[ValCont:CVI]{ValCont:CVI}} for CVI
+#'\code{\link[ValCont:CVI]{ValCont::CVI}} for CVI
 #'
 #'@examples
 #'## Load data

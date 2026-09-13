@@ -15,7 +15,7 @@
 #'Note: The function has not yet been prepared to resolve missing values, so the user must remove or impute any missing values.
 #'
 #'@references
-#'Lawshe, C. H. (1975). A quantitative approach to content validity. Personnel psychology, 28, 563–575. https://doi.org/10.1111/j.1744-6570.1975.tb01393.x
+#'Lawshe, C. H. (1975). A quantitative approach to content validity. Personnel psychology, 28, 563-575. https://doi.org/10.1111/j.1744-6570.1975.tb01393.x
 #'
 #'Martuza, V.R. (1977). Applying norm-referenced and criterion-referenced measurement in education. Boston: Allyn & Bacon
 #'
@@ -37,7 +37,7 @@
 #'@export
 CVR <- function(data, na.rm = FALSE) {
 
-  # Detección de valores perdidos
+  # Deteccion de valores perdidos
 if (!na.rm) {
   if (any(is.na(data))) {
     stop("Valores perdidos detectados. Usa na.omit() primero o establece na.rm=TRUE.")

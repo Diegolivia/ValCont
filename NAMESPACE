@@ -17,6 +17,7 @@ export(CVRcut.Wilson)
 export(CVplot)
 export(ColquittHT)
 export(D2)
+export(HTmult)
 export(Haiken)
 export(LuAgree)
 export(MDScontent)
@@ -44,14 +45,17 @@ importFrom(ggplot2,
   theme,
   theme_minimal
 )
+importFrom(rlang,.data)
 importFrom(stats,
   complete.cases,
+  median,
   na.omit,
   pbeta,
   pbinom,
   pnorm,
   qnorm,
   qt,
+  quantile,
   sd
 )
 importFrom(utils,combn)

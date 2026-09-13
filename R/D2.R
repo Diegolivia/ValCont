@@ -47,12 +47,12 @@
 #'
 #' @references
 #' Aiken, L. R., & Aiken, T. A. (1986). Difference Tests for Distributions of Ratings.
-#' Educational and Psychological Measurement, 46(4), 871–881. https://doi.org/10.1177/001316448604600407
+#' Educational and Psychological Measurement, 46(4), 871-881. https://doi.org/10.1177/001316448604600407
 #'
 #' Rosenthal, R. (1991). Meta-analytic procedures for social research (revised). Sage: Newbury Park, CA.
 #'
 #' Bishara, A. J., & Hittner, J. B. (2017). Confidence intervals for correlations when data are not normal.
-#' Behavior Research Methods, 49(1), 294–309. https://doi.org/10.3758/s13428-016-0702-8
+#' Behavior Research Methods, 49(1), 294-309. https://doi.org/10.3758/s13428-016-0702-8
 #'
 #' @examples
 #'
