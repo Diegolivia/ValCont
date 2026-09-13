@@ -4,31 +4,67 @@
 \alias{CVC}
 \title{CVC}
 \usage{
-CVC(data, max, conf.level, na.rm = FALSE)
+CVC(
+  data,
+  max,
+  min = 1,
+  conf.level = 0.9,
+  na.rm = FALSE,
+  overall = FALSE,
+  overall.method = c("global", "Hernandez"),
+  overall.ci = c("MER", "Wilson")
+)
 }
 \arguments{
 \item{data}{dataframe, with n columns (judges or scorers), and k rows (evaluated items).}
 
 \item{max}{maximum possible rating value used.}
 
+\item{min}{minimum possible rating value used (default = 1). Required for the MER method.}
+
 \item{conf.level}{confidence level for confidence intervals (eg., .90, .95, .99).}
 
 \item{na.rm}{Logical. If FALSE (default) the function stops when missing values are detected.
 If TRUE rows with missing values in the relevant columns are removed before processing.}
+
+\item{overall}{Logical. If TRUE, computes an overall CVC.}
+
+\item{overall.method}{Character. Method for the overall CVC:
+\itemize{
+  \item \code{"global"}: treats the entire matrix as a single "super-item" (all ratings pooled).
+  \item \code{"Hernandez"}: computes CVC for each item and then averages them (traditional approach).
+}}
+
+\item{overall.ci}{Character. Method for the overall confidence interval:
+\itemize{
+  \item \code{"MER"}: score interval for the mean of ratings, then transformed to CVC (Penfield, 2003). Recommended for \code{"global"}.
+  \item \code{"Wilson"}: Wilson score interval directly on the CVC estimate.
+}
+Note: When \code{overall.method = "Hernandez"}, only \code{"Wilson"} is used (others ignored).}
 }
 \value{
-dataframe with CVC coefficients and confidence intervals.
+dataframe with CVC coefficients and confidence intervals. If overall = TRUE, an extra row with the global index is included.
 }
 \description{
 Calculates the content validity coefficient (CVC; Hernandez-Nieto, 2002). CVC makes an adjustment for random response.
 }
 \details{
-This function calculates the content validity coefficient CVC (Hernandez-Nieto, 2002). Asymmetric confidence intervals are also calculated (Wilson, 1927; Penfield & Giacobbi, 2004). CVC' is the second coefficient that adjusts for possible random response of the raters, while another proposal for the CVI coefficient was created by Polit, & Beck (2007).
+This function calculates the content validity coefficient CVC (Hernandez-Nieto, 2002). Asymmetric confidence intervals are also calculated (Wilson, 1927; Penfield & Giacobbi, 2004).
+
+**Overall CVC and confidence intervals**:
+When `overall = TRUE`, the function computes a global CVC using one of two approaches:
+
+\itemize{
+  \item With \code{overall.method = "global"}, the entire matrix of ratings is treated as a single "super-item". The workflow is:
+        1. The matrix is flattened into a single vector (all items × all judges).
+        2. The global mean of all ratings is computed.
+        3. The random agreement correction (Pe) is applied using the original formula (1/J)^J.
+        4. The global CVC is obtained as (Global Mean / Vmax) - Pe.
+        5. For the confidence interval, the **MER method** is recommended because it respects the nature of the CVC as a linear transformation of the mean, avoids treating the CVC as an exact proportion when it is not, and is consistent with the MER approach already implemented for the global Aiken's V. The MER method first constructs an asymmetric confidence interval for the mean of all ratings (Penfield, 2003) and then transforms the lower and upper bounds to the CVC metric using the same linear transformation.
+  \item With \code{overall.method = "Hernandez"}, the CVC is computed for each item and then averaged (traditional approach). The confidence interval is based on the Wilson score method applied to the mean CVC.
+}
 }
 \examples{
-### Example 1
-### Fictitious data Ej1: 15 judges, and 15 items evaluated by the judges
-
 Ej1 <- data.frame(
  J1 = c(5, 5, 6, 6, 6, 6, 6, 6, 5, 6, 5, 6, 3, 4, 4),
  J2 = c(5, 2, 6, 6, 6, 6, 6, 5, 4, 6, 5, 6, 4, 4, 3),
@@ -46,16 +82,11 @@ Ej1 <- data.frame(
  J14 = c(5, 5, 6, 6, 6, 6, 6, 5, 6, 6, 6, 6, 5, 4, 5),
  J15 = c(5, 5, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 5, 3, 4))
 
-## Run CVC.
-CVC(Ej1,max = 6, conf.level = .90)
+## Global CVC with MER CI
+CVC(Ej1, max = 6, min = 1, conf.level = .90, overall = TRUE, overall.method = "global")
 
-### Example 2
-### Random data
-## Aritificial data
-random_data <- data.frame(replicate(n = 6,sample(1:5,12,rep=TRUE)))
-
-## Run CVC
-CVC(random_data,max = 5, conf.level = .90)
+## Traditional Hernandez CVC with Wilson CI
+CVC(Ej1, max = 6, min = 1, conf.level = .90, overall = TRUE, overall.method = "Hernandez")
 
 }
 \references{
