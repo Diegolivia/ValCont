@@ -23,7 +23,7 @@
 #'\code{\link[ValCont:SVALsingle]{ValCont::SVALsingle}} for single-item analysis.
 #'
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' results <- SVALmult(data = data.gais, columns = c("gais2", "gais3"))
 #' SVALplot(results, item = "gais3", type = "svc", target = 4)
 #' SVALplot(results, item = "gais3", type = "psa", labels = c("Anger", "Fear", "Joy", "Sadness"))}

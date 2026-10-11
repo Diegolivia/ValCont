@@ -65,7 +65,7 @@
 #' Reference Online}. doi:10.1002/9781118445112.stat08085
 #'
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' # Suppose 'group1' and 'group2' contain columns 'est', 'low', and 'high'
 #' res <- CIR(group1, group2, coef.col = "est", lwr.col = "low", upr.col = "high")
 #' print(res)
