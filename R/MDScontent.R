@@ -95,39 +95,19 @@
 #'
 #' @importFrom rlang .data
 #' @examples
-#' # This simulated data has the following structure: 12 judges evaluated the fit
-#' # of 6 items on 4 traits. The data therefore contain 12 rows and 24 columns,
-#' # with four columns for each item, one column per trait.
-#'
-#' # In the validity survey, the items were presented in 12 rows, and each item
-#' # was evaluated for its correspondence to the four traits. The columns follow
-#' # this pattern:
-#'
-#' # item item1.trait1 item1.trait2 item1.trait3 item1.trait4 item2.trait1 ...
-#'
-#' # The theoretical correspondence used below is:
-#'
-#' # Item 1 -> Trait 1
-#' # Item 2 -> Trait 1
-#' # Item 3 -> Trait 2
-#' # Item 4 -> Trait 2
-#' # Item 5 -> Trait 3
-#' # Item 6 -> Trait 4
-#'
-#' dat2 <- matrix(c(
-#'   5,2,2,1,  5,1,2,1,  2,5,1,2,  1,5,2,1,  2,1,5,2,  1,2,2,5,
-#'   5,1,2,2,  4,2,1,1,  1,5,2,1,  2,5,1,1,  1,2,5,2,  2,1,1,5,
-#'   4,2,1,1,  5,1,2,1,  2,4,1,2,  1,5,2,2,  2,1,5,1,  1,2,2,5,
-#'   5,1,2,1,  5,2,1,1,  1,5,2,1,  2,4,1,2,  1,2,5,2,  2,1,1,5,
-#'   4,2,1,2,  5,1,2,1,  2,5,1,1,  1,5,2,1,  2,1,4,2,  1,2,2,4,
-#'   5,1,2,1,  4,2,1,2,  1,5,2,1,  2,5,1,1,  1,2,5,1,  2,1,2,5,
-#'   5,2,1,1,  5,1,2,1,  2,4,1,2,  1,5,2,1,  2,1,5,2,  1,2,1,5,
-#'   4,1,2,1,  5,2,1,1,  1,5,2,2,  2,4,1,1,  1,2,5,1,  2,1,2,5,
-#'   5,2,1,1,  4,1,2,2,  2,5,1,1,  1,5,2,1,  2,1,5,2,  1,2,1,5,
-#'   5,1,2,2,  5,2,1,1,  1,5,2,1,  2,5,1,2,  1,2,5,1,  2,1,2,5,
-#'   4,2,1,1,  5,1,2,1,  2,4,1,2,  1,5,2,1,  2,1,4,2,  1,2,1,5,
-#'   5,1,2,1,  4,2,1,1,  1,5,2,1,  2,4,1,2,  1,2,5,1,  2,1,2,5),
-#'   nrow = 12,
+#' \donttest{
+#' # A small toy example with 6 items judged on 4 traits.
+#' set.seed(123)
+#' dat2 <- matrix(
+#'   c(
+#'     5, 2, 2, 1,  5, 1, 2, 1,  2, 5, 1, 2,  1, 5, 2, 1,
+#'     2, 1, 5, 2,  1, 2, 2, 5,  5, 1, 2, 2,  4, 2, 1, 1,
+#'     1, 5, 2, 1,  2, 5, 1, 1,  1, 2, 5, 2,  2, 1, 1, 5,
+#'     5, 1, 2, 1,  5, 2, 1, 1,  1, 5, 2, 1,  2, 4, 1, 2,
+#'     1, 2, 5, 2,  2, 1, 1, 5,  4, 2, 1, 2,  5, 1, 2, 1,
+#'     2, 5, 1, 1,  1, 5, 2, 1,  2, 1, 4, 2,  1, 2, 2, 4
+#'   ),
+#'   nrow = 6,
 #'   byrow = TRUE
 #' )
 #' key <- c(1, 1, 2, 2, 3, 4)
@@ -141,6 +121,7 @@
 #'   mds = "nonmetric",
 #'   display = "items"
 #' )
+#' }
 #'
 #' @export
 MDScontent <- function(
@@ -412,6 +393,12 @@ MDScontent <- function(
       subtitle = paste0("Distance: ", distance, " | Score: ", score,
                         ifelse(mds == "nonmetric", paste0(" | STRESS: ", signif(stress, 3)), ""))
     )
+
+  if ((display == "items" || display == "both") && isTRUE(label.items)) {
+    if (!requireNamespace("ggrepel", quietly = TRUE)) {
+      stop("Package 'ggrepel' is required for label.items = TRUE. Install it with install.packages('ggrepel').")
+    }
+  }
 
   if (display == "items" || display == "both") {
     if (!is.null(hull_data)) {

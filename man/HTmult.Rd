@@ -153,10 +153,10 @@ coding scheme is used, users should recode the ratings before calling
 the function.
 }
 \examples{
-\dontrun{
+\donttest{
 ## Example structure (toy data)
 set.seed(123)
-HTmult.data <- data.frame(
+dat <- data.frame(
   item1.c1 = sample(1:5, 50, replace = TRUE),
   item1.c2 = sample(1:5, 50, replace = TRUE),
   item1.c3 = sample(1:5, 50, replace = TRUE),
@@ -172,7 +172,8 @@ HTmult(
   key        = c(item1 = "c2", item2 = "c3"),
   anchors    = 5,
   ci         = TRUE,
-  conf.level = 0.95)
+  conf.level = 0.95
+)
 }
 
 }

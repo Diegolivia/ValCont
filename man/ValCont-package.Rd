@@ -6,7 +6,7 @@
 \alias{ValCont-package}
 \title{ValCont: Content Validation Using Vaiken and Other Functions}
 \description{
-Provides tools for content validity studies, including functions to calculate content validity coefficients from ratings by expert or experiential judges. It implements CVC(), CVI(), CVIR(), CVR(), and Vaiken() together with asymmetric confidence intervals for bounded coefficients and methods for comparing independent coefficients. The methods are based on Aiken (1980, 1985) \doi{10.1177/001316448004000419}, Wilson (1927) \doi{10.2307/2276774}, and Merino-Soto (2018) \doi{10.6018/analesps.34.3.283481}.
+Content validity studies, including functions to calculate content validity coefficients from ratings by expert or experiential judges. It implements CVC(), CVI(), CVIR(), CVR(), and Vaiken() together with asymmetric confidence intervals for bounded coefficients and methods for comparing independent coefficients. The methods are based on Aiken (1980, 1985) \doi{10.1177/001316448004000419}, Wilson (1927) \doi{10.2307/2276774}, and Merino-Soto (2018) \doi{10.6018/analesps.34.3.283481}.
 }
 \seealso{
 Useful links:

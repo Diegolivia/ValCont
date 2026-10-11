@@ -31,7 +31,7 @@ This function allows plotting substantive validity coefficients obtained from \c
  it will be highlighted. You can also provide a vector of labels to improve interpretability of the category axis.
 }
 \examples{
-\dontrun{
+\donttest{
 results <- SVALmult(data = data.gais, columns = c("gais2", "gais3"))
 SVALplot(results, item = "gais3", type = "svc", target = 4)
 SVALplot(results, item = "gais3", type = "psa", labels = c("Anger", "Fear", "Joy", "Sadness"))}

@@ -141,10 +141,10 @@
 #' ratings. \emph{Applied Measurement in Education, 17}(4), 359-370.
 #'
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' ## Example structure (toy data)
 #' set.seed(123)
-#' HTmult.data <- data.frame(
+#' dat <- data.frame(
 #'   item1.c1 = sample(1:5, 50, replace = TRUE),
 #'   item1.c2 = sample(1:5, 50, replace = TRUE),
 #'   item1.c3 = sample(1:5, 50, replace = TRUE),
@@ -153,14 +153,15 @@
 #'   item2.c3 = sample(1:5, 50, replace = TRUE)
 #' )
 #'
-#'HTmult(
+#' HTmult(
 #'   data       = dat,
 #'   items      = c("item1", "item2"),
 #'   constructs = c("c1", "c2", "c3"),
 #'   key        = c(item1 = "c2", item2 = "c3"),
 #'   anchors    = 5,
 #'   ci         = TRUE,
-#'   conf.level = 0.95)
+#'   conf.level = 0.95
+#' )
 #' }
 #'
 #' @export

@@ -51,11 +51,19 @@
 #'   \emph{Educational and Psychological Measurement, 45}, 131-142.
 #'
 #' @examples
-#' \dontrun{
-#' # Sample data: 8 items, 18 judges, ratings 1-4
-#' datos <- data.frame(t(file1[, c("claA6", "claA18", "claA2", "claA16",
-#'                                 "claA4", "claA12", "claA9", "claA21")]))
-#' Haiken(datos, ncat = 4, conf.level = .90, overall = TRUE, B = 1000, ci.type = "logit")
+#' \donttest{
+#' set.seed(123)
+#' datos <- data.frame(
+#'   item1 = sample(1:4, 8, replace = TRUE),
+#'   item2 = sample(1:4, 8, replace = TRUE),
+#'   item3 = sample(1:4, 8, replace = TRUE),
+#'   item4 = sample(1:4, 8, replace = TRUE),
+#'   item5 = sample(1:4, 8, replace = TRUE),
+#'   item6 = sample(1:4, 8, replace = TRUE),
+#'   item7 = sample(1:4, 8, replace = TRUE),
+#'   item8 = sample(1:4, 8, replace = TRUE)
+#' )
+#' Haiken(datos, ncat = 4, conf.level = .90, overall = TRUE, B = 200, ci.type = "logit")
 #' }
 #'
 #' @export

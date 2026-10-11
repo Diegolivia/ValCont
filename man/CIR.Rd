@@ -69,7 +69,7 @@ adjustment carefully and, if necessary, resort to alternative methods
 (e.g., bootstrap) for items with boundary confidence limits.
 }
 \examples{
-\dontrun{
+\donttest{
 # Suppose 'group1' and 'group2' contain columns 'est', 'low', and 'high'
 res <- CIR(group1, group2, coef.col = "est", lwr.col = "low", upr.col = "high")
 print(res)
