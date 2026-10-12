@@ -87,7 +87,7 @@ The MDS method requires a comparative design for obtaining the judges' ratings
 for each item. Each item must be evaluated against several attributes (not just one),
 and the judge must rate how well each item corresponds to each attribute. This format
 is consistent with the substantive validity method (\code{\link[ValCont:CIDsingle]{ValCont::CIDsingle}})
-and Hinkey's approach \code{\link[ValCont:HTmult]{ValCont::HTmult}}
+and Hinkey's approach \code{\link[ValCont:ColquittHT]{ValCont::ColquittHT}}
 
 ## Conceptual rationale
 The function provides a **geometric visualization** of content validity structure.
@@ -179,4 +179,13 @@ MDScontent(
   display = "items"
 )
 
+}
+\references{
+Sireci, S. G. (1998). Gathering and Analyzing Content Validity Data. \emph{Educational Assessment, 5}(4), 299–321. https://doi.org/10.1207/s15326977ea0504_2
+
+Li, X., & Sireci, S. G. (2013). A New Method for Analyzing Content Validity Data Using Multidimensional Scaling. \emph{Educational and Psychological Measurement, 73}(3), 365-385. https://doi.org/10.1177/0013164412473825
+
+Sireci, S. G., & Geisinger, K. F. (1995). Using Subject-Matter Experts to Assess Content Representation: An MDS Analysis. \emph{Applied Psychological Measurement, 19}(3), 241-255. https://doi.org/10.1177/014662169501900303
+
+Sireci, S. G., & Geisinger, K. F. (1992). Analyzing Test Content Using Cluster Analysis and Multidimensional Scaling. \emph{Applied Psychological Measurement, 16}(1), 17-31. https://doi.org/10.1177/014662169201600102
 }
