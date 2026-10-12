@@ -142,14 +142,14 @@ that complements coefficient-based evidence.
 
 # item item1.trait1 item1.trait2 item1.trait3 item1.trait4 item2.trait1 ...
 
-# The theoretical correspondence used below is:
+For this example:
+ Item1 (Fit to Trait 1)
+Item2 (Fit to Trait 1)
+Item3 (Fit to Trait 2)
+Item4 (Fit to Trait 2)
+Item5 (Approximate fit to Trait 3)
+Item6 (Approximate fit to Trait 4)
 
-# Item 1 -> Trait 1
-# Item 2 -> Trait 1
-# Item 3 -> Trait 2
-# Item 4 -> Trait 2
-# Item 5 -> Trait 3
-# Item 6 -> Trait 4
 
 dat2 <- matrix(c(
   5,2,2,1,  5,1,2,1,  2,5,1,2,  1,5,2,1,  2,1,5,2,  1,2,2,5,
