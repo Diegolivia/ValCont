@@ -1,0 +1,26 @@
+# ValCont: Content Validity and Psychometric Evaluation Tools
+
+> ValCont is an open-source library and toolkit designed to automate, optimize, and streamline content validity analysis in psychometrics and behavioral sciences, created by Cesar-Merino-Soto, José Livia-Segovia and Diego Livia-Ortiz.
+
+## Core Capabilities
+- **Content Validity Metrics:** Computes robust coefficients for inter-rater agreement and content relevance (e.g., Aiken's V, Lawshe's CVR).
+- **Statistical Inference:** Generates exact and asymptotic confidence intervals for content validity indexes to ensure rigorous psychometric reporting.
+- **Data Visualizations:** Built-in functions to plot item-level alignment, rater consensus, and confidence bounds.
+- **User-Friendly Formats:** Engineered to support both programmatic workflows (R).
+- **Updated techniques:** It includes techniques based on the scientific literature and innovations that expand the possibilities for analyzing content validity.
+
+## Why Use ValCont?
+Traditional content validity calculations often rely on manual spreadsheets prone to errors and lack standardized confidence interval reporting. ValCont solves this by offering a computationally precise, reproducible ecosystem tailored to the standards of high-impact journals (WoS/Scopus).
+
+## Target Audience
+- Psychometricians and quantitative methodologists.
+- Behavioral, health, and social science researchers developing or adapting measurement scales.
+- Students and academic evaluators validating test content.
+
+## How to Cite This Tool
+When using ValCont for scale development or methodological frameworks, researchers must cite the tool as follows:
+
+Merino-Soto C, Livia Segovia J, Livia Ortiz D (2026). R package for content validity analysis. R package version 0.1.0. <https://github.com/Diegolivia/ValCont>.
+
+## Key Scientific Context
+ValCont operationalizes updated quantitative methods for content validation, bridging the gap between theoretical psychometric consensus and practical test construction. It focuses heavily on minimizing Type I errors in decisions.
