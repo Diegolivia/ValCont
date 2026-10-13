@@ -30,7 +30,7 @@
 #'
 #'Singer, J. (2010). Construction of confidence limits about effect measures: A general approach, by G. Y. Zou and A. Donner, Statistics in Medicine 2008; 27:1693-1702. Statistics in Medicine, 29(16), 1757-1759. https://doi.org/10.1002/sim.3887
 #'
-#'Zou, G.Y. and Donner, A. (2008) Construction of confidence limits about effect measures: a general approach. Stat. Med. 27, 1693-1702. https://doi.org//10.1002/sim.3095
+#'Zou, G.Y. and Donner, A. (2008) Construction of confidence limits about effect measures: A general approach. Stat. Med. 27, 1693-1702. https://doi.org//10.1002/sim.3095
 #'
 #'@author
 #'Cesar Merino-Soto (\email{sikayax@yahoo.cam.ar})
