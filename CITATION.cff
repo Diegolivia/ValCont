@@ -1,0 +1,14 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it as below."
+authors:
+- family-names: "Merino-Soto"
+  given-names: "César"
+  orcid: "https://orcid.org/0000-0002-1407-8306"
+- family-names: "Livia-Segovia"
+  given-names: "José"
+- family-names: "Livia-Ortiz"
+  given-names: "Diego"
+title: "ValCont: R package for content validity analysis"
+version: 0.1.0
+date-released: 2026-10-13
+url: "https://github.com/Diegolivia/ValCont/"
