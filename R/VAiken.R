@@ -48,7 +48,7 @@
 #'  proportion V, following the logic of Penfield & Giacobbi (2004). The effective sample size
 #'  is `n_judges × (max - min)`, respecting the independence of judges. This method is the
 #'  most direct extension of the standard item-level V confidence interval to the global index, and
-#'  is consistent with the original proposal by Aiken and later developments.
+#'  is consistent with the original proposal by Penfield & Giacobbi.
 #'
 #'  - **`overall_method = "mer"`**: Implements the score confidence interval for the **mean** of
 #'  the ratings (MER; Penfield, 2003; Penfield & Miller, 2004) in the original scale, and then
