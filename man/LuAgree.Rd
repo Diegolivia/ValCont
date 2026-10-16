@@ -233,7 +233,7 @@ Lu, K. H. (1971). A measure of agreement among subjective judgments.
 \emph{Educational and Psychological Measurement}, 31(1), 57-68.
 https://doi.org/10.1177/001316447103100105
 
-Rovinelli, Richard J.; Hambleton, Ronald K. (1976). On the Use of Content
+Rovinelli, R J., Hambleton, R. K. (1976). On the Use of Content
 Specialists in the Assessment of Criterion-Referenced Test Item Validity.Paper
 presented at the Annual Meeting of the American Educational Research
 Association (60th, San Francisco, California, April 19-23, 1976).

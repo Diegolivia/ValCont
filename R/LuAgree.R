@@ -352,10 +352,9 @@ LuAgree <- function(data,
     Sw2 <- Sw2_num / (n_i * (m_i - 1L))
 
     # Maximum-entropy reference variance S_{w0}^2
-    p_unif <- rep(1 / t_cat, t_cat)
-    y_unif <- (seq_len(t_cat) - 0.5) / t_cat
-    mu0    <- sum(y_unif * p_unif)
-    Sw0_2  <- sum((y_unif - mu0)^2 * p_unif)
+        p_unif <- rep(1 / t_cat, t_cat)
+    mu0    <- sum(y_emp * p_unif)
+    Sw0_2  <- sum((y_emp - mu0)^2 * p_unif)
 
     A_val <- 1 - Sw2 / Sw0_2
 
