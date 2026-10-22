@@ -10,7 +10,7 @@
 #' @param conf.level Confidence level for asymmetric confidence intervals (e.g., .90, .95, .99).
 #' @param na.rm Logical. If FALSE (default) the function stops when missing values are detected.
 #'              If TRUE rows with missing values in the relevant columns are removed before processing.
-#' 
+#'
 #' @return
 #' A named list where each element corresponds to one of the analyzed items. Each element contains two data frames:
 #' \itemize{
@@ -47,9 +47,8 @@
 #' Each column in \code{data} should contain numerical responses representing constructs
 #'  (e.g., 1, 2, 3, 4). These values do not need to be sequential but must be distinct.
 #'
-#' \strong{Note}: The function does not handle missing values. Users must impute or remove NAs before using this function.
-#'
-#' \strong{Interpretation of Negative SVC Values}: Negative values of the \code{svc} coefficient are valid and interpretable. They indicate that the selected category was chosen less frequently than the average of the non-target categories, suggesting low substantive agreement for that construct.
+#' \strong{Interpretation of Negative SVC Values}: Negative values of the \code{svc} coefficient are valid and interpretable.
+#' They indicate that the selected category was chosen less frequently than the average of the non-target categories, suggesting low substantive agreement for that construct.
 #'
 #' @references
 #' Anderson, J. C., & Gerbing, D. W. (1991). Predicting the performance of measures in a confirmatory factor analysis with a pretest assessment of their substantive validities. \emph{Journal of Applied Psychology, 76}(5), 732-740. https://doi.org/10.1037/0021-9010.76.5.732
