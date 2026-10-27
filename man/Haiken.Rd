@@ -39,8 +39,7 @@ last row.}
     standard error, centered on the point estimate.}
   \item{\code{"perc"}}{Percentile bootstrap.}
   \item{\code{"basic"}}{Basic (reverse-percentile) bootstrap.}
-}
-\code{"logit"} is deprecated and equivalent to \code{"perc"}.}
+}}
 }
 \value{
 A data frame with columns:
@@ -49,6 +48,25 @@ A data frame with columns:
   \item{lwr.ci}{Lower confidence bound.}
   \item{upr.ci}{Upper confidence bound.}
   \item{n.jueces}{Number of judges.}
+
+\strong{Note on inference.} The normal-approximation bootstrap interval
+is not the same as the Z-test for the mean of H described by Aiken
+(1985). The former estimates a confidence interval for H centered on the
+observed value; the latter tests a null hypothesis using the theoretical
+mean and standard deviation of H under random ratings.
+
+More precisely, the theoretical mean of H under random ratings is a
+fixed quantity,
+\deqn{\mu_H = \frac{2(c + 1) + (k + j)(c - 2)}{3c(k + j)},}
+which anchors hypothesis testing about the calculated H. It does not
+enter the construction of bootstrap confidence intervals. The bias and
+asymmetry observed in small-sample bootstrap intervals—such as the
+lower limit coinciding with the point estimate—are properties of the
+resampling distribution of H, not of the theoretical null value. The
+two frameworks answer different questions: the Z-test asks whether the
+observed H departs from what random ratings would produce, whereas the
+bootstrap interval estimates the sampling variability of H around the
+observed value.
 }
 \description{
 Calculates Aiken's H coefficient of homogeneity for each item and,
