@@ -1,5 +1,15 @@
 # ValCont News
 
+## ValCont 0.1.1
+
+### Changed
+
+- Excluded `CITATION.cff` and `llms.txt` from source-package builds.
+
+### Fixed
+
+- Corrected the `MDScontent()` example so CRAN checks can parse and run it.
+
 ## ValCont 0.1.0
 
 ### Added

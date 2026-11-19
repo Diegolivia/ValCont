@@ -115,13 +115,13 @@
 #'
 #' # item item1.trait1 item1.trait2 item1.trait3 item1.trait4 item2.trait1 ...
 #'
-#' For this example:
-#'  Item1 (Fit to Trait 1)
-#' Item2 (Fit to Trait 1)
-#' Item3 (Fit to Trait 2)
-#' Item4 (Fit to Trait 2)
-#' Item5 (Approximate fit to Trait 3)
-#' Item6 (Approximate fit to Trait 4)
+#' # For this example:
+#' # Item1 (Fit to Trait 1)
+#' # Item2 (Fit to Trait 1)
+#' # Item3 (Fit to Trait 2)
+#' # Item4 (Fit to Trait 2)
+#' # Item5 (Approximate fit to Trait 3)
+#' # Item6 (Approximate fit to Trait 4)
 #'
 #'
 #' dat2 <- matrix(c(

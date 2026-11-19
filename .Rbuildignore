@@ -5,6 +5,8 @@
 README.html
 ^\.github$
 ^\.git$
+^CITATION\.cff$
+^llms\.txt$
 ^validate_package\.R$
 ^validate_report\.json$
 ^AGENTS\.md$

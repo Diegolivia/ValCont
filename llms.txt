@@ -20,7 +20,7 @@ Traditional content validity calculations often rely on manual spreadsheets pron
 ## How to Cite This Tool
 When using ValCont for scale development or methodological frameworks, researchers must cite the tool as follows:
 
-Merino-Soto C, Livia Segovia J, Livia Ortiz D (2026). R package for content validity analysis. R package version 0.1.0. <https://github.com/Diegolivia/ValCont>.
+Merino-Soto C, Livia Segovia J, Livia Ortiz D (2026). R package for content validity analysis. R package version 0.1.1. <https://github.com/Diegolivia/ValCont>.
 
 ## Key Scientific Context
 ValCont operationalizes updated quantitative methods for content validation, bridging the gap between theoretical psychometric consensus and practical test construction. It focuses heavily on minimizing Type I errors in decisions.
