@@ -2,13 +2,30 @@
 
 ## ValCont 0.1.1
 
+### Added
+
+- Added `RobinsonA()` for generalized Robinson agreement coefficients, bootstrap confidence intervals, and leave-one-out diagnostics for judges and items.
+- Added Cohen's h, with optional confidence intervals, to `CID()` for standardized comparisons of content-validity coefficients.
+- Added grouped analyses and pairwise MOVER comparisons to `LuAgree()`, together with percentile, normal, and BCa bootstrap confidence intervals.
+- Added project citation metadata in `CITATION.cff` and `llms.txt`.
+
 ### Changed
 
+- Expanded `CVC()` with global and Hernandez overall estimates, configurable Wilson or MER confidence intervals, and support for missing-value handling.
+- Improved `Haiken()` bootstrap inference with percentile, basic, normal, BCa, and automatic interval selection, plus clear guidance for small panels.
+- Updated `MDScontent()` aggregation and plotting behavior, documentation, and examples.
+- Clarified interpretation of negative SVC values in `SVALmult()`.
+- Updated `LuAgree()`, `Vaiken()`, and related function documentation and missing-value handling.
 - Excluded `CITATION.cff` and `llms.txt` from source-package builds.
+
+### Removed
+
+- Removed the deprecated `HTmult()` implementation and its exported namespace entry and documentation.
 
 ### Fixed
 
 - Corrected the `MDScontent()` example so CRAN checks can parse and run it.
+- Improved missing-value validation and complete-case handling in CVC, CID, Haiken, LuAgree, MDS, and substantive-validity functions.
 
 ## ValCont 0.1.0
 
