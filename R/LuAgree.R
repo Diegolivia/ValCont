@@ -186,7 +186,7 @@
 #' \emph{Educational and Psychological Measurement}, 31(1), 57-68.
 #' https://doi.org/10.1177/001316447103100105
 #'
-#' Rovinelli, Richard J.; Hambleton, Ronald K. (1976). On the Use of Content
+#' Rovinelli, R J., Hambleton, R. K. (1976). On the Use of Content
 #' Specialists in the Assessment of Criterion-Referenced Test Item Validity.Paper
 #' presented at the Annual Meeting of the American Educational Research
 #' Association (60th, San Francisco, California, April 19-23, 1976).
@@ -352,10 +352,9 @@ LuAgree <- function(data,
     Sw2 <- Sw2_num / (n_i * (m_i - 1L))
 
     # Maximum-entropy reference variance S_{w0}^2
-    p_unif <- rep(1 / t_cat, t_cat)
-    y_unif <- (seq_len(t_cat) - 0.5) / t_cat
-    mu0    <- sum(y_unif * p_unif)
-    Sw0_2  <- sum((y_unif - mu0)^2 * p_unif)
+        p_unif <- rep(1 / t_cat, t_cat)
+    mu0    <- sum(y_emp * p_unif)
+    Sw0_2  <- sum((y_emp - mu0)^2 * p_unif)
 
     A_val <- 1 - Sw2 / Sw0_2
 

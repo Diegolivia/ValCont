@@ -87,7 +87,7 @@ The MDS method requires a comparative design for obtaining the judges' ratings
 for each item. Each item must be evaluated against several attributes (not just one),
 and the judge must rate how well each item corresponds to each attribute. This format
 is consistent with the substantive validity method (\code{\link[ValCont:CIDsingle]{ValCont::CIDsingle}})
-and Hinkey's approach \code{\link[ValCont:HTmult]{ValCont::HTmult}}
+and Hinkey's approach \code{\link[ValCont:ColquittHT]{ValCont::ColquittHT}}
 
 ## Conceptual rationale
 The function provides a **geometric visualization** of content validity structure.
@@ -142,14 +142,14 @@ that complements coefficient-based evidence.
 
 # item item1.trait1 item1.trait2 item1.trait3 item1.trait4 item2.trait1 ...
 
-# The theoretical correspondence used below is:
+# For this example:
+# Item1 (Fit to Trait 1)
+# Item2 (Fit to Trait 1)
+# Item3 (Fit to Trait 2)
+# Item4 (Fit to Trait 2)
+# Item5 (Approximate fit to Trait 3)
+# Item6 (Approximate fit to Trait 4)
 
-# Item 1 -> Trait 1
-# Item 2 -> Trait 1
-# Item 3 -> Trait 2
-# Item 4 -> Trait 2
-# Item 5 -> Trait 3
-# Item 6 -> Trait 4
 
 dat2 <- matrix(c(
   5,2,2,1,  5,1,2,1,  2,5,1,2,  1,5,2,1,  2,1,5,2,  1,2,2,5,
@@ -179,4 +179,13 @@ MDScontent(
   display = "items"
 )
 
+}
+\references{
+Sireci, S. G. (1998). Gathering and Analyzing Content Validity Data. \emph{Educational Assessment, 5}(4), 299–321. https://doi.org/10.1207/s15326977ea0504_2
+
+Li, X., & Sireci, S. G. (2013). A New Method for Analyzing Content Validity Data Using Multidimensional Scaling. \emph{Educational and Psychological Measurement, 73}(3), 365-385. https://doi.org/10.1177/0013164412473825
+
+Sireci, S. G., & Geisinger, K. F. (1995). Using Subject-Matter Experts to Assess Content Representation: An MDS Analysis. \emph{Applied Psychological Measurement, 19}(3), 241-255. https://doi.org/10.1177/014662169501900303
+
+Sireci, S. G., & Geisinger, K. F. (1992). Analyzing Test Content Using Cluster Analysis and Multidimensional Scaling. \emph{Applied Psychological Measurement, 16}(1), 17-31. https://doi.org/10.1177/014662169201600102
 }

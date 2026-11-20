@@ -11,7 +11,7 @@ Haiken(
   na.rm = FALSE,
   overall = TRUE,
   B = 1000,
-  ci.type = c("logit", "perc", "norm")
+  ci.type = c("auto", "bca", "norm", "perc", "basic")
 )
 }
 \arguments{
@@ -23,61 +23,101 @@ Haiken(
 
 \item{na.rm}{Logical. If TRUE, rows with missing values are removed.}
 
-\item{overall}{Logical. If TRUE (default), the overall H (total) is added as the last row.}
+\item{overall}{Logical. If TRUE (default), the overall H is added as the
+last row.}
 
 \item{B}{Integer. Number of bootstrap resamples (default = 1000).}
 
-\item{ci.type}{Character: "logit" (default, recommended), "perc" (percentile), or "norm" (normal approximation).
-The "logit" method transforms the bootstrap H values to the logit scale,
-computes percentiles there, and back-transforms, ensuring the CI lies within [0,1].}
+\item{ci.type}{Character. Confidence-interval method:
+\describe{
+  \item{\code{"auto"}}{(default) Uses \code{"bca"} when the number of
+    judges \eqn{m \ge 8}, and \code{"norm"} otherwise.}
+  \item{\code{"bca"}}{Bias-corrected and accelerated bootstrap
+    (Efron, 1987). Recommended for reliability coefficients when
+    \eqn{m \ge 8}.}
+  \item{\code{"norm"}}{Normal approximation using the bootstrap
+    standard error, centered on the point estimate.}
+  \item{\code{"perc"}}{Percentile bootstrap.}
+  \item{\code{"basic"}}{Basic (reverse-percentile) bootstrap.}
+}}
 }
 \value{
 A data frame with columns:
-  \item{Item}{Item number, or "Total" for the overall coefficient.}
+  \item{Item}{Item number, or "Total".}
   \item{H}{Aiken's H coefficient.}
-  \item{lwr.ci}{Lower bound of the confidence interval.}
-  \item{upr.ci}{Upper bound of the confidence interval.}
-  \item{n.jueces}{Number of judges (same for all rows).}
+  \item{lwr.ci}{Lower confidence bound.}
+  \item{upr.ci}{Upper confidence bound.}
+  \item{n.jueces}{Number of judges.}
+
+\strong{Note on inference.} The normal-approximation bootstrap interval
+is not the same as the Z-test for the mean of H described by Aiken
+(1985). The former estimates a confidence interval for H centered on the
+observed value; the latter tests a null hypothesis using the theoretical
+mean and standard deviation of H under random ratings.
+
+More precisely, the theoretical mean of H under random ratings is a
+fixed quantity,
+\deqn{\mu_H = \frac{2(c + 1) + (k + j)(c - 2)}{3c(k + j)},}
+which anchors hypothesis testing about the calculated H. It does not
+enter the construction of bootstrap confidence intervals. The bias and
+asymmetry observed in small-sample bootstrap intervals—such as the
+lower limit coinciding with the point estimate—are properties of the
+resampling distribution of H, not of the theoretical null value. The
+two frameworks answer different questions: the Z-test asks whether the
+observed H departs from what random ratings would produce, whereas the
+bootstrap interval estimates the sampling variability of H around the
+observed value.
 }
 \description{
-Calculates Aiken's H coefficient of homogeneity for each item and, optionally,
-an overall H (total) across all items. The function uses bootstrap resampling
-of judges to obtain confidence intervals.
+Calculates Aiken's H coefficient of homogeneity for each item and,
+optionally, an overall H (total) across all items, together with
+bootstrap confidence intervals.
 }
 \details{
-The procedure for obtaining confidence intervals with ci.type = "logit" is as follows:
-\enumerate{
-  \item Compute the point estimate of H for each item and for the total (if overall = TRUE).
-  \item Generate B bootstrap samples by resampling the judges (columns) with replacement.
-        For each bootstrap sample, recompute H for each item and the total.
-  \item Apply the logit transformation to each bootstrap H value:
-        \deqn{L = \log(H / (1 - H))}.
-        To avoid infinities when H = 0 or H = 1, a small constant \eqn{\varepsilon = 10^{-6}}
-        is added (or subtracted) so that \eqn{H^* = \max(\varepsilon, \min(1-\varepsilon, H))}.
-  \item Obtain the percentiles of the logit-transformed bootstrap distribution:
-        \eqn{L_{\text{inf}} = \text{percentile}_{\alpha/2}(L)}, \eqn{L_{\text{sup}} = \text{percentile}_{1-\alpha/2}(L)}.
-  \item Back-transform to the original scale:
-        \eqn{H_{\text{inf}} = \exp(L_{\text{inf}}) / (1 + \exp(L_{\text{inf}}))},
-        \eqn{H_{\text{sup}} = \exp(L_{\text{sup}}) / (1 + \exp(L_{\text{sup}}))}.
-}
-This ensures that the confidence interval respects the [0,1] bounds and is asymmetric when appropriate.
+The H coefficient (Aiken, 1985, p. 140) is
+\deqn{H = 1 - \frac{4S}{(c - 1)(k^2 - j)},}
+where \eqn{S} is the sum of the \eqn{k(k-1)/2} absolute differences among
+the \eqn{k} ratings, \eqn{c} is the number of categories, and
+\eqn{j = 0} if \eqn{k} is even and \eqn{j = 1} if \eqn{k} is odd.
+The coefficient ranges from 0 (maximum disagreement) to 1 (perfect
+agreement).
 
-The methods "perc" and "norm" use the bootstrap percentiles or normal approximation directly on H,
-which may produce limits outside [0,1] in extreme cases; they are provided for comparison but are not recommended.
+\strong{Confidence-interval methods.} With few judges, the bootstrap
+distribution of \eqn{H} is discrete and biased upward (because each
+resample omits on average \eqn{m/e \approx 0.37m} distinct judges). The
+choice of interval method matters:
+\itemize{
+  \item \code{"perc"} inherits the bias; the lower limit can cling to
+    the point estimate.
+  \item \code{"basic"} reverses the percentiles around the estimate,
+    moving the "peg" to the upper limit.
+  \item \code{"norm"} recenters on the point estimate, forcing
+    symmetry; may leave \eqn{[0,1]} for extreme cases.
+  \item \code{"bca"} corrects both bias and skewness via jackknife;
+    recommended when \eqn{m \ge 8}.
+}
+With fewer than 6 judges, all bootstrap intervals are unreliable and
+should be interpreted as rough guides, not as formal inference.
 }
 \examples{
 \dontrun{
-# Sample data: 8 items, 18 judges, ratings 1-4
-datos <- data.frame(t(file1[, c("claA6", "claA18", "claA2", "claA16",
-                                "claA4", "claA12", "claA9", "claA21")]))
-Haiken(datos, ncat = 4, conf.level = .90, overall = TRUE, B = 1000, ci.type = "logit")
+Haiken(randata_high, ncat = 7, conf.level = .90,
+       overall = TRUE, B = 1000, ci.type = "auto")
 }
 
 }
 \references{
-Aiken, L. R. (1980). Content validity and reliability of single items or questionnaires.
-  \emph{Educational and Psychological Measurement, 40}, 955-959.
+Aiken, L. R. (1980). Content validity and reliability of single items
+  or questionnaires. \emph{Educational and Psychological Measurement,
+  40}, 955--959.
 
-Aiken, L. R. (1985). Three coefficients for analyzing the reliability and validity of ratings.
-  \emph{Educational and Psychological Measurement, 45}, 131-142.
+Aiken, L. R. (1985). Three coefficients for analyzing the reliability
+  and validity of ratings. \emph{Educational and Psychological
+  Measurement, 45}, 131--142.
+
+Efron, B. (1987). Better bootstrap confidence intervals. \emph{Journal
+  of the American Statistical Association, 82}(397), 171--185.
+
+Efron, B., & Tibshirani, R. J. (1993). \emph{An introduction to the
+  bootstrap}. Chapman & Hall.
 }

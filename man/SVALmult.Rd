@@ -58,9 +58,8 @@ Examples of use can be founded in Cabedo et al. (2024), and Merino-Soto et al. (
 Each column in \code{data} should contain numerical responses representing constructs
  (e.g., 1, 2, 3, 4). These values do not need to be sequential but must be distinct.
 
-\strong{Note}: The function does not handle missing values. Users must impute or remove NAs before using this function.
-
-\strong{Interpretation of Negative SVC Values}: Negative values of the \code{svc} coefficient are valid and interpretable. They indicate that the selected category was chosen less frequently than the average of the non-target categories, suggesting low substantive agreement for that construct.
+\strong{Interpretation of Negative SVC Values}: Negative values of the \code{svc} coefficient are valid and interpretable.
+They indicate that the selected category was chosen less frequently than the average of the non-target categories, suggesting low substantive agreement for that construct.
 }
 \examples{
 data.gais <- data.frame(
